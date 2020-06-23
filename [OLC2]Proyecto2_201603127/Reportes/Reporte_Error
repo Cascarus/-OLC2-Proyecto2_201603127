@@ -1,0 +1,9 @@
+// Reporte de Errores
+digraph {
+	graph [rankdir=LR]
+	node [shape=plaintext]
+	A [label=<<table border = '1'>
+<tr><td>Token</td><td>Tipo</td><td>Descripcion</td><td>Fila</td><td>Columna</td></tr>
+</table>>]
+	T [label="Reporte de Errores"]
+}

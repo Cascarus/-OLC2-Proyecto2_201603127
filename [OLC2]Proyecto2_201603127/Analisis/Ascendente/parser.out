@@ -1,0 +1,3364 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> inicio
+Rule 1     inicio -> instrucciones
+Rule 2     instrucciones -> instrucciones instruccion
+Rule 3     instrucciones -> instruccion
+Rule 4     instruccion -> etiqueta_main
+Rule 5     instruccion -> etiqueta_ID
+Rule 6     instruccion -> asignacion
+Rule 7     instruccion -> inst_goto
+Rule 8     instruccion -> inst_if
+Rule 9     instruccion -> inst_print
+Rule 10    instruccion -> inst_exit
+Rule 11    instruccion -> inst_unset
+Rule 12    etiqueta_main -> MAIN DOSPUNTOS
+Rule 13    etiqueta_ID -> ID DOSPUNTOS
+Rule 14    asignacion -> variables IGUAL operaciones PUNTOCOMA
+Rule 15    asignacion -> variables_array IGUAL operaciones PUNTOCOMA
+Rule 16    inst_goto -> GOTO ID PUNTOCOMA
+Rule 17    inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA
+Rule 18    inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA
+Rule 19    inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA
+Rule 20    inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA
+Rule 21    inst_exit -> EXIT PUNTOCOMA
+Rule 22    operaciones -> val MAS val
+Rule 23    operaciones -> val MENOS val
+Rule 24    operaciones -> val POR val
+Rule 25    operaciones -> val DIVICION val
+Rule 26    operaciones -> val MODULO val
+Rule 27    operaciones -> val AND1 val
+Rule 28    operaciones -> val OR1 val
+Rule 29    operaciones -> val XOR val
+Rule 30    operaciones -> val AND2 val
+Rule 31    operaciones -> val OR2 val
+Rule 32    operaciones -> val XOR2 val
+Rule 33    operaciones -> val SHIFTI val
+Rule 34    operaciones -> val SHIFTD val
+Rule 35    operaciones -> val IGUALIGUAL val
+Rule 36    operaciones -> val DIFERENTE val
+Rule 37    operaciones -> val MAYORIGUAL val
+Rule 38    operaciones -> val MENORIGUAL val
+Rule 39    operaciones -> val MAYOR val
+Rule 40    operaciones -> val MENOR val
+Rule 41    operaciones -> MENOS val
+Rule 42    operaciones -> EXCLAMA val
+Rule 43    operaciones -> NOT val
+Rule 44    operaciones -> ABS PARENTA val PARENTC
+Rule 45    operaciones -> READ PARENTA PARENTC
+Rule 46    operaciones -> ARRAY PARENTA PARENTC
+Rule 47    operaciones -> val
+Rule 48    val -> conversiones
+Rule 49    val -> ENTERO
+Rule 50    val -> DECIMAL
+Rule 51    val -> CADENA
+Rule 52    val -> variables
+Rule 53    val -> variables_array
+Rule 54    variables -> TEMPORALES
+Rule 55    variables -> PARAMETROS
+Rule 56    variables -> VALORES_DEVUELTOS
+Rule 57    variables -> SIMULADO
+Rule 58    variables -> PILA
+Rule 59    variables -> PUNTERO_PILA
+Rule 60    variables_array -> TEMPORALES indices
+Rule 61    variables_array -> PARAMETROS indices
+Rule 62    variables_array -> VALORES_DEVUELTOS indices
+Rule 63    variables_array -> SIMULADO indices
+Rule 64    variables_array -> PILA indices
+Rule 65    variables_array -> PUNTERO_PILA indices
+Rule 66    indices -> indices indice
+Rule 67    indices -> indice
+Rule 68    indice -> CORCHEA val CORCHEC
+Rule 69    conversiones -> PARENTA INT PARENTC val
+Rule 70    conversiones -> PARENTA FLOAT PARENTC val
+Rule 71    conversiones -> PARENTA CHAR PARENTC val
+
+Terminals, with rules where they appear
+
+ABS                  : 44
+AND1                 : 27
+AND2                 : 30
+ARRAY                : 46
+CADENA               : 51
+CHAR                 : 71
+CORCHEA              : 68
+CORCHEC              : 68
+DECIMAL              : 50
+DIFERENTE            : 36
+DIVICION             : 25
+DOSPUNTOS            : 12 13
+ENTERO               : 49
+EXCLAMA              : 42
+EXIT                 : 21
+FLOAT                : 70
+GOTO                 : 16 17
+ID                   : 13 16 17
+IF                   : 17
+IGUAL                : 14 15
+IGUALIGUAL           : 35
+INT                  : 69
+MAIN                 : 12
+MAS                  : 22
+MAYOR                : 39
+MAYORIGUAL           : 37
+MENOR                : 40
+MENORIGUAL           : 38
+MENOS                : 23 41
+MODULO               : 26
+NOT                  : 43
+OR1                  : 28
+OR2                  : 31
+PARAMETROS           : 55 61
+PARENTA              : 17 18 19 20 44 45 46 69 70 71
+PARENTC              : 17 18 19 20 44 45 46 69 70 71
+PILA                 : 58 64
+POR                  : 24
+PRINT                : 18 19
+PUNTERO_PILA         : 59 65
+PUNTOCOMA            : 14 15 16 17 18 19 20 21
+READ                 : 45
+SHIFTD               : 34
+SHIFTI               : 33
+SIMULADO             : 57 63
+TEMPORALES           : 54 60
+UNSET                : 20
+VALORES_DEVUELTOS    : 56 62
+XOR                  : 29
+XOR2                 : 32
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 6
+conversiones         : 48
+etiqueta_ID          : 5
+etiqueta_main        : 4
+indice               : 66 67
+indices              : 60 61 62 63 64 65 66
+inicio               : 0
+inst_exit            : 10
+inst_goto            : 7
+inst_if              : 8
+inst_print           : 9
+inst_unset           : 11
+instruccion          : 2 3
+instrucciones        : 1 2
+operaciones          : 14 15 17
+val                  : 19 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 42 43 44 47 68 69 70 71
+variables            : 14 18 20 52
+variables_array      : 15 53
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . inicio
+    (1) inicio -> . instrucciones
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . etiqueta_main
+    (5) instruccion -> . etiqueta_ID
+    (6) instruccion -> . asignacion
+    (7) instruccion -> . inst_goto
+    (8) instruccion -> . inst_if
+    (9) instruccion -> . inst_print
+    (10) instruccion -> . inst_exit
+    (11) instruccion -> . inst_unset
+    (12) etiqueta_main -> . MAIN DOSPUNTOS
+    (13) etiqueta_ID -> . ID DOSPUNTOS
+    (14) asignacion -> . variables IGUAL operaciones PUNTOCOMA
+    (15) asignacion -> . variables_array IGUAL operaciones PUNTOCOMA
+    (16) inst_goto -> . GOTO ID PUNTOCOMA
+    (17) inst_if -> . IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA
+    (18) inst_print -> . PRINT PARENTA variables PARENTC PUNTOCOMA
+    (19) inst_print -> . PRINT PARENTA val PARENTC PUNTOCOMA
+    (21) inst_exit -> . EXIT PUNTOCOMA
+    (20) inst_unset -> . UNSET PARENTA variables PARENTC PUNTOCOMA
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    MAIN            shift and go to state 12
+    ID              shift and go to state 13
+    GOTO            shift and go to state 16
+    IF              shift and go to state 17
+    PRINT           shift and go to state 18
+    EXIT            shift and go to state 19
+    UNSET           shift and go to state 20
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    inicio                         shift and go to state 1
+    instrucciones                  shift and go to state 2
+    instruccion                    shift and go to state 3
+    etiqueta_main                  shift and go to state 4
+    etiqueta_ID                    shift and go to state 5
+    asignacion                     shift and go to state 6
+    inst_goto                      shift and go to state 7
+    inst_if                        shift and go to state 8
+    inst_print                     shift and go to state 9
+    inst_exit                      shift and go to state 10
+    inst_unset                     shift and go to state 11
+    variables                      shift and go to state 14
+    variables_array                shift and go to state 15
+
+state 1
+
+    (0) S' -> inicio .
+
+
+
+state 2
+
+    (1) inicio -> instrucciones .
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . etiqueta_main
+    (5) instruccion -> . etiqueta_ID
+    (6) instruccion -> . asignacion
+    (7) instruccion -> . inst_goto
+    (8) instruccion -> . inst_if
+    (9) instruccion -> . inst_print
+    (10) instruccion -> . inst_exit
+    (11) instruccion -> . inst_unset
+    (12) etiqueta_main -> . MAIN DOSPUNTOS
+    (13) etiqueta_ID -> . ID DOSPUNTOS
+    (14) asignacion -> . variables IGUAL operaciones PUNTOCOMA
+    (15) asignacion -> . variables_array IGUAL operaciones PUNTOCOMA
+    (16) inst_goto -> . GOTO ID PUNTOCOMA
+    (17) inst_if -> . IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA
+    (18) inst_print -> . PRINT PARENTA variables PARENTC PUNTOCOMA
+    (19) inst_print -> . PRINT PARENTA val PARENTC PUNTOCOMA
+    (21) inst_exit -> . EXIT PUNTOCOMA
+    (20) inst_unset -> . UNSET PARENTA variables PARENTC PUNTOCOMA
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    $end            reduce using rule 1 (inicio -> instrucciones .)
+    MAIN            shift and go to state 12
+    ID              shift and go to state 13
+    GOTO            shift and go to state 16
+    IF              shift and go to state 17
+    PRINT           shift and go to state 18
+    EXIT            shift and go to state 19
+    UNSET           shift and go to state 20
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    instruccion                    shift and go to state 27
+    etiqueta_main                  shift and go to state 4
+    etiqueta_ID                    shift and go to state 5
+    asignacion                     shift and go to state 6
+    inst_goto                      shift and go to state 7
+    inst_if                        shift and go to state 8
+    inst_print                     shift and go to state 9
+    inst_exit                      shift and go to state 10
+    inst_unset                     shift and go to state 11
+    variables                      shift and go to state 14
+    variables_array                shift and go to state 15
+
+state 3
+
+    (3) instrucciones -> instruccion .
+
+    MAIN            reduce using rule 3 (instrucciones -> instruccion .)
+    ID              reduce using rule 3 (instrucciones -> instruccion .)
+    GOTO            reduce using rule 3 (instrucciones -> instruccion .)
+    IF              reduce using rule 3 (instrucciones -> instruccion .)
+    PRINT           reduce using rule 3 (instrucciones -> instruccion .)
+    EXIT            reduce using rule 3 (instrucciones -> instruccion .)
+    UNSET           reduce using rule 3 (instrucciones -> instruccion .)
+    TEMPORALES      reduce using rule 3 (instrucciones -> instruccion .)
+    PARAMETROS      reduce using rule 3 (instrucciones -> instruccion .)
+    VALORES_DEVUELTOS reduce using rule 3 (instrucciones -> instruccion .)
+    SIMULADO        reduce using rule 3 (instrucciones -> instruccion .)
+    PILA            reduce using rule 3 (instrucciones -> instruccion .)
+    PUNTERO_PILA    reduce using rule 3 (instrucciones -> instruccion .)
+    $end            reduce using rule 3 (instrucciones -> instruccion .)
+
+
+state 4
+
+    (4) instruccion -> etiqueta_main .
+
+    MAIN            reduce using rule 4 (instruccion -> etiqueta_main .)
+    ID              reduce using rule 4 (instruccion -> etiqueta_main .)
+    GOTO            reduce using rule 4 (instruccion -> etiqueta_main .)
+    IF              reduce using rule 4 (instruccion -> etiqueta_main .)
+    PRINT           reduce using rule 4 (instruccion -> etiqueta_main .)
+    EXIT            reduce using rule 4 (instruccion -> etiqueta_main .)
+    UNSET           reduce using rule 4 (instruccion -> etiqueta_main .)
+    TEMPORALES      reduce using rule 4 (instruccion -> etiqueta_main .)
+    PARAMETROS      reduce using rule 4 (instruccion -> etiqueta_main .)
+    VALORES_DEVUELTOS reduce using rule 4 (instruccion -> etiqueta_main .)
+    SIMULADO        reduce using rule 4 (instruccion -> etiqueta_main .)
+    PILA            reduce using rule 4 (instruccion -> etiqueta_main .)
+    PUNTERO_PILA    reduce using rule 4 (instruccion -> etiqueta_main .)
+    $end            reduce using rule 4 (instruccion -> etiqueta_main .)
+
+
+state 5
+
+    (5) instruccion -> etiqueta_ID .
+
+    MAIN            reduce using rule 5 (instruccion -> etiqueta_ID .)
+    ID              reduce using rule 5 (instruccion -> etiqueta_ID .)
+    GOTO            reduce using rule 5 (instruccion -> etiqueta_ID .)
+    IF              reduce using rule 5 (instruccion -> etiqueta_ID .)
+    PRINT           reduce using rule 5 (instruccion -> etiqueta_ID .)
+    EXIT            reduce using rule 5 (instruccion -> etiqueta_ID .)
+    UNSET           reduce using rule 5 (instruccion -> etiqueta_ID .)
+    TEMPORALES      reduce using rule 5 (instruccion -> etiqueta_ID .)
+    PARAMETROS      reduce using rule 5 (instruccion -> etiqueta_ID .)
+    VALORES_DEVUELTOS reduce using rule 5 (instruccion -> etiqueta_ID .)
+    SIMULADO        reduce using rule 5 (instruccion -> etiqueta_ID .)
+    PILA            reduce using rule 5 (instruccion -> etiqueta_ID .)
+    PUNTERO_PILA    reduce using rule 5 (instruccion -> etiqueta_ID .)
+    $end            reduce using rule 5 (instruccion -> etiqueta_ID .)
+
+
+state 6
+
+    (6) instruccion -> asignacion .
+
+    MAIN            reduce using rule 6 (instruccion -> asignacion .)
+    ID              reduce using rule 6 (instruccion -> asignacion .)
+    GOTO            reduce using rule 6 (instruccion -> asignacion .)
+    IF              reduce using rule 6 (instruccion -> asignacion .)
+    PRINT           reduce using rule 6 (instruccion -> asignacion .)
+    EXIT            reduce using rule 6 (instruccion -> asignacion .)
+    UNSET           reduce using rule 6 (instruccion -> asignacion .)
+    TEMPORALES      reduce using rule 6 (instruccion -> asignacion .)
+    PARAMETROS      reduce using rule 6 (instruccion -> asignacion .)
+    VALORES_DEVUELTOS reduce using rule 6 (instruccion -> asignacion .)
+    SIMULADO        reduce using rule 6 (instruccion -> asignacion .)
+    PILA            reduce using rule 6 (instruccion -> asignacion .)
+    PUNTERO_PILA    reduce using rule 6 (instruccion -> asignacion .)
+    $end            reduce using rule 6 (instruccion -> asignacion .)
+
+
+state 7
+
+    (7) instruccion -> inst_goto .
+
+    MAIN            reduce using rule 7 (instruccion -> inst_goto .)
+    ID              reduce using rule 7 (instruccion -> inst_goto .)
+    GOTO            reduce using rule 7 (instruccion -> inst_goto .)
+    IF              reduce using rule 7 (instruccion -> inst_goto .)
+    PRINT           reduce using rule 7 (instruccion -> inst_goto .)
+    EXIT            reduce using rule 7 (instruccion -> inst_goto .)
+    UNSET           reduce using rule 7 (instruccion -> inst_goto .)
+    TEMPORALES      reduce using rule 7 (instruccion -> inst_goto .)
+    PARAMETROS      reduce using rule 7 (instruccion -> inst_goto .)
+    VALORES_DEVUELTOS reduce using rule 7 (instruccion -> inst_goto .)
+    SIMULADO        reduce using rule 7 (instruccion -> inst_goto .)
+    PILA            reduce using rule 7 (instruccion -> inst_goto .)
+    PUNTERO_PILA    reduce using rule 7 (instruccion -> inst_goto .)
+    $end            reduce using rule 7 (instruccion -> inst_goto .)
+
+
+state 8
+
+    (8) instruccion -> inst_if .
+
+    MAIN            reduce using rule 8 (instruccion -> inst_if .)
+    ID              reduce using rule 8 (instruccion -> inst_if .)
+    GOTO            reduce using rule 8 (instruccion -> inst_if .)
+    IF              reduce using rule 8 (instruccion -> inst_if .)
+    PRINT           reduce using rule 8 (instruccion -> inst_if .)
+    EXIT            reduce using rule 8 (instruccion -> inst_if .)
+    UNSET           reduce using rule 8 (instruccion -> inst_if .)
+    TEMPORALES      reduce using rule 8 (instruccion -> inst_if .)
+    PARAMETROS      reduce using rule 8 (instruccion -> inst_if .)
+    VALORES_DEVUELTOS reduce using rule 8 (instruccion -> inst_if .)
+    SIMULADO        reduce using rule 8 (instruccion -> inst_if .)
+    PILA            reduce using rule 8 (instruccion -> inst_if .)
+    PUNTERO_PILA    reduce using rule 8 (instruccion -> inst_if .)
+    $end            reduce using rule 8 (instruccion -> inst_if .)
+
+
+state 9
+
+    (9) instruccion -> inst_print .
+
+    MAIN            reduce using rule 9 (instruccion -> inst_print .)
+    ID              reduce using rule 9 (instruccion -> inst_print .)
+    GOTO            reduce using rule 9 (instruccion -> inst_print .)
+    IF              reduce using rule 9 (instruccion -> inst_print .)
+    PRINT           reduce using rule 9 (instruccion -> inst_print .)
+    EXIT            reduce using rule 9 (instruccion -> inst_print .)
+    UNSET           reduce using rule 9 (instruccion -> inst_print .)
+    TEMPORALES      reduce using rule 9 (instruccion -> inst_print .)
+    PARAMETROS      reduce using rule 9 (instruccion -> inst_print .)
+    VALORES_DEVUELTOS reduce using rule 9 (instruccion -> inst_print .)
+    SIMULADO        reduce using rule 9 (instruccion -> inst_print .)
+    PILA            reduce using rule 9 (instruccion -> inst_print .)
+    PUNTERO_PILA    reduce using rule 9 (instruccion -> inst_print .)
+    $end            reduce using rule 9 (instruccion -> inst_print .)
+
+
+state 10
+
+    (10) instruccion -> inst_exit .
+
+    MAIN            reduce using rule 10 (instruccion -> inst_exit .)
+    ID              reduce using rule 10 (instruccion -> inst_exit .)
+    GOTO            reduce using rule 10 (instruccion -> inst_exit .)
+    IF              reduce using rule 10 (instruccion -> inst_exit .)
+    PRINT           reduce using rule 10 (instruccion -> inst_exit .)
+    EXIT            reduce using rule 10 (instruccion -> inst_exit .)
+    UNSET           reduce using rule 10 (instruccion -> inst_exit .)
+    TEMPORALES      reduce using rule 10 (instruccion -> inst_exit .)
+    PARAMETROS      reduce using rule 10 (instruccion -> inst_exit .)
+    VALORES_DEVUELTOS reduce using rule 10 (instruccion -> inst_exit .)
+    SIMULADO        reduce using rule 10 (instruccion -> inst_exit .)
+    PILA            reduce using rule 10 (instruccion -> inst_exit .)
+    PUNTERO_PILA    reduce using rule 10 (instruccion -> inst_exit .)
+    $end            reduce using rule 10 (instruccion -> inst_exit .)
+
+
+state 11
+
+    (11) instruccion -> inst_unset .
+
+    MAIN            reduce using rule 11 (instruccion -> inst_unset .)
+    ID              reduce using rule 11 (instruccion -> inst_unset .)
+    GOTO            reduce using rule 11 (instruccion -> inst_unset .)
+    IF              reduce using rule 11 (instruccion -> inst_unset .)
+    PRINT           reduce using rule 11 (instruccion -> inst_unset .)
+    EXIT            reduce using rule 11 (instruccion -> inst_unset .)
+    UNSET           reduce using rule 11 (instruccion -> inst_unset .)
+    TEMPORALES      reduce using rule 11 (instruccion -> inst_unset .)
+    PARAMETROS      reduce using rule 11 (instruccion -> inst_unset .)
+    VALORES_DEVUELTOS reduce using rule 11 (instruccion -> inst_unset .)
+    SIMULADO        reduce using rule 11 (instruccion -> inst_unset .)
+    PILA            reduce using rule 11 (instruccion -> inst_unset .)
+    PUNTERO_PILA    reduce using rule 11 (instruccion -> inst_unset .)
+    $end            reduce using rule 11 (instruccion -> inst_unset .)
+
+
+state 12
+
+    (12) etiqueta_main -> MAIN . DOSPUNTOS
+
+    DOSPUNTOS       shift and go to state 28
+
+
+state 13
+
+    (13) etiqueta_ID -> ID . DOSPUNTOS
+
+    DOSPUNTOS       shift and go to state 29
+
+
+state 14
+
+    (14) asignacion -> variables . IGUAL operaciones PUNTOCOMA
+
+    IGUAL           shift and go to state 30
+
+
+state 15
+
+    (15) asignacion -> variables_array . IGUAL operaciones PUNTOCOMA
+
+    IGUAL           shift and go to state 31
+
+
+state 16
+
+    (16) inst_goto -> GOTO . ID PUNTOCOMA
+
+    ID              shift and go to state 32
+
+
+state 17
+
+    (17) inst_if -> IF . PARENTA operaciones PARENTC GOTO ID PUNTOCOMA
+
+    PARENTA         shift and go to state 33
+
+
+state 18
+
+    (18) inst_print -> PRINT . PARENTA variables PARENTC PUNTOCOMA
+    (19) inst_print -> PRINT . PARENTA val PARENTC PUNTOCOMA
+
+    PARENTA         shift and go to state 34
+
+
+state 19
+
+    (21) inst_exit -> EXIT . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 35
+
+
+state 20
+
+    (20) inst_unset -> UNSET . PARENTA variables PARENTC PUNTOCOMA
+
+    PARENTA         shift and go to state 36
+
+
+state 21
+
+    (54) variables -> TEMPORALES .
+    (60) variables_array -> TEMPORALES . indices
+    (66) indices -> . indices indice
+    (67) indices -> . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 54 (variables -> TEMPORALES .)
+    MAS             reduce using rule 54 (variables -> TEMPORALES .)
+    MENOS           reduce using rule 54 (variables -> TEMPORALES .)
+    POR             reduce using rule 54 (variables -> TEMPORALES .)
+    DIVICION        reduce using rule 54 (variables -> TEMPORALES .)
+    MODULO          reduce using rule 54 (variables -> TEMPORALES .)
+    AND1            reduce using rule 54 (variables -> TEMPORALES .)
+    OR1             reduce using rule 54 (variables -> TEMPORALES .)
+    XOR             reduce using rule 54 (variables -> TEMPORALES .)
+    AND2            reduce using rule 54 (variables -> TEMPORALES .)
+    OR2             reduce using rule 54 (variables -> TEMPORALES .)
+    XOR2            reduce using rule 54 (variables -> TEMPORALES .)
+    SHIFTI          reduce using rule 54 (variables -> TEMPORALES .)
+    SHIFTD          reduce using rule 54 (variables -> TEMPORALES .)
+    IGUALIGUAL      reduce using rule 54 (variables -> TEMPORALES .)
+    DIFERENTE       reduce using rule 54 (variables -> TEMPORALES .)
+    MAYORIGUAL      reduce using rule 54 (variables -> TEMPORALES .)
+    MENORIGUAL      reduce using rule 54 (variables -> TEMPORALES .)
+    MAYOR           reduce using rule 54 (variables -> TEMPORALES .)
+    MENOR           reduce using rule 54 (variables -> TEMPORALES .)
+    PUNTOCOMA       reduce using rule 54 (variables -> TEMPORALES .)
+    PARENTC         reduce using rule 54 (variables -> TEMPORALES .)
+    CORCHEC         reduce using rule 54 (variables -> TEMPORALES .)
+    CORCHEA         shift and go to state 39
+
+    indices                        shift and go to state 37
+    indice                         shift and go to state 38
+
+state 22
+
+    (55) variables -> PARAMETROS .
+    (61) variables_array -> PARAMETROS . indices
+    (66) indices -> . indices indice
+    (67) indices -> . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 55 (variables -> PARAMETROS .)
+    MAS             reduce using rule 55 (variables -> PARAMETROS .)
+    MENOS           reduce using rule 55 (variables -> PARAMETROS .)
+    POR             reduce using rule 55 (variables -> PARAMETROS .)
+    DIVICION        reduce using rule 55 (variables -> PARAMETROS .)
+    MODULO          reduce using rule 55 (variables -> PARAMETROS .)
+    AND1            reduce using rule 55 (variables -> PARAMETROS .)
+    OR1             reduce using rule 55 (variables -> PARAMETROS .)
+    XOR             reduce using rule 55 (variables -> PARAMETROS .)
+    AND2            reduce using rule 55 (variables -> PARAMETROS .)
+    OR2             reduce using rule 55 (variables -> PARAMETROS .)
+    XOR2            reduce using rule 55 (variables -> PARAMETROS .)
+    SHIFTI          reduce using rule 55 (variables -> PARAMETROS .)
+    SHIFTD          reduce using rule 55 (variables -> PARAMETROS .)
+    IGUALIGUAL      reduce using rule 55 (variables -> PARAMETROS .)
+    DIFERENTE       reduce using rule 55 (variables -> PARAMETROS .)
+    MAYORIGUAL      reduce using rule 55 (variables -> PARAMETROS .)
+    MENORIGUAL      reduce using rule 55 (variables -> PARAMETROS .)
+    MAYOR           reduce using rule 55 (variables -> PARAMETROS .)
+    MENOR           reduce using rule 55 (variables -> PARAMETROS .)
+    PUNTOCOMA       reduce using rule 55 (variables -> PARAMETROS .)
+    PARENTC         reduce using rule 55 (variables -> PARAMETROS .)
+    CORCHEC         reduce using rule 55 (variables -> PARAMETROS .)
+    CORCHEA         shift and go to state 39
+
+    indices                        shift and go to state 40
+    indice                         shift and go to state 38
+
+state 23
+
+    (56) variables -> VALORES_DEVUELTOS .
+    (62) variables_array -> VALORES_DEVUELTOS . indices
+    (66) indices -> . indices indice
+    (67) indices -> . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MAS             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MENOS           reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    POR             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    DIVICION        reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MODULO          reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    AND1            reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    OR1             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    XOR             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    AND2            reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    OR2             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    XOR2            reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    SHIFTI          reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    SHIFTD          reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    IGUALIGUAL      reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    DIFERENTE       reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MAYORIGUAL      reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MENORIGUAL      reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MAYOR           reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    MENOR           reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    PUNTOCOMA       reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    PARENTC         reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    CORCHEC         reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    CORCHEA         shift and go to state 39
+
+    indices                        shift and go to state 41
+    indice                         shift and go to state 38
+
+state 24
+
+    (57) variables -> SIMULADO .
+    (63) variables_array -> SIMULADO . indices
+    (66) indices -> . indices indice
+    (67) indices -> . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 57 (variables -> SIMULADO .)
+    MAS             reduce using rule 57 (variables -> SIMULADO .)
+    MENOS           reduce using rule 57 (variables -> SIMULADO .)
+    POR             reduce using rule 57 (variables -> SIMULADO .)
+    DIVICION        reduce using rule 57 (variables -> SIMULADO .)
+    MODULO          reduce using rule 57 (variables -> SIMULADO .)
+    AND1            reduce using rule 57 (variables -> SIMULADO .)
+    OR1             reduce using rule 57 (variables -> SIMULADO .)
+    XOR             reduce using rule 57 (variables -> SIMULADO .)
+    AND2            reduce using rule 57 (variables -> SIMULADO .)
+    OR2             reduce using rule 57 (variables -> SIMULADO .)
+    XOR2            reduce using rule 57 (variables -> SIMULADO .)
+    SHIFTI          reduce using rule 57 (variables -> SIMULADO .)
+    SHIFTD          reduce using rule 57 (variables -> SIMULADO .)
+    IGUALIGUAL      reduce using rule 57 (variables -> SIMULADO .)
+    DIFERENTE       reduce using rule 57 (variables -> SIMULADO .)
+    MAYORIGUAL      reduce using rule 57 (variables -> SIMULADO .)
+    MENORIGUAL      reduce using rule 57 (variables -> SIMULADO .)
+    MAYOR           reduce using rule 57 (variables -> SIMULADO .)
+    MENOR           reduce using rule 57 (variables -> SIMULADO .)
+    PUNTOCOMA       reduce using rule 57 (variables -> SIMULADO .)
+    PARENTC         reduce using rule 57 (variables -> SIMULADO .)
+    CORCHEC         reduce using rule 57 (variables -> SIMULADO .)
+    CORCHEA         shift and go to state 39
+
+    indices                        shift and go to state 42
+    indice                         shift and go to state 38
+
+state 25
+
+    (58) variables -> PILA .
+    (64) variables_array -> PILA . indices
+    (66) indices -> . indices indice
+    (67) indices -> . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 58 (variables -> PILA .)
+    MAS             reduce using rule 58 (variables -> PILA .)
+    MENOS           reduce using rule 58 (variables -> PILA .)
+    POR             reduce using rule 58 (variables -> PILA .)
+    DIVICION        reduce using rule 58 (variables -> PILA .)
+    MODULO          reduce using rule 58 (variables -> PILA .)
+    AND1            reduce using rule 58 (variables -> PILA .)
+    OR1             reduce using rule 58 (variables -> PILA .)
+    XOR             reduce using rule 58 (variables -> PILA .)
+    AND2            reduce using rule 58 (variables -> PILA .)
+    OR2             reduce using rule 58 (variables -> PILA .)
+    XOR2            reduce using rule 58 (variables -> PILA .)
+    SHIFTI          reduce using rule 58 (variables -> PILA .)
+    SHIFTD          reduce using rule 58 (variables -> PILA .)
+    IGUALIGUAL      reduce using rule 58 (variables -> PILA .)
+    DIFERENTE       reduce using rule 58 (variables -> PILA .)
+    MAYORIGUAL      reduce using rule 58 (variables -> PILA .)
+    MENORIGUAL      reduce using rule 58 (variables -> PILA .)
+    MAYOR           reduce using rule 58 (variables -> PILA .)
+    MENOR           reduce using rule 58 (variables -> PILA .)
+    PUNTOCOMA       reduce using rule 58 (variables -> PILA .)
+    PARENTC         reduce using rule 58 (variables -> PILA .)
+    CORCHEC         reduce using rule 58 (variables -> PILA .)
+    CORCHEA         shift and go to state 39
+
+    indices                        shift and go to state 43
+    indice                         shift and go to state 38
+
+state 26
+
+    (59) variables -> PUNTERO_PILA .
+    (65) variables_array -> PUNTERO_PILA . indices
+    (66) indices -> . indices indice
+    (67) indices -> . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MAS             reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MENOS           reduce using rule 59 (variables -> PUNTERO_PILA .)
+    POR             reduce using rule 59 (variables -> PUNTERO_PILA .)
+    DIVICION        reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MODULO          reduce using rule 59 (variables -> PUNTERO_PILA .)
+    AND1            reduce using rule 59 (variables -> PUNTERO_PILA .)
+    OR1             reduce using rule 59 (variables -> PUNTERO_PILA .)
+    XOR             reduce using rule 59 (variables -> PUNTERO_PILA .)
+    AND2            reduce using rule 59 (variables -> PUNTERO_PILA .)
+    OR2             reduce using rule 59 (variables -> PUNTERO_PILA .)
+    XOR2            reduce using rule 59 (variables -> PUNTERO_PILA .)
+    SHIFTI          reduce using rule 59 (variables -> PUNTERO_PILA .)
+    SHIFTD          reduce using rule 59 (variables -> PUNTERO_PILA .)
+    IGUALIGUAL      reduce using rule 59 (variables -> PUNTERO_PILA .)
+    DIFERENTE       reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MAYORIGUAL      reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MENORIGUAL      reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MAYOR           reduce using rule 59 (variables -> PUNTERO_PILA .)
+    MENOR           reduce using rule 59 (variables -> PUNTERO_PILA .)
+    PUNTOCOMA       reduce using rule 59 (variables -> PUNTERO_PILA .)
+    PARENTC         reduce using rule 59 (variables -> PUNTERO_PILA .)
+    CORCHEC         reduce using rule 59 (variables -> PUNTERO_PILA .)
+    CORCHEA         shift and go to state 39
+
+    indices                        shift and go to state 44
+    indice                         shift and go to state 38
+
+state 27
+
+    (2) instrucciones -> instrucciones instruccion .
+
+    MAIN            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    ID              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    GOTO            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    IF              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    PRINT           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    EXIT            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    UNSET           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    TEMPORALES      reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    PARAMETROS      reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    VALORES_DEVUELTOS reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    SIMULADO        reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    PILA            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    PUNTERO_PILA    reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+
+
+state 28
+
+    (12) etiqueta_main -> MAIN DOSPUNTOS .
+
+    MAIN            reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    ID              reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    GOTO            reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    IF              reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    PRINT           reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    EXIT            reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    UNSET           reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    TEMPORALES      reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    PARAMETROS      reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    VALORES_DEVUELTOS reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    SIMULADO        reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    PILA            reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    PUNTERO_PILA    reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+    $end            reduce using rule 12 (etiqueta_main -> MAIN DOSPUNTOS .)
+
+
+state 29
+
+    (13) etiqueta_ID -> ID DOSPUNTOS .
+
+    MAIN            reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    ID              reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    GOTO            reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    IF              reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    PRINT           reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    EXIT            reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    UNSET           reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    TEMPORALES      reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    PARAMETROS      reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    VALORES_DEVUELTOS reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    SIMULADO        reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    PILA            reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    PUNTERO_PILA    reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+    $end            reduce using rule 13 (etiqueta_ID -> ID DOSPUNTOS .)
+
+
+state 30
+
+    (14) asignacion -> variables IGUAL . operaciones PUNTOCOMA
+    (22) operaciones -> . val MAS val
+    (23) operaciones -> . val MENOS val
+    (24) operaciones -> . val POR val
+    (25) operaciones -> . val DIVICION val
+    (26) operaciones -> . val MODULO val
+    (27) operaciones -> . val AND1 val
+    (28) operaciones -> . val OR1 val
+    (29) operaciones -> . val XOR val
+    (30) operaciones -> . val AND2 val
+    (31) operaciones -> . val OR2 val
+    (32) operaciones -> . val XOR2 val
+    (33) operaciones -> . val SHIFTI val
+    (34) operaciones -> . val SHIFTD val
+    (35) operaciones -> . val IGUALIGUAL val
+    (36) operaciones -> . val DIFERENTE val
+    (37) operaciones -> . val MAYORIGUAL val
+    (38) operaciones -> . val MENORIGUAL val
+    (39) operaciones -> . val MAYOR val
+    (40) operaciones -> . val MENOR val
+    (41) operaciones -> . MENOS val
+    (42) operaciones -> . EXCLAMA val
+    (43) operaciones -> . NOT val
+    (44) operaciones -> . ABS PARENTA val PARENTC
+    (45) operaciones -> . READ PARENTA PARENTC
+    (46) operaciones -> . ARRAY PARENTA PARENTC
+    (47) operaciones -> . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    MENOS           shift and go to state 48
+    EXCLAMA         shift and go to state 49
+    NOT             shift and go to state 50
+    ABS             shift and go to state 51
+    READ            shift and go to state 53
+    ARRAY           shift and go to state 54
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    variables                      shift and go to state 45
+    operaciones                    shift and go to state 46
+    val                            shift and go to state 47
+    conversiones                   shift and go to state 55
+    variables_array                shift and go to state 59
+
+state 31
+
+    (15) asignacion -> variables_array IGUAL . operaciones PUNTOCOMA
+    (22) operaciones -> . val MAS val
+    (23) operaciones -> . val MENOS val
+    (24) operaciones -> . val POR val
+    (25) operaciones -> . val DIVICION val
+    (26) operaciones -> . val MODULO val
+    (27) operaciones -> . val AND1 val
+    (28) operaciones -> . val OR1 val
+    (29) operaciones -> . val XOR val
+    (30) operaciones -> . val AND2 val
+    (31) operaciones -> . val OR2 val
+    (32) operaciones -> . val XOR2 val
+    (33) operaciones -> . val SHIFTI val
+    (34) operaciones -> . val SHIFTD val
+    (35) operaciones -> . val IGUALIGUAL val
+    (36) operaciones -> . val DIFERENTE val
+    (37) operaciones -> . val MAYORIGUAL val
+    (38) operaciones -> . val MENORIGUAL val
+    (39) operaciones -> . val MAYOR val
+    (40) operaciones -> . val MENOR val
+    (41) operaciones -> . MENOS val
+    (42) operaciones -> . EXCLAMA val
+    (43) operaciones -> . NOT val
+    (44) operaciones -> . ABS PARENTA val PARENTC
+    (45) operaciones -> . READ PARENTA PARENTC
+    (46) operaciones -> . ARRAY PARENTA PARENTC
+    (47) operaciones -> . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    MENOS           shift and go to state 48
+    EXCLAMA         shift and go to state 49
+    NOT             shift and go to state 50
+    ABS             shift and go to state 51
+    READ            shift and go to state 53
+    ARRAY           shift and go to state 54
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    variables_array                shift and go to state 59
+    operaciones                    shift and go to state 60
+    val                            shift and go to state 47
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+
+state 32
+
+    (16) inst_goto -> GOTO ID . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 61
+
+
+state 33
+
+    (17) inst_if -> IF PARENTA . operaciones PARENTC GOTO ID PUNTOCOMA
+    (22) operaciones -> . val MAS val
+    (23) operaciones -> . val MENOS val
+    (24) operaciones -> . val POR val
+    (25) operaciones -> . val DIVICION val
+    (26) operaciones -> . val MODULO val
+    (27) operaciones -> . val AND1 val
+    (28) operaciones -> . val OR1 val
+    (29) operaciones -> . val XOR val
+    (30) operaciones -> . val AND2 val
+    (31) operaciones -> . val OR2 val
+    (32) operaciones -> . val XOR2 val
+    (33) operaciones -> . val SHIFTI val
+    (34) operaciones -> . val SHIFTD val
+    (35) operaciones -> . val IGUALIGUAL val
+    (36) operaciones -> . val DIFERENTE val
+    (37) operaciones -> . val MAYORIGUAL val
+    (38) operaciones -> . val MENORIGUAL val
+    (39) operaciones -> . val MAYOR val
+    (40) operaciones -> . val MENOR val
+    (41) operaciones -> . MENOS val
+    (42) operaciones -> . EXCLAMA val
+    (43) operaciones -> . NOT val
+    (44) operaciones -> . ABS PARENTA val PARENTC
+    (45) operaciones -> . READ PARENTA PARENTC
+    (46) operaciones -> . ARRAY PARENTA PARENTC
+    (47) operaciones -> . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    MENOS           shift and go to state 48
+    EXCLAMA         shift and go to state 49
+    NOT             shift and go to state 50
+    ABS             shift and go to state 51
+    READ            shift and go to state 53
+    ARRAY           shift and go to state 54
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    operaciones                    shift and go to state 62
+    val                            shift and go to state 47
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 34
+
+    (18) inst_print -> PRINT PARENTA . variables PARENTC PUNTOCOMA
+    (19) inst_print -> PRINT PARENTA . val PARENTC PUNTOCOMA
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+
+    variables                      shift and go to state 63
+    val                            shift and go to state 64
+    conversiones                   shift and go to state 55
+    variables_array                shift and go to state 59
+
+state 35
+
+    (21) inst_exit -> EXIT PUNTOCOMA .
+
+    MAIN            reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    ID              reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    GOTO            reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    IF              reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    PRINT           reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    EXIT            reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    UNSET           reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    TEMPORALES      reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    PARAMETROS      reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    SIMULADO        reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    PILA            reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+    $end            reduce using rule 21 (inst_exit -> EXIT PUNTOCOMA .)
+
+
+state 36
+
+    (20) inst_unset -> UNSET PARENTA . variables PARENTC PUNTOCOMA
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+
+    TEMPORALES      shift and go to state 66
+    PARAMETROS      shift and go to state 67
+    VALORES_DEVUELTOS shift and go to state 68
+    SIMULADO        shift and go to state 69
+    PILA            shift and go to state 70
+    PUNTERO_PILA    shift and go to state 71
+
+    variables                      shift and go to state 65
+
+state 37
+
+    (60) variables_array -> TEMPORALES indices .
+    (66) indices -> indices . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MAS             reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MENOS           reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    POR             reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    DIVICION        reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MODULO          reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    AND1            reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    OR1             reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    XOR             reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    AND2            reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    OR2             reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    XOR2            reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    SHIFTI          reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    SHIFTD          reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    IGUALIGUAL      reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    DIFERENTE       reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MAYORIGUAL      reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MENORIGUAL      reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MAYOR           reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    MENOR           reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    PUNTOCOMA       reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    PARENTC         reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    CORCHEC         reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    CORCHEA         shift and go to state 39
+
+    indice                         shift and go to state 72
+
+state 38
+
+    (67) indices -> indice .
+
+    CORCHEA         reduce using rule 67 (indices -> indice .)
+    IGUAL           reduce using rule 67 (indices -> indice .)
+    MAS             reduce using rule 67 (indices -> indice .)
+    MENOS           reduce using rule 67 (indices -> indice .)
+    POR             reduce using rule 67 (indices -> indice .)
+    DIVICION        reduce using rule 67 (indices -> indice .)
+    MODULO          reduce using rule 67 (indices -> indice .)
+    AND1            reduce using rule 67 (indices -> indice .)
+    OR1             reduce using rule 67 (indices -> indice .)
+    XOR             reduce using rule 67 (indices -> indice .)
+    AND2            reduce using rule 67 (indices -> indice .)
+    OR2             reduce using rule 67 (indices -> indice .)
+    XOR2            reduce using rule 67 (indices -> indice .)
+    SHIFTI          reduce using rule 67 (indices -> indice .)
+    SHIFTD          reduce using rule 67 (indices -> indice .)
+    IGUALIGUAL      reduce using rule 67 (indices -> indice .)
+    DIFERENTE       reduce using rule 67 (indices -> indice .)
+    MAYORIGUAL      reduce using rule 67 (indices -> indice .)
+    MENORIGUAL      reduce using rule 67 (indices -> indice .)
+    MAYOR           reduce using rule 67 (indices -> indice .)
+    MENOR           reduce using rule 67 (indices -> indice .)
+    PUNTOCOMA       reduce using rule 67 (indices -> indice .)
+    PARENTC         reduce using rule 67 (indices -> indice .)
+    CORCHEC         reduce using rule 67 (indices -> indice .)
+
+
+state 39
+
+    (68) indice -> CORCHEA . val CORCHEC
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 73
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 40
+
+    (61) variables_array -> PARAMETROS indices .
+    (66) indices -> indices . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MAS             reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MENOS           reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    POR             reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    DIVICION        reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MODULO          reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    AND1            reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    OR1             reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    XOR             reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    AND2            reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    OR2             reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    XOR2            reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    SHIFTI          reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    SHIFTD          reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    IGUALIGUAL      reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    DIFERENTE       reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MAYORIGUAL      reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MENORIGUAL      reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MAYOR           reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    MENOR           reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    PUNTOCOMA       reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    PARENTC         reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    CORCHEC         reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    CORCHEA         shift and go to state 39
+
+    indice                         shift and go to state 72
+
+state 41
+
+    (62) variables_array -> VALORES_DEVUELTOS indices .
+    (66) indices -> indices . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MAS             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MENOS           reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    POR             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    DIVICION        reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MODULO          reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    AND1            reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    OR1             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    XOR             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    AND2            reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    OR2             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    XOR2            reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    SHIFTI          reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    SHIFTD          reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    IGUALIGUAL      reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    DIFERENTE       reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MAYORIGUAL      reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MENORIGUAL      reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MAYOR           reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    MENOR           reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    PUNTOCOMA       reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    PARENTC         reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    CORCHEC         reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    CORCHEA         shift and go to state 39
+
+    indice                         shift and go to state 72
+
+state 42
+
+    (63) variables_array -> SIMULADO indices .
+    (66) indices -> indices . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MAS             reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MENOS           reduce using rule 63 (variables_array -> SIMULADO indices .)
+    POR             reduce using rule 63 (variables_array -> SIMULADO indices .)
+    DIVICION        reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MODULO          reduce using rule 63 (variables_array -> SIMULADO indices .)
+    AND1            reduce using rule 63 (variables_array -> SIMULADO indices .)
+    OR1             reduce using rule 63 (variables_array -> SIMULADO indices .)
+    XOR             reduce using rule 63 (variables_array -> SIMULADO indices .)
+    AND2            reduce using rule 63 (variables_array -> SIMULADO indices .)
+    OR2             reduce using rule 63 (variables_array -> SIMULADO indices .)
+    XOR2            reduce using rule 63 (variables_array -> SIMULADO indices .)
+    SHIFTI          reduce using rule 63 (variables_array -> SIMULADO indices .)
+    SHIFTD          reduce using rule 63 (variables_array -> SIMULADO indices .)
+    IGUALIGUAL      reduce using rule 63 (variables_array -> SIMULADO indices .)
+    DIFERENTE       reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MAYORIGUAL      reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MENORIGUAL      reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MAYOR           reduce using rule 63 (variables_array -> SIMULADO indices .)
+    MENOR           reduce using rule 63 (variables_array -> SIMULADO indices .)
+    PUNTOCOMA       reduce using rule 63 (variables_array -> SIMULADO indices .)
+    PARENTC         reduce using rule 63 (variables_array -> SIMULADO indices .)
+    CORCHEC         reduce using rule 63 (variables_array -> SIMULADO indices .)
+    CORCHEA         shift and go to state 39
+
+    indice                         shift and go to state 72
+
+state 43
+
+    (64) variables_array -> PILA indices .
+    (66) indices -> indices . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 64 (variables_array -> PILA indices .)
+    MAS             reduce using rule 64 (variables_array -> PILA indices .)
+    MENOS           reduce using rule 64 (variables_array -> PILA indices .)
+    POR             reduce using rule 64 (variables_array -> PILA indices .)
+    DIVICION        reduce using rule 64 (variables_array -> PILA indices .)
+    MODULO          reduce using rule 64 (variables_array -> PILA indices .)
+    AND1            reduce using rule 64 (variables_array -> PILA indices .)
+    OR1             reduce using rule 64 (variables_array -> PILA indices .)
+    XOR             reduce using rule 64 (variables_array -> PILA indices .)
+    AND2            reduce using rule 64 (variables_array -> PILA indices .)
+    OR2             reduce using rule 64 (variables_array -> PILA indices .)
+    XOR2            reduce using rule 64 (variables_array -> PILA indices .)
+    SHIFTI          reduce using rule 64 (variables_array -> PILA indices .)
+    SHIFTD          reduce using rule 64 (variables_array -> PILA indices .)
+    IGUALIGUAL      reduce using rule 64 (variables_array -> PILA indices .)
+    DIFERENTE       reduce using rule 64 (variables_array -> PILA indices .)
+    MAYORIGUAL      reduce using rule 64 (variables_array -> PILA indices .)
+    MENORIGUAL      reduce using rule 64 (variables_array -> PILA indices .)
+    MAYOR           reduce using rule 64 (variables_array -> PILA indices .)
+    MENOR           reduce using rule 64 (variables_array -> PILA indices .)
+    PUNTOCOMA       reduce using rule 64 (variables_array -> PILA indices .)
+    PARENTC         reduce using rule 64 (variables_array -> PILA indices .)
+    CORCHEC         reduce using rule 64 (variables_array -> PILA indices .)
+    CORCHEA         shift and go to state 39
+
+    indice                         shift and go to state 72
+
+state 44
+
+    (65) variables_array -> PUNTERO_PILA indices .
+    (66) indices -> indices . indice
+    (68) indice -> . CORCHEA val CORCHEC
+
+    IGUAL           reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MAS             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MENOS           reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    POR             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    DIVICION        reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MODULO          reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    AND1            reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    OR1             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    XOR             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    AND2            reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    OR2             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    XOR2            reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    SHIFTI          reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    SHIFTD          reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    IGUALIGUAL      reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    DIFERENTE       reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MAYORIGUAL      reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MENORIGUAL      reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MAYOR           reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    MENOR           reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    PUNTOCOMA       reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    PARENTC         reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    CORCHEC         reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    CORCHEA         shift and go to state 39
+
+    indice                         shift and go to state 72
+
+state 45
+
+    (52) val -> variables .
+
+    MAS             reduce using rule 52 (val -> variables .)
+    MENOS           reduce using rule 52 (val -> variables .)
+    POR             reduce using rule 52 (val -> variables .)
+    DIVICION        reduce using rule 52 (val -> variables .)
+    MODULO          reduce using rule 52 (val -> variables .)
+    AND1            reduce using rule 52 (val -> variables .)
+    OR1             reduce using rule 52 (val -> variables .)
+    XOR             reduce using rule 52 (val -> variables .)
+    AND2            reduce using rule 52 (val -> variables .)
+    OR2             reduce using rule 52 (val -> variables .)
+    XOR2            reduce using rule 52 (val -> variables .)
+    SHIFTI          reduce using rule 52 (val -> variables .)
+    SHIFTD          reduce using rule 52 (val -> variables .)
+    IGUALIGUAL      reduce using rule 52 (val -> variables .)
+    DIFERENTE       reduce using rule 52 (val -> variables .)
+    MAYORIGUAL      reduce using rule 52 (val -> variables .)
+    MENORIGUAL      reduce using rule 52 (val -> variables .)
+    MAYOR           reduce using rule 52 (val -> variables .)
+    MENOR           reduce using rule 52 (val -> variables .)
+    PUNTOCOMA       reduce using rule 52 (val -> variables .)
+    PARENTC         reduce using rule 52 (val -> variables .)
+    CORCHEC         reduce using rule 52 (val -> variables .)
+
+
+state 46
+
+    (14) asignacion -> variables IGUAL operaciones . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 74
+
+
+state 47
+
+    (22) operaciones -> val . MAS val
+    (23) operaciones -> val . MENOS val
+    (24) operaciones -> val . POR val
+    (25) operaciones -> val . DIVICION val
+    (26) operaciones -> val . MODULO val
+    (27) operaciones -> val . AND1 val
+    (28) operaciones -> val . OR1 val
+    (29) operaciones -> val . XOR val
+    (30) operaciones -> val . AND2 val
+    (31) operaciones -> val . OR2 val
+    (32) operaciones -> val . XOR2 val
+    (33) operaciones -> val . SHIFTI val
+    (34) operaciones -> val . SHIFTD val
+    (35) operaciones -> val . IGUALIGUAL val
+    (36) operaciones -> val . DIFERENTE val
+    (37) operaciones -> val . MAYORIGUAL val
+    (38) operaciones -> val . MENORIGUAL val
+    (39) operaciones -> val . MAYOR val
+    (40) operaciones -> val . MENOR val
+    (47) operaciones -> val .
+
+    MAS             shift and go to state 75
+    MENOS           shift and go to state 76
+    POR             shift and go to state 77
+    DIVICION        shift and go to state 78
+    MODULO          shift and go to state 79
+    AND1            shift and go to state 80
+    OR1             shift and go to state 81
+    XOR             shift and go to state 82
+    AND2            shift and go to state 83
+    OR2             shift and go to state 84
+    XOR2            shift and go to state 85
+    SHIFTI          shift and go to state 86
+    SHIFTD          shift and go to state 87
+    IGUALIGUAL      shift and go to state 88
+    DIFERENTE       shift and go to state 89
+    MAYORIGUAL      shift and go to state 90
+    MENORIGUAL      shift and go to state 91
+    MAYOR           shift and go to state 92
+    MENOR           shift and go to state 93
+    PUNTOCOMA       reduce using rule 47 (operaciones -> val .)
+    PARENTC         reduce using rule 47 (operaciones -> val .)
+
+
+state 48
+
+    (41) operaciones -> MENOS . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 94
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 49
+
+    (42) operaciones -> EXCLAMA . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 95
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 50
+
+    (43) operaciones -> NOT . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 96
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 51
+
+    (44) operaciones -> ABS . PARENTA val PARENTC
+
+    PARENTA         shift and go to state 97
+
+
+state 52
+
+    (69) conversiones -> PARENTA . INT PARENTC val
+    (70) conversiones -> PARENTA . FLOAT PARENTC val
+    (71) conversiones -> PARENTA . CHAR PARENTC val
+
+    INT             shift and go to state 98
+    FLOAT           shift and go to state 99
+    CHAR            shift and go to state 100
+
+
+state 53
+
+    (45) operaciones -> READ . PARENTA PARENTC
+
+    PARENTA         shift and go to state 101
+
+
+state 54
+
+    (46) operaciones -> ARRAY . PARENTA PARENTC
+
+    PARENTA         shift and go to state 102
+
+
+state 55
+
+    (48) val -> conversiones .
+
+    MAS             reduce using rule 48 (val -> conversiones .)
+    MENOS           reduce using rule 48 (val -> conversiones .)
+    POR             reduce using rule 48 (val -> conversiones .)
+    DIVICION        reduce using rule 48 (val -> conversiones .)
+    MODULO          reduce using rule 48 (val -> conversiones .)
+    AND1            reduce using rule 48 (val -> conversiones .)
+    OR1             reduce using rule 48 (val -> conversiones .)
+    XOR             reduce using rule 48 (val -> conversiones .)
+    AND2            reduce using rule 48 (val -> conversiones .)
+    OR2             reduce using rule 48 (val -> conversiones .)
+    XOR2            reduce using rule 48 (val -> conversiones .)
+    SHIFTI          reduce using rule 48 (val -> conversiones .)
+    SHIFTD          reduce using rule 48 (val -> conversiones .)
+    IGUALIGUAL      reduce using rule 48 (val -> conversiones .)
+    DIFERENTE       reduce using rule 48 (val -> conversiones .)
+    MAYORIGUAL      reduce using rule 48 (val -> conversiones .)
+    MENORIGUAL      reduce using rule 48 (val -> conversiones .)
+    MAYOR           reduce using rule 48 (val -> conversiones .)
+    MENOR           reduce using rule 48 (val -> conversiones .)
+    PUNTOCOMA       reduce using rule 48 (val -> conversiones .)
+    PARENTC         reduce using rule 48 (val -> conversiones .)
+    CORCHEC         reduce using rule 48 (val -> conversiones .)
+
+
+state 56
+
+    (49) val -> ENTERO .
+
+    MAS             reduce using rule 49 (val -> ENTERO .)
+    MENOS           reduce using rule 49 (val -> ENTERO .)
+    POR             reduce using rule 49 (val -> ENTERO .)
+    DIVICION        reduce using rule 49 (val -> ENTERO .)
+    MODULO          reduce using rule 49 (val -> ENTERO .)
+    AND1            reduce using rule 49 (val -> ENTERO .)
+    OR1             reduce using rule 49 (val -> ENTERO .)
+    XOR             reduce using rule 49 (val -> ENTERO .)
+    AND2            reduce using rule 49 (val -> ENTERO .)
+    OR2             reduce using rule 49 (val -> ENTERO .)
+    XOR2            reduce using rule 49 (val -> ENTERO .)
+    SHIFTI          reduce using rule 49 (val -> ENTERO .)
+    SHIFTD          reduce using rule 49 (val -> ENTERO .)
+    IGUALIGUAL      reduce using rule 49 (val -> ENTERO .)
+    DIFERENTE       reduce using rule 49 (val -> ENTERO .)
+    MAYORIGUAL      reduce using rule 49 (val -> ENTERO .)
+    MENORIGUAL      reduce using rule 49 (val -> ENTERO .)
+    MAYOR           reduce using rule 49 (val -> ENTERO .)
+    MENOR           reduce using rule 49 (val -> ENTERO .)
+    PUNTOCOMA       reduce using rule 49 (val -> ENTERO .)
+    PARENTC         reduce using rule 49 (val -> ENTERO .)
+    CORCHEC         reduce using rule 49 (val -> ENTERO .)
+
+
+state 57
+
+    (50) val -> DECIMAL .
+
+    MAS             reduce using rule 50 (val -> DECIMAL .)
+    MENOS           reduce using rule 50 (val -> DECIMAL .)
+    POR             reduce using rule 50 (val -> DECIMAL .)
+    DIVICION        reduce using rule 50 (val -> DECIMAL .)
+    MODULO          reduce using rule 50 (val -> DECIMAL .)
+    AND1            reduce using rule 50 (val -> DECIMAL .)
+    OR1             reduce using rule 50 (val -> DECIMAL .)
+    XOR             reduce using rule 50 (val -> DECIMAL .)
+    AND2            reduce using rule 50 (val -> DECIMAL .)
+    OR2             reduce using rule 50 (val -> DECIMAL .)
+    XOR2            reduce using rule 50 (val -> DECIMAL .)
+    SHIFTI          reduce using rule 50 (val -> DECIMAL .)
+    SHIFTD          reduce using rule 50 (val -> DECIMAL .)
+    IGUALIGUAL      reduce using rule 50 (val -> DECIMAL .)
+    DIFERENTE       reduce using rule 50 (val -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 50 (val -> DECIMAL .)
+    MENORIGUAL      reduce using rule 50 (val -> DECIMAL .)
+    MAYOR           reduce using rule 50 (val -> DECIMAL .)
+    MENOR           reduce using rule 50 (val -> DECIMAL .)
+    PUNTOCOMA       reduce using rule 50 (val -> DECIMAL .)
+    PARENTC         reduce using rule 50 (val -> DECIMAL .)
+    CORCHEC         reduce using rule 50 (val -> DECIMAL .)
+
+
+state 58
+
+    (51) val -> CADENA .
+
+    MAS             reduce using rule 51 (val -> CADENA .)
+    MENOS           reduce using rule 51 (val -> CADENA .)
+    POR             reduce using rule 51 (val -> CADENA .)
+    DIVICION        reduce using rule 51 (val -> CADENA .)
+    MODULO          reduce using rule 51 (val -> CADENA .)
+    AND1            reduce using rule 51 (val -> CADENA .)
+    OR1             reduce using rule 51 (val -> CADENA .)
+    XOR             reduce using rule 51 (val -> CADENA .)
+    AND2            reduce using rule 51 (val -> CADENA .)
+    OR2             reduce using rule 51 (val -> CADENA .)
+    XOR2            reduce using rule 51 (val -> CADENA .)
+    SHIFTI          reduce using rule 51 (val -> CADENA .)
+    SHIFTD          reduce using rule 51 (val -> CADENA .)
+    IGUALIGUAL      reduce using rule 51 (val -> CADENA .)
+    DIFERENTE       reduce using rule 51 (val -> CADENA .)
+    MAYORIGUAL      reduce using rule 51 (val -> CADENA .)
+    MENORIGUAL      reduce using rule 51 (val -> CADENA .)
+    MAYOR           reduce using rule 51 (val -> CADENA .)
+    MENOR           reduce using rule 51 (val -> CADENA .)
+    PUNTOCOMA       reduce using rule 51 (val -> CADENA .)
+    PARENTC         reduce using rule 51 (val -> CADENA .)
+    CORCHEC         reduce using rule 51 (val -> CADENA .)
+
+
+state 59
+
+    (53) val -> variables_array .
+
+    MAS             reduce using rule 53 (val -> variables_array .)
+    MENOS           reduce using rule 53 (val -> variables_array .)
+    POR             reduce using rule 53 (val -> variables_array .)
+    DIVICION        reduce using rule 53 (val -> variables_array .)
+    MODULO          reduce using rule 53 (val -> variables_array .)
+    AND1            reduce using rule 53 (val -> variables_array .)
+    OR1             reduce using rule 53 (val -> variables_array .)
+    XOR             reduce using rule 53 (val -> variables_array .)
+    AND2            reduce using rule 53 (val -> variables_array .)
+    OR2             reduce using rule 53 (val -> variables_array .)
+    XOR2            reduce using rule 53 (val -> variables_array .)
+    SHIFTI          reduce using rule 53 (val -> variables_array .)
+    SHIFTD          reduce using rule 53 (val -> variables_array .)
+    IGUALIGUAL      reduce using rule 53 (val -> variables_array .)
+    DIFERENTE       reduce using rule 53 (val -> variables_array .)
+    MAYORIGUAL      reduce using rule 53 (val -> variables_array .)
+    MENORIGUAL      reduce using rule 53 (val -> variables_array .)
+    MAYOR           reduce using rule 53 (val -> variables_array .)
+    MENOR           reduce using rule 53 (val -> variables_array .)
+    PUNTOCOMA       reduce using rule 53 (val -> variables_array .)
+    PARENTC         reduce using rule 53 (val -> variables_array .)
+    CORCHEC         reduce using rule 53 (val -> variables_array .)
+
+
+state 60
+
+    (15) asignacion -> variables_array IGUAL operaciones . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 103
+
+
+state 61
+
+    (16) inst_goto -> GOTO ID PUNTOCOMA .
+
+    MAIN            reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    ID              reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    GOTO            reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    IF              reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    PRINT           reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    EXIT            reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    UNSET           reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    TEMPORALES      reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    PARAMETROS      reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    SIMULADO        reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    PILA            reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+    $end            reduce using rule 16 (inst_goto -> GOTO ID PUNTOCOMA .)
+
+
+state 62
+
+    (17) inst_if -> IF PARENTA operaciones . PARENTC GOTO ID PUNTOCOMA
+
+    PARENTC         shift and go to state 104
+
+
+state 63
+
+    (18) inst_print -> PRINT PARENTA variables . PARENTC PUNTOCOMA
+    (52) val -> variables .
+
+  ! shift/reduce conflict for PARENTC resolved as shift
+    PARENTC         shift and go to state 105
+
+  ! PARENTC         [ reduce using rule 52 (val -> variables .) ]
+
+
+state 64
+
+    (19) inst_print -> PRINT PARENTA val . PARENTC PUNTOCOMA
+
+    PARENTC         shift and go to state 106
+
+
+state 65
+
+    (20) inst_unset -> UNSET PARENTA variables . PARENTC PUNTOCOMA
+
+    PARENTC         shift and go to state 107
+
+
+state 66
+
+    (54) variables -> TEMPORALES .
+
+    PARENTC         reduce using rule 54 (variables -> TEMPORALES .)
+
+
+state 67
+
+    (55) variables -> PARAMETROS .
+
+    PARENTC         reduce using rule 55 (variables -> PARAMETROS .)
+
+
+state 68
+
+    (56) variables -> VALORES_DEVUELTOS .
+
+    PARENTC         reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+
+
+state 69
+
+    (57) variables -> SIMULADO .
+
+    PARENTC         reduce using rule 57 (variables -> SIMULADO .)
+
+
+state 70
+
+    (58) variables -> PILA .
+
+    PARENTC         reduce using rule 58 (variables -> PILA .)
+
+
+state 71
+
+    (59) variables -> PUNTERO_PILA .
+
+    PARENTC         reduce using rule 59 (variables -> PUNTERO_PILA .)
+
+
+state 72
+
+    (66) indices -> indices indice .
+
+    CORCHEA         reduce using rule 66 (indices -> indices indice .)
+    IGUAL           reduce using rule 66 (indices -> indices indice .)
+    MAS             reduce using rule 66 (indices -> indices indice .)
+    MENOS           reduce using rule 66 (indices -> indices indice .)
+    POR             reduce using rule 66 (indices -> indices indice .)
+    DIVICION        reduce using rule 66 (indices -> indices indice .)
+    MODULO          reduce using rule 66 (indices -> indices indice .)
+    AND1            reduce using rule 66 (indices -> indices indice .)
+    OR1             reduce using rule 66 (indices -> indices indice .)
+    XOR             reduce using rule 66 (indices -> indices indice .)
+    AND2            reduce using rule 66 (indices -> indices indice .)
+    OR2             reduce using rule 66 (indices -> indices indice .)
+    XOR2            reduce using rule 66 (indices -> indices indice .)
+    SHIFTI          reduce using rule 66 (indices -> indices indice .)
+    SHIFTD          reduce using rule 66 (indices -> indices indice .)
+    IGUALIGUAL      reduce using rule 66 (indices -> indices indice .)
+    DIFERENTE       reduce using rule 66 (indices -> indices indice .)
+    MAYORIGUAL      reduce using rule 66 (indices -> indices indice .)
+    MENORIGUAL      reduce using rule 66 (indices -> indices indice .)
+    MAYOR           reduce using rule 66 (indices -> indices indice .)
+    MENOR           reduce using rule 66 (indices -> indices indice .)
+    PUNTOCOMA       reduce using rule 66 (indices -> indices indice .)
+    PARENTC         reduce using rule 66 (indices -> indices indice .)
+    CORCHEC         reduce using rule 66 (indices -> indices indice .)
+
+
+state 73
+
+    (68) indice -> CORCHEA val . CORCHEC
+
+    CORCHEC         shift and go to state 108
+
+
+state 74
+
+    (14) asignacion -> variables IGUAL operaciones PUNTOCOMA .
+
+    MAIN            reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    ID              reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    GOTO            reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    IF              reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    PRINT           reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    EXIT            reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    UNSET           reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    TEMPORALES      reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    PARAMETROS      reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    SIMULADO        reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    PILA            reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+    $end            reduce using rule 14 (asignacion -> variables IGUAL operaciones PUNTOCOMA .)
+
+
+state 75
+
+    (22) operaciones -> val MAS . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 109
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 76
+
+    (23) operaciones -> val MENOS . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 110
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 77
+
+    (24) operaciones -> val POR . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 111
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 78
+
+    (25) operaciones -> val DIVICION . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 112
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 79
+
+    (26) operaciones -> val MODULO . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 113
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 80
+
+    (27) operaciones -> val AND1 . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 114
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 81
+
+    (28) operaciones -> val OR1 . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 115
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 82
+
+    (29) operaciones -> val XOR . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 116
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 83
+
+    (30) operaciones -> val AND2 . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 117
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 84
+
+    (31) operaciones -> val OR2 . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 118
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 85
+
+    (32) operaciones -> val XOR2 . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 119
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 86
+
+    (33) operaciones -> val SHIFTI . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 120
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 87
+
+    (34) operaciones -> val SHIFTD . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 121
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 88
+
+    (35) operaciones -> val IGUALIGUAL . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 122
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 89
+
+    (36) operaciones -> val DIFERENTE . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 123
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 90
+
+    (37) operaciones -> val MAYORIGUAL . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 124
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 91
+
+    (38) operaciones -> val MENORIGUAL . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 125
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 92
+
+    (39) operaciones -> val MAYOR . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 126
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 93
+
+    (40) operaciones -> val MENOR . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 127
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 94
+
+    (41) operaciones -> MENOS val .
+
+    PUNTOCOMA       reduce using rule 41 (operaciones -> MENOS val .)
+    PARENTC         reduce using rule 41 (operaciones -> MENOS val .)
+
+
+state 95
+
+    (42) operaciones -> EXCLAMA val .
+
+    PUNTOCOMA       reduce using rule 42 (operaciones -> EXCLAMA val .)
+    PARENTC         reduce using rule 42 (operaciones -> EXCLAMA val .)
+
+
+state 96
+
+    (43) operaciones -> NOT val .
+
+    PUNTOCOMA       reduce using rule 43 (operaciones -> NOT val .)
+    PARENTC         reduce using rule 43 (operaciones -> NOT val .)
+
+
+state 97
+
+    (44) operaciones -> ABS PARENTA . val PARENTC
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 128
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 98
+
+    (69) conversiones -> PARENTA INT . PARENTC val
+
+    PARENTC         shift and go to state 129
+
+
+state 99
+
+    (70) conversiones -> PARENTA FLOAT . PARENTC val
+
+    PARENTC         shift and go to state 130
+
+
+state 100
+
+    (71) conversiones -> PARENTA CHAR . PARENTC val
+
+    PARENTC         shift and go to state 131
+
+
+state 101
+
+    (45) operaciones -> READ PARENTA . PARENTC
+
+    PARENTC         shift and go to state 132
+
+
+state 102
+
+    (46) operaciones -> ARRAY PARENTA . PARENTC
+
+    PARENTC         shift and go to state 133
+
+
+state 103
+
+    (15) asignacion -> variables_array IGUAL operaciones PUNTOCOMA .
+
+    MAIN            reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    ID              reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    GOTO            reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    IF              reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    PRINT           reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    EXIT            reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    UNSET           reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    TEMPORALES      reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    PARAMETROS      reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    SIMULADO        reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    PILA            reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+    $end            reduce using rule 15 (asignacion -> variables_array IGUAL operaciones PUNTOCOMA .)
+
+
+state 104
+
+    (17) inst_if -> IF PARENTA operaciones PARENTC . GOTO ID PUNTOCOMA
+
+    GOTO            shift and go to state 134
+
+
+state 105
+
+    (18) inst_print -> PRINT PARENTA variables PARENTC . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 135
+
+
+state 106
+
+    (19) inst_print -> PRINT PARENTA val PARENTC . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 136
+
+
+state 107
+
+    (20) inst_unset -> UNSET PARENTA variables PARENTC . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 137
+
+
+state 108
+
+    (68) indice -> CORCHEA val CORCHEC .
+
+    CORCHEA         reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    IGUAL           reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MAS             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MENOS           reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    POR             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    DIVICION        reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MODULO          reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    AND1            reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    OR1             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    XOR             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    AND2            reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    OR2             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    XOR2            reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    SHIFTI          reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    SHIFTD          reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    IGUALIGUAL      reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    DIFERENTE       reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MAYORIGUAL      reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MENORIGUAL      reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MAYOR           reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    MENOR           reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    PUNTOCOMA       reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    PARENTC         reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    CORCHEC         reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+
+
+state 109
+
+    (22) operaciones -> val MAS val .
+
+    PUNTOCOMA       reduce using rule 22 (operaciones -> val MAS val .)
+    PARENTC         reduce using rule 22 (operaciones -> val MAS val .)
+
+
+state 110
+
+    (23) operaciones -> val MENOS val .
+
+    PUNTOCOMA       reduce using rule 23 (operaciones -> val MENOS val .)
+    PARENTC         reduce using rule 23 (operaciones -> val MENOS val .)
+
+
+state 111
+
+    (24) operaciones -> val POR val .
+
+    PUNTOCOMA       reduce using rule 24 (operaciones -> val POR val .)
+    PARENTC         reduce using rule 24 (operaciones -> val POR val .)
+
+
+state 112
+
+    (25) operaciones -> val DIVICION val .
+
+    PUNTOCOMA       reduce using rule 25 (operaciones -> val DIVICION val .)
+    PARENTC         reduce using rule 25 (operaciones -> val DIVICION val .)
+
+
+state 113
+
+    (26) operaciones -> val MODULO val .
+
+    PUNTOCOMA       reduce using rule 26 (operaciones -> val MODULO val .)
+    PARENTC         reduce using rule 26 (operaciones -> val MODULO val .)
+
+
+state 114
+
+    (27) operaciones -> val AND1 val .
+
+    PUNTOCOMA       reduce using rule 27 (operaciones -> val AND1 val .)
+    PARENTC         reduce using rule 27 (operaciones -> val AND1 val .)
+
+
+state 115
+
+    (28) operaciones -> val OR1 val .
+
+    PUNTOCOMA       reduce using rule 28 (operaciones -> val OR1 val .)
+    PARENTC         reduce using rule 28 (operaciones -> val OR1 val .)
+
+
+state 116
+
+    (29) operaciones -> val XOR val .
+
+    PUNTOCOMA       reduce using rule 29 (operaciones -> val XOR val .)
+    PARENTC         reduce using rule 29 (operaciones -> val XOR val .)
+
+
+state 117
+
+    (30) operaciones -> val AND2 val .
+
+    PUNTOCOMA       reduce using rule 30 (operaciones -> val AND2 val .)
+    PARENTC         reduce using rule 30 (operaciones -> val AND2 val .)
+
+
+state 118
+
+    (31) operaciones -> val OR2 val .
+
+    PUNTOCOMA       reduce using rule 31 (operaciones -> val OR2 val .)
+    PARENTC         reduce using rule 31 (operaciones -> val OR2 val .)
+
+
+state 119
+
+    (32) operaciones -> val XOR2 val .
+
+    PUNTOCOMA       reduce using rule 32 (operaciones -> val XOR2 val .)
+    PARENTC         reduce using rule 32 (operaciones -> val XOR2 val .)
+
+
+state 120
+
+    (33) operaciones -> val SHIFTI val .
+
+    PUNTOCOMA       reduce using rule 33 (operaciones -> val SHIFTI val .)
+    PARENTC         reduce using rule 33 (operaciones -> val SHIFTI val .)
+
+
+state 121
+
+    (34) operaciones -> val SHIFTD val .
+
+    PUNTOCOMA       reduce using rule 34 (operaciones -> val SHIFTD val .)
+    PARENTC         reduce using rule 34 (operaciones -> val SHIFTD val .)
+
+
+state 122
+
+    (35) operaciones -> val IGUALIGUAL val .
+
+    PUNTOCOMA       reduce using rule 35 (operaciones -> val IGUALIGUAL val .)
+    PARENTC         reduce using rule 35 (operaciones -> val IGUALIGUAL val .)
+
+
+state 123
+
+    (36) operaciones -> val DIFERENTE val .
+
+    PUNTOCOMA       reduce using rule 36 (operaciones -> val DIFERENTE val .)
+    PARENTC         reduce using rule 36 (operaciones -> val DIFERENTE val .)
+
+
+state 124
+
+    (37) operaciones -> val MAYORIGUAL val .
+
+    PUNTOCOMA       reduce using rule 37 (operaciones -> val MAYORIGUAL val .)
+    PARENTC         reduce using rule 37 (operaciones -> val MAYORIGUAL val .)
+
+
+state 125
+
+    (38) operaciones -> val MENORIGUAL val .
+
+    PUNTOCOMA       reduce using rule 38 (operaciones -> val MENORIGUAL val .)
+    PARENTC         reduce using rule 38 (operaciones -> val MENORIGUAL val .)
+
+
+state 126
+
+    (39) operaciones -> val MAYOR val .
+
+    PUNTOCOMA       reduce using rule 39 (operaciones -> val MAYOR val .)
+    PARENTC         reduce using rule 39 (operaciones -> val MAYOR val .)
+
+
+state 127
+
+    (40) operaciones -> val MENOR val .
+
+    PUNTOCOMA       reduce using rule 40 (operaciones -> val MENOR val .)
+    PARENTC         reduce using rule 40 (operaciones -> val MENOR val .)
+
+
+state 128
+
+    (44) operaciones -> ABS PARENTA val . PARENTC
+
+    PARENTC         shift and go to state 138
+
+
+state 129
+
+    (69) conversiones -> PARENTA INT PARENTC . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 139
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 130
+
+    (70) conversiones -> PARENTA FLOAT PARENTC . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 140
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 131
+
+    (71) conversiones -> PARENTA CHAR PARENTC . val
+    (48) val -> . conversiones
+    (49) val -> . ENTERO
+    (50) val -> . DECIMAL
+    (51) val -> . CADENA
+    (52) val -> . variables
+    (53) val -> . variables_array
+    (69) conversiones -> . PARENTA INT PARENTC val
+    (70) conversiones -> . PARENTA FLOAT PARENTC val
+    (71) conversiones -> . PARENTA CHAR PARENTC val
+    (54) variables -> . TEMPORALES
+    (55) variables -> . PARAMETROS
+    (56) variables -> . VALORES_DEVUELTOS
+    (57) variables -> . SIMULADO
+    (58) variables -> . PILA
+    (59) variables -> . PUNTERO_PILA
+    (60) variables_array -> . TEMPORALES indices
+    (61) variables_array -> . PARAMETROS indices
+    (62) variables_array -> . VALORES_DEVUELTOS indices
+    (63) variables_array -> . SIMULADO indices
+    (64) variables_array -> . PILA indices
+    (65) variables_array -> . PUNTERO_PILA indices
+
+    ENTERO          shift and go to state 56
+    DECIMAL         shift and go to state 57
+    CADENA          shift and go to state 58
+    PARENTA         shift and go to state 52
+    TEMPORALES      shift and go to state 21
+    PARAMETROS      shift and go to state 22
+    VALORES_DEVUELTOS shift and go to state 23
+    SIMULADO        shift and go to state 24
+    PILA            shift and go to state 25
+    PUNTERO_PILA    shift and go to state 26
+
+    val                            shift and go to state 141
+    conversiones                   shift and go to state 55
+    variables                      shift and go to state 45
+    variables_array                shift and go to state 59
+
+state 132
+
+    (45) operaciones -> READ PARENTA PARENTC .
+
+    PUNTOCOMA       reduce using rule 45 (operaciones -> READ PARENTA PARENTC .)
+    PARENTC         reduce using rule 45 (operaciones -> READ PARENTA PARENTC .)
+
+
+state 133
+
+    (46) operaciones -> ARRAY PARENTA PARENTC .
+
+    PUNTOCOMA       reduce using rule 46 (operaciones -> ARRAY PARENTA PARENTC .)
+    PARENTC         reduce using rule 46 (operaciones -> ARRAY PARENTA PARENTC .)
+
+
+state 134
+
+    (17) inst_if -> IF PARENTA operaciones PARENTC GOTO . ID PUNTOCOMA
+
+    ID              shift and go to state 142
+
+
+state 135
+
+    (18) inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .
+
+    MAIN            reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    ID              reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    GOTO            reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    IF              reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    PRINT           reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    EXIT            reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    UNSET           reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    TEMPORALES      reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    PARAMETROS      reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    SIMULADO        reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    PILA            reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+    $end            reduce using rule 18 (inst_print -> PRINT PARENTA variables PARENTC PUNTOCOMA .)
+
+
+state 136
+
+    (19) inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .
+
+    MAIN            reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    ID              reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    GOTO            reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    IF              reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    PRINT           reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    EXIT            reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    UNSET           reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    TEMPORALES      reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    PARAMETROS      reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    SIMULADO        reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    PILA            reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+    $end            reduce using rule 19 (inst_print -> PRINT PARENTA val PARENTC PUNTOCOMA .)
+
+
+state 137
+
+    (20) inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .
+
+    MAIN            reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    ID              reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    GOTO            reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    IF              reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    PRINT           reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    EXIT            reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    UNSET           reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    TEMPORALES      reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    PARAMETROS      reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    SIMULADO        reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    PILA            reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+    $end            reduce using rule 20 (inst_unset -> UNSET PARENTA variables PARENTC PUNTOCOMA .)
+
+
+state 138
+
+    (44) operaciones -> ABS PARENTA val PARENTC .
+
+    PUNTOCOMA       reduce using rule 44 (operaciones -> ABS PARENTA val PARENTC .)
+    PARENTC         reduce using rule 44 (operaciones -> ABS PARENTA val PARENTC .)
+
+
+state 139
+
+    (69) conversiones -> PARENTA INT PARENTC val .
+
+    MAS             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    MENOS           reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    POR             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    DIVICION        reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    MODULO          reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    AND1            reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    OR1             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    XOR             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    AND2            reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    OR2             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    XOR2            reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    SHIFTI          reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    SHIFTD          reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    IGUALIGUAL      reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    DIFERENTE       reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    MAYORIGUAL      reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    MENORIGUAL      reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    MAYOR           reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    MENOR           reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    PUNTOCOMA       reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    PARENTC         reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    CORCHEC         reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+
+
+state 140
+
+    (70) conversiones -> PARENTA FLOAT PARENTC val .
+
+    MAS             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    MENOS           reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    POR             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    DIVICION        reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    MODULO          reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    AND1            reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    OR1             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    XOR             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    AND2            reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    OR2             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    XOR2            reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    SHIFTI          reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    SHIFTD          reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    IGUALIGUAL      reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    DIFERENTE       reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    MAYORIGUAL      reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    MENORIGUAL      reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    MAYOR           reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    MENOR           reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    PUNTOCOMA       reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    PARENTC         reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    CORCHEC         reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+
+
+state 141
+
+    (71) conversiones -> PARENTA CHAR PARENTC val .
+
+    MAS             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    MENOS           reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    POR             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    DIVICION        reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    MODULO          reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    AND1            reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    OR1             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    XOR             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    AND2            reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    OR2             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    XOR2            reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    SHIFTI          reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    SHIFTD          reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    IGUALIGUAL      reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    DIFERENTE       reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    MAYORIGUAL      reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    MENORIGUAL      reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    MAYOR           reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    MENOR           reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    PUNTOCOMA       reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    PARENTC         reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    CORCHEC         reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+
+
+state 142
+
+    (17) inst_if -> IF PARENTA operaciones PARENTC GOTO ID . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 143
+
+
+state 143
+
+    (17) inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .
+
+    MAIN            reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    ID              reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    GOTO            reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    IF              reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    PRINT           reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    EXIT            reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    UNSET           reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    TEMPORALES      reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    PARAMETROS      reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    VALORES_DEVUELTOS reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    SIMULADO        reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    PILA            reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    PUNTERO_PILA    reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+    $end            reduce using rule 17 (inst_if -> IF PARENTA operaciones PARENTC GOTO ID PUNTOCOMA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PARENTC in state 63 resolved as shift

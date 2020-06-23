@@ -1,0 +1,7 @@
+// Reporte de tabla
+digraph {
+	graph [rankdir=LR]
+	node [shape=plaintext]
+	A [label=<<table border = '1'><tr><td>ID</td><td>Valor</td><td>Tipo</td><td>Dimension</td><td>Declarada</td><td>Referencias</td></tr><tr><td>$t1</td><td>{0: {'nombre': 'Hugo', 'direccion': 'zona 4', 'telefono': {0: 45784565}}, 1: {'nombre': 'Peter Parker', 'direccion': 'Petapolis', 'telefono': {0: 45124125}}}</td><td>ARRAY</td><td>None</td><td>main</td><td>None</td></tr><tr><td>$t2</td><td>3</td><td>ENTERO</td><td>1</td><td>main</td><td>None</td></tr><tr><td>$t3</td><td>{0: 0, 1: 1, 2: {0: 20}, 'nombre': 'Carlos s'}</td><td>ARRAY</td><td>None</td><td>while0</td><td>None</td></tr><tr><td>$s0</td><td>{0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}</td><td>ARRAY</td><td>None</td><td>while0</td><td>None</td></tr><tr><td>$sp</td><td>-1</td><td>ENTERO</td><td>1</td><td>while0</td><td>None</td></tr><tr><td>$a0</td><td>0</td><td>ENTERO</td><td>1</td><td>while0</td><td>None</td></tr><tr><td>$a1</td><td>9</td><td>ENTERO</td><td>1</td><td>while0</td><td>None</td></tr><tr><td>$t4</td><td>1</td><td>ENTERO</td><td>1</td><td>while0</td><td>None</td></tr><tr><td>$v0</td><td>9</td><td>ENTERO</td><td>1</td><td>while0</td><td>None</td></tr></table>>]
+	T [label="Tabla de Simbolos"]
+}

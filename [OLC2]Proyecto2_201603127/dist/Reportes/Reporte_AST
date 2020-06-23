@@ -1,0 +1,523 @@
+// Reporte AST descendente
+digraph {
+	node [shape=box]
+	0 [label=Inicio]
+	0 -> main1
+	main1 [label=main]
+	main1 -> Asignacion2
+	Asignacion2 [label=Asignacion]
+	Asignacion2 -> "$t13"
+	"$t13" [label="$t1"]
+	Asignacion2 -> Array4
+	Array4 [label=Array]
+	main1 -> Asignacion5
+	Asignacion5 [label=Asignacion]
+	Asignacion5 -> "$t1[0][nombre]6"
+	"$t1[0][nombre]6" [label="$t1[0][nombre]"]
+	Asignacion5 -> Hugo7
+	Hugo7 [label=Hugo]
+	main1 -> Asignacion8
+	Asignacion8 [label=Asignacion]
+	Asignacion8 -> "$t1[0][direccion]9"
+	"$t1[0][direccion]9" [label="$t1[0][direccion]"]
+	Asignacion8 -> "zona 410"
+	"zona 410" [label="zona 4"]
+	main1 -> Asignacion11
+	Asignacion11 [label=Asignacion]
+	Asignacion11 -> "$t1[0][telefono][0]12"
+	"$t1[0][telefono][0]12" [label="$t1[0][telefono][0]"]
+	Asignacion11 -> 5645785413
+	5645785413 [label=56457854]
+	main1 -> Asignacion14
+	Asignacion14 [label=Asignacion]
+	Asignacion14 -> "$t1[0][telefono][0]15"
+	"$t1[0][telefono][0]15" [label="$t1[0][telefono][0]"]
+	Asignacion14 -> 4578456516
+	4578456516 [label=45784565]
+	main1 -> Asignacion17
+	Asignacion17 [label=Asignacion]
+	Asignacion17 -> "$t1[1][nombre]18"
+	"$t1[1][nombre]18" [label="$t1[1][nombre]"]
+	Asignacion17 -> Paco19
+	Paco19 [label=Paco]
+	main1 -> Asignacion20
+	Asignacion20 [label=Asignacion]
+	Asignacion20 -> "$t1[1][direccion]21"
+	"$t1[1][direccion]21" [label="$t1[1][direccion]"]
+	Asignacion20 -> "zona 8, villa nueva22"
+	"zona 8, villa nueva22" [label="zona 8, villa nueva"]
+	main1 -> Asignacion23
+	Asignacion23 [label=Asignacion]
+	Asignacion23 -> "$t1[1][telefono][0]24"
+	"$t1[1][telefono][0]24" [label="$t1[1][telefono][0]"]
+	Asignacion23 -> 5641285425
+	5641285425 [label=56412854]
+	main1 -> Asignacion26
+	Asignacion26 [label=Asignacion]
+	Asignacion26 -> "$t1[1][telefono][0]27"
+	"$t1[1][telefono][0]27" [label="$t1[1][telefono][0]"]
+	Asignacion26 -> 4578412528
+	4578412528 [label=45784125]
+	main1 -> Asignacion29
+	Asignacion29 [label=Asignacion]
+	Asignacion29 -> "$t1[1][nombre]30"
+	"$t1[1][nombre]30" [label="$t1[1][nombre]"]
+	Asignacion29 -> Luis31
+	Luis31 [label=Luis]
+	main1 -> Asignacion32
+	Asignacion32 [label=Asignacion]
+	Asignacion32 -> "$t1[1][direccion]33"
+	"$t1[1][direccion]33" [label="$t1[1][direccion]"]
+	Asignacion32 -> "zona 1, San Jose Pinula 34"
+	"zona 1, San Jose Pinula 34" [label="zona 1, San Jose Pinula "]
+	main1 -> Asignacion35
+	Asignacion35 [label=Asignacion]
+	Asignacion35 -> "$t1[1][telefono][0]36"
+	"$t1[1][telefono][0]36" [label="$t1[1][telefono][0]"]
+	Asignacion35 -> 1241285437
+	1241285437 [label=12412854]
+	main1 -> Asignacion38
+	Asignacion38 [label=Asignacion]
+	Asignacion38 -> "$t1[1][telefono][0]39"
+	"$t1[1][telefono][0]39" [label="$t1[1][telefono][0]"]
+	Asignacion38 -> 4578412540
+	4578412540 [label=45784125]
+	main1 -> Asignacion41
+	Asignacion41 [label=Asignacion]
+	Asignacion41 -> "$t1[1][nombre]42"
+	"$t1[1][nombre]42" [label="$t1[1][nombre]"]
+	Asignacion41 -> "Peter Parker43"
+	"Peter Parker43" [label="Peter Parker"]
+	main1 -> Asignacion44
+	Asignacion44 [label=Asignacion]
+	Asignacion44 -> "$t1[1][direccion]45"
+	"$t1[1][direccion]45" [label="$t1[1][direccion]"]
+	Asignacion44 -> Petapolis46
+	Petapolis46 [label=Petapolis]
+	main1 -> Asignacion47
+	Asignacion47 [label=Asignacion]
+	Asignacion47 -> "$t1[1][telefono][0]48"
+	"$t1[1][telefono][0]48" [label="$t1[1][telefono][0]"]
+	Asignacion47 -> 1241212449
+	1241212449 [label=12412124]
+	main1 -> Asignacion50
+	Asignacion50 [label=Asignacion]
+	Asignacion50 -> "$t1[1][telefono][0]51"
+	"$t1[1][telefono][0]51" [label="$t1[1][telefono][0]"]
+	Asignacion50 -> 4512412552
+	4512412552 [label=45124125]
+	main1 -> Asignacion53
+	Asignacion53 [label=Asignacion]
+	Asignacion53 -> "$t254"
+	"$t254" [label="$t2"]
+	Asignacion53 -> 055
+	055 [label=0]
+	0 -> while056
+	while056 [label=while0]
+	while056 -> "if Goto57"
+	"if Goto57" [label="if Goto"]
+	"if Goto57" -> "Operacion binaria58"
+	"Operacion binaria58" [label="Operacion binaria"]
+	"Operacion binaria58" -> "$t259"
+	"$t259" [label="$t2"]
+	"Operacion binaria58" -> ">60"
+	">60" [label=">"]
+	"Operacion binaria58" -> 261
+	261 [label=2]
+	"if Goto57" -> end062
+	end062 [label=end0]
+	while056 -> Imprimir63
+	Imprimir63 [label=Imprimir]
+	Imprimir63 -> "$t1[$t2][nombre]64"
+	"$t1[$t2][nombre]64" [label="$t1[$t2][nombre]"]
+	while056 -> Imprimir65
+	Imprimir65 [label=Imprimir]
+	Imprimir65 -> "$t1[$t2][direccion]66"
+	"$t1[$t2][direccion]66" [label="$t1[$t2][direccion]"]
+	while056 -> Asignacion67
+	Asignacion67 [label=Asignacion]
+	Asignacion67 -> "$t268"
+	"$t268" [label="$t2"]
+	Asignacion67 -> "Operacion binaria69"
+	"Operacion binaria69" [label="Operacion binaria"]
+	"Operacion binaria69" -> "$t270"
+	"$t270" [label="$t2"]
+	"Operacion binaria69" -> "+71"
+	"+71" [label="+"]
+	"Operacion binaria69" -> 172
+	172 [label=1]
+	while056 -> Goto73
+	Goto73 [label=Goto]
+	Goto73 -> while074
+	while074 [label=while0]
+	0 -> end075
+	end075 [label=end0]
+	end075 -> Asignacion76
+	Asignacion76 [label=Asignacion]
+	Asignacion76 -> "$t377"
+	"$t377" [label="$t3"]
+	Asignacion76 -> Array78
+	Array78 [label=Array]
+	end075 -> Asignacion79
+	Asignacion79 [label=Asignacion]
+	Asignacion79 -> "$t3[0]80"
+	"$t3[0]80" [label="$t3[0]"]
+	Asignacion79 -> 081
+	081 [label=0]
+	end075 -> Asignacion82
+	Asignacion82 [label=Asignacion]
+	Asignacion82 -> "$t3[1]83"
+	"$t3[1]83" [label="$t3[1]"]
+	Asignacion82 -> 184
+	184 [label=1]
+	end075 -> Imprimir85
+	Imprimir85 [label=Imprimir]
+	Imprimir85 -> "$t386"
+	"$t386" [label="$t3"]
+	end075 -> Imprimir87
+	Imprimir87 [label=Imprimir]
+	Imprimir87 -> "$t3[0]88"
+	"$t3[0]88" [label="$t3[0]"]
+	end075 -> Imprimir89
+	Imprimir89 [label=Imprimir]
+	Imprimir89 -> "$t3[1]90"
+	"$t3[1]90" [label="$t3[1]"]
+	end075 -> Asignacion91
+	Asignacion91 [label=Asignacion]
+	Asignacion91 -> "$t3[1][0]92"
+	"$t3[1][0]92" [label="$t3[1][0]"]
+	Asignacion91 -> 1093
+	1093 [label=10]
+	end075 -> Asignacion94
+	Asignacion94 [label=Asignacion]
+	Asignacion94 -> "$t3[2][0]95"
+	"$t3[2][0]95" [label="$t3[2][0]"]
+	Asignacion94 -> 2096
+	2096 [label=20]
+	end075 -> Imprimir97
+	Imprimir97 [label=Imprimir]
+	Imprimir97 -> "$t3[2][0]98"
+	"$t3[2][0]98" [label="$t3[2][0]"]
+	end075 -> Imprimir99
+	Imprimir99 [label=Imprimir]
+	Imprimir99 -> "$t3[1][3]100"
+	"$t3[1][3]100" [label="$t3[1][3]"]
+	end075 -> Asignacion101
+	Asignacion101 [label=Asignacion]
+	Asignacion101 -> "$t3[nombre]102"
+	"$t3[nombre]102" [label="$t3[nombre]"]
+	Asignacion101 -> Carla103
+	Carla103 [label=Carla]
+	end075 -> Imprimir104
+	Imprimir104 [label=Imprimir]
+	Imprimir104 -> "$t3[nombre]105"
+	"$t3[nombre]105" [label="$t3[nombre]"]
+	end075 -> Asignacion106
+	Asignacion106 [label=Asignacion]
+	Asignacion106 -> "$t3[nombre][4]107"
+	"$t3[nombre][4]107" [label="$t3[nombre][4]"]
+	Asignacion106 -> o108
+	o108 [label=o]
+	end075 -> Imprimir109
+	Imprimir109 [label=Imprimir]
+	Imprimir109 -> "$t3[nombre]110"
+	"$t3[nombre]110" [label="$t3[nombre]"]
+	end075 -> Asignacion111
+	Asignacion111 [label=Asignacion]
+	Asignacion111 -> "$t3[nombre][5]112"
+	"$t3[nombre][5]112" [label="$t3[nombre][5]"]
+	Asignacion111 -> s113
+	s113 [label=s]
+	end075 -> Imprimir114
+	Imprimir114 [label=Imprimir]
+	Imprimir114 -> "$t3[nombre]115"
+	"$t3[nombre]115" [label="$t3[nombre]"]
+	end075 -> Asignacion116
+	Asignacion116 [label=Asignacion]
+	Asignacion116 -> "$t3[nombre][7]117"
+	"$t3[nombre][7]117" [label="$t3[nombre][7]"]
+	Asignacion116 -> s118
+	s118 [label=s]
+	end075 -> Imprimir119
+	Imprimir119 [label=Imprimir]
+	Imprimir119 -> "$t3[nombre]120"
+	"$t3[nombre]120" [label="$t3[nombre]"]
+	end075 -> Asignacion121
+	Asignacion121 [label=Asignacion]
+	Asignacion121 -> "$s0122"
+	"$s0122" [label="$s0"]
+	Asignacion121 -> Array123
+	Array123 [label=Array]
+	end075 -> Asignacion124
+	Asignacion124 [label=Asignacion]
+	Asignacion124 -> "$sp125"
+	"$sp125" [label="$sp"]
+	Asignacion124 -> Negativo126
+	Negativo126 [label=Negativo]
+	Negativo126 -> 1127
+	1127 [label=1]
+	end075 -> Asignacion128
+	Asignacion128 [label=Asignacion]
+	Asignacion128 -> "$a0129"
+	"$a0129" [label="$a0"]
+	Asignacion128 -> 2130
+	2130 [label=2]
+	end075 -> Asignacion131
+	Asignacion131 [label=Asignacion]
+	Asignacion131 -> "$a1132"
+	"$a1132" [label="$a1"]
+	Asignacion131 -> 3133
+	3133 [label=3]
+	end075 -> Asignacion134
+	Asignacion134 [label=Asignacion]
+	Asignacion134 -> "$sp135"
+	"$sp135" [label="$sp"]
+	Asignacion134 -> "Operacion binaria136"
+	"Operacion binaria136" [label="Operacion binaria"]
+	"Operacion binaria136" -> "$sp137"
+	"$sp137" [label="$sp"]
+	"Operacion binaria136" -> "+138"
+	"+138" [label="+"]
+	"Operacion binaria136" -> 1139
+	1139 [label=1]
+	end075 -> Asignacion140
+	Asignacion140 [label=Asignacion]
+	Asignacion140 -> "$s0[$sp]141"
+	"$s0[$sp]141" [label="$s0[$sp]"]
+	Asignacion140 -> "$a0142"
+	"$a0142" [label="$a0"]
+	end075 -> Goto143
+	Goto143 [label=Goto]
+	Goto143 -> ack144
+	ack144 [label=ack]
+	0 -> ret0145
+	ret0145 [label=ret0]
+	ret0145 -> Imprimir146
+	Imprimir146 [label=Imprimir]
+	Imprimir146 -> "$v0147"
+	"$v0147" [label="$v0"]
+	ret0145 -> Exit148
+	Exit148 [label=Exit]
+	0 -> ack149
+	ack149 [label=ack]
+	ack149 -> "if Goto150"
+	"if Goto150" [label="if Goto"]
+	"if Goto150" -> "Operacion binaria151"
+	"Operacion binaria151" [label="Operacion binaria"]
+	"Operacion binaria151" -> "$sp152"
+	"$sp152" [label="$sp"]
+	"Operacion binaria151" -> "<153"
+	"<153" [label="<"]
+	"Operacion binaria151" -> 0154
+	0154 [label=0]
+	"if Goto150" -> ret3155
+	ret3155 [label=ret3]
+	ack149 -> Asignacion156
+	Asignacion156 [label=Asignacion]
+	Asignacion156 -> "$a0157"
+	"$a0157" [label="$a0"]
+	Asignacion156 -> "$s0[$sp]158"
+	"$s0[$sp]158" [label="$s0[$sp]"]
+	ack149 -> Asignacion159
+	Asignacion159 [label=Asignacion]
+	Asignacion159 -> "$sp160"
+	"$sp160" [label="$sp"]
+	Asignacion159 -> "Operacion binaria161"
+	"Operacion binaria161" [label="Operacion binaria"]
+	"Operacion binaria161" -> "$sp162"
+	"$sp162" [label="$sp"]
+	"Operacion binaria161" -> -163
+	-163 [label="-"]
+	"Operacion binaria161" -> 1164
+	1164 [label=1]
+	ack149 -> "if Goto165"
+	"if Goto165" [label="if Goto"]
+	"if Goto165" -> "Operacion binaria166"
+	"Operacion binaria166" [label="Operacion binaria"]
+	"Operacion binaria166" -> "$a0167"
+	"$a0167" [label="$a0"]
+	"Operacion binaria166" -> "!=168"
+	"!=168" [label="!="]
+	"Operacion binaria166" -> 0169
+	0169 [label=0]
+	"if Goto165" -> ret1170
+	ret1170 [label=ret1]
+	ack149 -> Asignacion171
+	Asignacion171 [label=Asignacion]
+	Asignacion171 -> "$t4172"
+	"$t4172" [label="$t4"]
+	Asignacion171 -> "Operacion binaria173"
+	"Operacion binaria173" [label="Operacion binaria"]
+	"Operacion binaria173" -> "$a0174"
+	"$a0174" [label="$a0"]
+	"Operacion binaria173" -> "+175"
+	"+175" [label="+"]
+	"Operacion binaria173" -> 1176
+	1176 [label=1]
+	ack149 -> Asignacion177
+	Asignacion177 [label=Asignacion]
+	Asignacion177 -> "$a1178"
+	"$a1178" [label="$a1"]
+	Asignacion177 -> "Operacion binaria179"
+	"Operacion binaria179" [label="Operacion binaria"]
+	"Operacion binaria179" -> "$a1180"
+	"$a1180" [label="$a1"]
+	"Operacion binaria179" -> "+181"
+	"+181" [label="+"]
+	"Operacion binaria179" -> "$t4182"
+	"$t4182" [label="$t4"]
+	ack149 -> Goto183
+	Goto183 [label=Goto]
+	Goto183 -> ack184
+	ack184 [label=ack]
+	0 -> ret1185
+	ret1185 [label=ret1]
+	ret1185 -> "if Goto186"
+	"if Goto186" [label="if Goto"]
+	"if Goto186" -> "Operacion binaria187"
+	"Operacion binaria187" [label="Operacion binaria"]
+	"Operacion binaria187" -> "$a1188"
+	"$a1188" [label="$a1"]
+	"Operacion binaria187" -> "!=189"
+	"!=189" [label="!="]
+	"Operacion binaria187" -> 0190
+	0190 [label=0]
+	"if Goto186" -> ret2191
+	ret2191 [label=ret2]
+	ret1185 -> Asignacion192
+	Asignacion192 [label=Asignacion]
+	Asignacion192 -> "$a1193"
+	"$a1193" [label="$a1"]
+	Asignacion192 -> "Operacion binaria194"
+	"Operacion binaria194" [label="Operacion binaria"]
+	"Operacion binaria194" -> "$a1195"
+	"$a1195" [label="$a1"]
+	"Operacion binaria194" -> "+196"
+	"+196" [label="+"]
+	"Operacion binaria194" -> 1197
+	1197 [label=1]
+	ret1185 -> Asignacion198
+	Asignacion198 [label=Asignacion]
+	Asignacion198 -> "$a0199"
+	"$a0199" [label="$a0"]
+	Asignacion198 -> "Operacion binaria200"
+	"Operacion binaria200" [label="Operacion binaria"]
+	"Operacion binaria200" -> "$a0201"
+	"$a0201" [label="$a0"]
+	"Operacion binaria200" -> -202
+	-202 [label="-"]
+	"Operacion binaria200" -> 1203
+	1203 [label=1]
+	ret1185 -> Asignacion204
+	Asignacion204 [label=Asignacion]
+	Asignacion204 -> "$sp205"
+	"$sp205" [label="$sp"]
+	Asignacion204 -> "Operacion binaria206"
+	"Operacion binaria206" [label="Operacion binaria"]
+	"Operacion binaria206" -> "$sp207"
+	"$sp207" [label="$sp"]
+	"Operacion binaria206" -> "+208"
+	"+208" [label="+"]
+	"Operacion binaria206" -> 1209
+	1209 [label=1]
+	ret1185 -> Asignacion210
+	Asignacion210 [label=Asignacion]
+	Asignacion210 -> "$s0[$sp]211"
+	"$s0[$sp]211" [label="$s0[$sp]"]
+	Asignacion210 -> "$a0212"
+	"$a0212" [label="$a0"]
+	ret1185 -> Goto213
+	Goto213 [label=Goto]
+	Goto213 -> ack214
+	ack214 [label=ack]
+	0 -> ret2215
+	ret2215 [label=ret2]
+	ret2215 -> Asignacion216
+	Asignacion216 [label=Asignacion]
+	Asignacion216 -> "$a0217"
+	"$a0217" [label="$a0"]
+	Asignacion216 -> "Operacion binaria218"
+	"Operacion binaria218" [label="Operacion binaria"]
+	"Operacion binaria218" -> "$a0219"
+	"$a0219" [label="$a0"]
+	"Operacion binaria218" -> -220
+	-220 [label="-"]
+	"Operacion binaria218" -> 1221
+	1221 [label=1]
+	ret2215 -> Asignacion222
+	Asignacion222 [label=Asignacion]
+	Asignacion222 -> "$sp223"
+	"$sp223" [label="$sp"]
+	Asignacion222 -> "Operacion binaria224"
+	"Operacion binaria224" [label="Operacion binaria"]
+	"Operacion binaria224" -> "$sp225"
+	"$sp225" [label="$sp"]
+	"Operacion binaria224" -> "+226"
+	"+226" [label="+"]
+	"Operacion binaria224" -> 1227
+	1227 [label=1]
+	ret2215 -> Asignacion228
+	Asignacion228 [label=Asignacion]
+	Asignacion228 -> "$s0[$sp]229"
+	"$s0[$sp]229" [label="$s0[$sp]"]
+	Asignacion228 -> "$a0230"
+	"$a0230" [label="$a0"]
+	ret2215 -> Asignacion231
+	Asignacion231 [label=Asignacion]
+	Asignacion231 -> "$a0232"
+	"$a0232" [label="$a0"]
+	Asignacion231 -> "Operacion binaria233"
+	"Operacion binaria233" [label="Operacion binaria"]
+	"Operacion binaria233" -> "$a0234"
+	"$a0234" [label="$a0"]
+	"Operacion binaria233" -> "+235"
+	"+235" [label="+"]
+	"Operacion binaria233" -> 1236
+	1236 [label=1]
+	ret2215 -> Asignacion237
+	Asignacion237 [label=Asignacion]
+	Asignacion237 -> "$sp238"
+	"$sp238" [label="$sp"]
+	Asignacion237 -> "Operacion binaria239"
+	"Operacion binaria239" [label="Operacion binaria"]
+	"Operacion binaria239" -> "$sp240"
+	"$sp240" [label="$sp"]
+	"Operacion binaria239" -> "+241"
+	"+241" [label="+"]
+	"Operacion binaria239" -> 1242
+	1242 [label=1]
+	ret2215 -> Asignacion243
+	Asignacion243 [label=Asignacion]
+	Asignacion243 -> "$s0[$sp]244"
+	"$s0[$sp]244" [label="$s0[$sp]"]
+	Asignacion243 -> "$a0245"
+	"$a0245" [label="$a0"]
+	ret2215 -> Asignacion246
+	Asignacion246 [label=Asignacion]
+	Asignacion246 -> "$a1247"
+	"$a1247" [label="$a1"]
+	Asignacion246 -> "Operacion binaria248"
+	"Operacion binaria248" [label="Operacion binaria"]
+	"Operacion binaria248" -> "$a1249"
+	"$a1249" [label="$a1"]
+	"Operacion binaria248" -> -250
+	-250 [label="-"]
+	"Operacion binaria248" -> 1251
+	1251 [label=1]
+	ret2215 -> Goto252
+	Goto252 [label=Goto]
+	Goto252 -> ack253
+	ack253 [label=ack]
+	0 -> ret3254
+	ret3254 [label=ret3]
+	ret3254 -> Asignacion255
+	Asignacion255 [label=Asignacion]
+	Asignacion255 -> "$v0256"
+	"$v0256" [label="$v0"]
+	Asignacion255 -> "$a1257"
+	"$a1257" [label="$a1"]
+	ret3254 -> Goto258
+	Goto258 [label=Goto]
+	Goto258 -> ret0259
+	ret0259 [label=ret0]
+}
