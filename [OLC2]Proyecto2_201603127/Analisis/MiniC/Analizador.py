@@ -9,7 +9,7 @@ reservadas = {
     'break': 'BREAK',
     'case': 'CASE',
 #    'const': 'CONST',
-#    'continue': 'CONTINUE',
+    'continue': 'CONTINUE',
     'default': 'DEFAULT',
     'do': 'DO',
     'else': 'ELSE',
@@ -176,7 +176,7 @@ def t_ID(t):
 
 
 def t_COMENTARIO_S(t):
-    r'/(.*)\n'
+    r'//(.*)\n'
     t.lexer.lineno += 1
 
 def t_COMENTARIO_M(t):
@@ -261,7 +261,7 @@ def p_funciones(t):
 
 
 def p_structs(t):
-    '''structs : STRUCT ID bloque_sentencias PUNTOCOMA'''
+    '''structs : STRUCT ID LLAVEA declaracion LLAVEC PUNTOCOMA'''
 
 
 def p_lista_param_lista(t):
@@ -279,6 +279,9 @@ def p_param(t):
 def p_bloque_sentencias(t):
     '''bloque_sentencias : LLAVEA lista_sentencias LLAVEC'''
 
+def p_bloque_sentencias_vacio(t):
+    '''bloque_sentencias : LLAVEA LLAVEC'''
+
 def p_lista_sentencias_list(t):
     '''lista_sentencias : lista_sentencias sentencia'''
 
@@ -294,10 +297,12 @@ def p_sentencia(t):
                  | fun_for
                  | fun_while
                  | fun_do_while
-                 | fun_return
-                 | fun_break
-                 | incre_decre
-                 | print'''
+                 | print
+                 | scan
+                 | fun_return PUNTOCOMA
+                 | fun_break PUNTOCOMA
+                 | incre_decre PUNTOCOMA
+                 | fun_continue PUNTOCOMA'''
 
 
 def p_declaracion(t):
@@ -315,10 +320,13 @@ def p_bloque_declara(t):
                       | declaraSinVal'''
 
 def p_declaraConVal(t):
-    '''declaraConVal : tipo_ID IGUAL val'''
+    '''declaraConVal : tipo_ID IGUAL operaciones'''
 
 def p_declaraConVal_llave(t):
-    '''declaraConVal : tipo_ID IGUAL lista_llave'''
+    '''declaraConVal : tipo_ID IGUAL LLAVEA lista_filas LLAVEC'''
+
+def p_declaraConVal_Fila(t):
+    '''declaraConVal : tipo_ID IGUAL LLAVEA lista_val LLAVEC'''
 
 def p_declaraSinVal(t):
     '''declaraSinVal : tipo_ID'''
@@ -342,7 +350,8 @@ def p_dimension(t):
 def p_asignacion(t):
     '''asignacion : ID tipo_asignacion operaciones
                   | ID dimension tipo_asignacion operaciones
-                  | ID dimension tipo_asignacion lista_llave'''
+                  | ID dimension tipo_asignacion LLAVEA lista_filas LLAVEC
+                  | ID dimension tipo_asignacion LLAVEA lista_val LLAVEC'''
 
 def p_tipo_asign(t):
     '''tipo_asignacion : IGUAL
@@ -356,13 +365,23 @@ def p_tipo_asign(t):
                        | ANDIGUAL
                        | ORIGUAL
                        | XORIGUAL'''
+def p_lista_filas(t):
+    '''lista_filas : lista_filas COMA fila'''
 
-def p_lista_llave_lista(t):
-    '''lista_llave : lista_llave LLAVEA lista_val LLAVEC'''
+def p_lista_filas_fila(t):
+    '''lista_filas : fila'''
 
-def p_lista_llave_llave(t):
-    '''lista_llave : LLAVEA lista_val LLAVEC'''
+def p_fila(t):
+    '''fila : LLAVEA lista_columna LLAVEC'''
 
+def p_lista_columna(t):
+    '''lista_columna : lista_columna COMA columna'''
+
+def p_lista_columna_colum(t):
+    '''lista_columna : columna'''
+
+def p_columna(t):
+    '''columna : operaciones '''
 
 def p_lista_val_lista(t):
     '''lista_val : lista_val COMA val'''
@@ -376,51 +395,60 @@ def p_if(t):
               | IF PARENTA operaciones PARENTC bloque_sentencias ELSE bloque_sentencias'''
 
 def p_switch(t):
-    '''fun_switch : SWITCH PARENTA ID PARENTC LLAVEA list_switch LLAVEC'''
+    '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA list_switch LLAVEC'''
 
 def p_list_switch(t):
     '''list_switch : list_switch cont_switch
                     | cont_switch'''
 
 def p_cont_switch(t):
-    '''cont_switch : CASE val DOSPUNTOS lista_sentencias BREAK PUNTOCOMA
-                   | CASE val DOSPUNTOS lista_sentencias
-                   | CASE val DOSPUNTOS BREAK PUNTOCOMA
-                   | DEFAULT DOSPUNTOS lista_sentencias BREAK PUNTOCOMA
-                   | DEFAULT DOSPUNTOS BREAK PUNTOCOMA
-                   | DEFAULT DOSPUNTOS lista_sentencias'''
+    '''cont_switch : CASE val DOSPUNTOS lista_sentencias
+                   | CASE val DOSPUNTOS bloque_sentencias
+                   | CASE val DOSPUNTOS
+                   | DEFAULT DOSPUNTOS lista_sentencias
+                   | DEFAULT DOSPUNTOS bloque_sentencias
+                   | DEFAULT DOSPUNTOS'''
 
 def p_for(t):
-    '''fun_for : FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA operaciones PARENTC bloque_sentencias
-               | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA operaciones PARENTC bloque_sentencias'''
+    '''fun_for : FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC bloque_sentencias
+               | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC bloque_sentencias
+               | FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC LLAVEA LLAVEC 
+               | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC LLAVEA LLAVEC'''
 
 def p_while(t):
     '''fun_while : WHILE PARENTA operaciones PARENTC bloque_sentencias'''
 
 def p_do_while(t):
-    '''fun_do_while : DO LLAVEA bloque_sentencias LLAVEC WHILE PARENTA operaciones PARENTC PUNTOCOMA
+    '''fun_do_while : DO bloque_sentencias WHILE PARENTA operaciones PARENTC PUNTOCOMA
                     | DO LLAVEA LLAVEC WHILE PARENTA operaciones PARENTC PUNTOCOMA'''
 
 
 def p_return(t):
-    '''fun_return : RETURN operaciones PUNTOCOMA
-                  | RETURN PUNTOCOMA'''
+    '''fun_return : RETURN operaciones
+                  | RETURN incre_decre
+                  | RETURN '''
 
 def p_break(t):
-    '''fun_break : BREAK PUNTOCOMA'''
+    '''fun_break : BREAK'''
 
 def p_inc_dec(t):
-    '''incre_decre : INCREMENTO val PUNTOCOMA
-                   | DECREMENTO val PUNTOCOMA
-                   | val INCREMENTO PUNTOCOMA
-                   | val DECREMENTO PUNTOCOMA'''
+    '''incre_decre : INCREMENTO val
+                   | DECREMENTO val
+                   | val INCREMENTO
+                   | val DECREMENTO'''
 
 def p_print(t):
     '''print : PRINTF PARENTA lista_print PARENTC PUNTOCOMA'''
 
+def p_scan(t):
+    '''scan : SCANF PARENTA lista_print PARENTC PUNTOCOMA'''
+
+def p_continue(t):
+    '''fun_continue : CONTINUE'''
+
 def p_lista_print(t):
-    '''lista_print : lista_print COMA val
-                   | val'''
+    '''lista_print : lista_print COMA operaciones
+                   | operaciones'''
 
 def p_operaciones(t):
     '''operaciones : operaciones MAS operaciones
@@ -442,7 +470,7 @@ def p_operaciones(t):
                      | operaciones MAYOR operaciones
                      | operaciones MENOR operaciones
                      | PARENTA operaciones PARENTC'''
-    if t[2] == '+':
+    '''if t[2] == '+':
         t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.SUMA, t[1].fila, t[1].columna)
     elif t[2] == '-':
         t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.RESTA, t[1].fila, t[1].columna)
@@ -477,16 +505,17 @@ def p_operaciones(t):
     elif t[2] == '>':
         t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MAYOR, t[1].fila, t[1].columna)
     elif t[2] == '<':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MENOR, t[1].fila, t[1].columna)
+        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MENOR, t[1].fila, t[1].columna)'''
 
 
 def p_operaciones_unaria(t):
     '''operaciones : MENOS val
                    | EXCLAMA val
                    | NOT val
-                   | SCANF PARENTA PARENTC'''
+                   | SCANF PARENTA PARENTC
+                   | AND2 val'''
 
-    if t[1] == '-':
+    '''if t[1] == '-':
         t[0] = Numerico_Negativo(t[2], t.slice[1].lineno, get_Column(t.slice[1]))
     elif t[1] == '!':
         t[0] = Bool_Negado(t[2], t.slice[1].lineno, get_Column(t.slice[1]))
@@ -498,7 +527,7 @@ def p_operaciones_unaria(t):
         print("llego al read")
         t[0] = Read(t.slice[1].lineno, get_Column(t.slice[1]))
     elif str(t[1]).lower() == 'array':
-        t[0] = Array(t.slice[1].lineno, get_Column(t.slice[1]))
+        t[0] = Array(t.slice[1].lineno, get_Column(t.slice[1]))'''
 
 
 def p_op_ternario(t):

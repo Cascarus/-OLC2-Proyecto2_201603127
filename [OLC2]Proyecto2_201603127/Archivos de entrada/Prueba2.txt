@@ -1,0 +1,48 @@
+int main()
+{
+    char operator;
+    double n1, n2;
+
+    printf("Enter an operator (+, -, *, /): ");
+    scanf("%c", &operator);
+    printf("Enter two operands: ");
+    scanf("%lf %lf",&n1, &n2);
+
+    switch(operator)
+    {
+        case '+':
+        {
+            double a = n1;
+            double b = n2;
+            double sum = a + b;
+            printf("%f + %f = %f",a, b, sum);
+            break;
+        }
+
+        case '-':
+
+
+        case '*':
+        {
+            double a = n1;
+            double b = n2;
+            double sum = a * b;
+            printf("%.1lf * %.1lf = %.1lf",a, b, sum);
+            break;
+        }
+
+        case '/':
+        {
+            double a = n1;
+            double b = n2;
+            double sum = a / b;
+            printf("%.1lf / %.1lf = %.1lf",a, b, sum);
+            break;
+        }
+
+        // operator doesn't match any case constant +, -, *, /
+        default:
+            printf("Error! operator is not correct");
+    }
+
+}

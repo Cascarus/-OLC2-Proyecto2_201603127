@@ -11,7 +11,16 @@ class Reporte_Errores:
         contenido = "<<table border = '1'>\n<tr><td>Token</td><td>Tipo</td><td>Descripcion</td><td>Fila</td><td>Columna</td></tr>\n"
 
         for error in errores:
-            contenido += "<tr><td>" + str(error.token)+ "</td><td>" + str(error.tipo) + "</td><td>" + str(error.desc) + "</td><td>" + str(error.fila) + "</td><td>" + str(error.columna) + "</td></tr>\n"
+            cont = str(error.token)
+            if cont.find('&') != -1:
+                cont = str(error.token).replace('&', "&#38;")
+            elif cont.find('<') != -1:
+                cont = str(error.token).replace('<', "&#60;")
+            elif cont.find('>') != -1:
+                cont = str(error.token).replace('>', "&#62;")
+            else:
+                cont = str(error.token)
+            contenido += "<tr><td>" + cont + "</td><td>" + str(error.tipo) + "</td><td>" + str(error.desc) + "</td><td>" + str(error.fila) + "</td><td>" + str(error.columna) + "</td></tr>\n"
 
         contenido += "</table>>"
         dot.node("A", contenido)
