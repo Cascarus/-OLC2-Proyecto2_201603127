@@ -19,6 +19,7 @@ from Reportes import Reporte_Errores
 from Reportes import Reporte_AST
 from Errores import *
 from AST import *
+from Traduccion.Traducir import traducir
 
 
 import Analisis.Ascendente.Analizador as p
@@ -26,7 +27,7 @@ import Analisis.Descendente.Analizador_2 as asc
 import Analisis.MiniC.Analizador as minic
 import Ejecutar_Ascendente as Ejec1
 import Tabla_Simbolos as tabla
-import webbrowser
+
 
 class Ui_MainWindow(object):
     array_rutas = []
@@ -488,6 +489,18 @@ class Ui_MainWindow(object):
             Lista_errores.clear()
             self.temp = self.array_editores[self.tbTab.currentIndex()]
             instrucciones = minic.parse(self.temp.toPlainText())
+            print("todo bien");
+            if len(Lista_errores) < 1:
+                translate = traducir(instrucciones)
+                resultado = translate.inizializar_tablas()
+                if resultado != False:
+                    print("todo bien 2")
+                    resultado = translate.verificar_tipos()
+                    if resultado != False:
+                        print("todo bien 3")
+                        codigo_aug = translate.comenzar_traduccion()
+                        self.crear_pestania(codigo_aug,1)
+                        print(codigo_aug)
             '''instrucciones = p.parse(self.temp.toPlainText())
             self.tabla_global = tabla.Tabla_Simbolos()
             self.tabla_global.clear()

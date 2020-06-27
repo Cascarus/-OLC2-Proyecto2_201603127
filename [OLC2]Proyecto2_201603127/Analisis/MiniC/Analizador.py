@@ -1,6 +1,14 @@
 from Errores import *
-from Valores_Variables import *
-from funciones import *
+from Traduccion.Primitivos import Primitivo
+from Traduccion.Declaracion import Declaracion
+from Traduccion.Funciones import funciones
+from Traduccion.Variables import variables
+from Traduccion.Tipos import *
+from Traduccion.Operacion_binaria import Operacion_binaria
+from Traduccion.Operacion_relacional import Op_relacional
+from Traduccion.Operacion_logica import Op_logica
+from Traduccion.Asignacion import Asignacion
+from Traduccion.If import If
 
 from Analisis.Ascendente.ply import lex
 
@@ -19,7 +27,6 @@ reservadas = {
     'if': 'IF',
     'int': 'INT',
     'return': 'RETURN',
-#    'sizeof': 'SIZEOF',
     'struct': 'STRUCT',
     'switch': 'SWITCH',
     'void': 'VOID',
@@ -128,7 +135,6 @@ t_XORIGUAL = r'\^='
 
 def t_DIVIIGUAL(t):
     r'/='
-    print(t.value)
     return t
 
 
@@ -220,7 +226,7 @@ precedence = (
     ('left', 'SHIFTI', 'SHIFTD'),
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVICION', 'RESIDUO'),
-    ('left', 'INCREMENTO', 'DECREMENTO'),
+    ('left', 'INCREMENTO', 'DECREMENTO','NOT', 'EXCLAMA'),
     ('left', 'PARENTA', 'PARENTC'),
     ('left', 'ID')
 )
@@ -228,7 +234,8 @@ precedence = (
 
 
 def p_init(t):
-    '''inicio : instrucciones'''
+#    '''inicio : instrucciones'''
+    '''inicio : lista_sentencias'''
     t[0] = t[1]
 
 
@@ -254,11 +261,14 @@ def p_metodos(t):
     '''metodos : VOID ID PARENTA PARENTC bloque_sentencias
                | VOID ID PARENTA lista_param PARENTC bloque_sentencias'''
 
+
 def p_funciones(t):
     '''funciones : tipo ID PARENTA PARENTC bloque_sentencias
-                 | tipo ID PARENTA lista_param PARENTC bloque_sentencias
                  | INT MAIN PARENTA PARENTC bloque_sentencias'''
+    t[0] = funciones(t[1], t[2], None, t[5],t.slice[3].lineno, get_Column(t.slice[3]))
 
+def p_funciones_param(t):
+    '''funciones : tipo ID PARENTA lista_param PARENTC bloque_sentencias'''
 
 def p_structs(t):
     '''structs : STRUCT ID LLAVEA declaracion LLAVEC PUNTOCOMA'''
@@ -274,20 +284,27 @@ def p_lista_param_param(t):
 
 def p_param(t):
     '''param : tipo ID'''
-#             | STRUCT ID lista_apunt'''
 
 def p_bloque_sentencias(t):
     '''bloque_sentencias : LLAVEA lista_sentencias LLAVEC'''
+    t[0] = t[2]
 
 def p_bloque_sentencias_vacio(t):
     '''bloque_sentencias : LLAVEA LLAVEC'''
+    t[0] = None
 
 def p_lista_sentencias_list(t):
     '''lista_sentencias : lista_sentencias sentencia'''
+    t[1].append(t[2])
+    t[0] = t[1]
 
 def p_lista_sentencias_sent(t):
-    '''lista_sentencias : sentencia
-                        | '''
+    '''lista_sentencias : sentencia'''
+    t[0] = [t[1]]
+
+def p_lista_sentencia_vacio(t):
+    '''lista_sentencias : '''
+    t[0] = [None]
 
 def p_sentencia(t):
     '''sentencia : declaracion PUNTOCOMA
@@ -303,33 +320,41 @@ def p_sentencia(t):
                  | fun_break PUNTOCOMA
                  | incre_decre PUNTOCOMA
                  | fun_continue PUNTOCOMA'''
+    t[0] = t[1]
 
 
 def p_declaracion(t):
     '''declaracion : tipo lista_declaracion'''
+    t[0] = Declaracion(t[1][0],t[2], t[1][1], t[1][2])
 
 def p_lista_declaracion(t):
     '''lista_declaracion : lista_declaracion COMA bloque_declara'''
-
+    t[1].append(t[3])
+    t[0] = t[1]
 
 def p_lista_declara_bloque(t):
     '''lista_declaracion : bloque_declara'''
+    t[0] = [t[1]]
 
 def p_bloque_declara(t):
     '''bloque_declara : declaraConVal
                       | declaraSinVal'''
+    t[0] = t[1]
 
 def p_declaraConVal(t):
     '''declaraConVal : tipo_ID IGUAL operaciones'''
+    t[0] = [t[1], t[3]]
 
 def p_declaraConVal_llave(t):
     '''declaraConVal : tipo_ID IGUAL LLAVEA lista_filas LLAVEC'''
-
+    t[0] = [t[1], t[4]]
 def p_declaraConVal_Fila(t):
     '''declaraConVal : tipo_ID IGUAL LLAVEA lista_val LLAVEC'''
+    t[0] = [t[1], t[4]]
 
 def p_declaraSinVal(t):
     '''declaraSinVal : tipo_ID'''
+    t[0] = [t[1], None]
 
 def p_tipo(t):
     '''tipo : INT
@@ -337,10 +362,22 @@ def p_tipo(t):
             | DOUBLE
             | FLOAT'''
 
+    if str(t[1]).lower() == 'int':
+        t[0] = [Tipo_dato.ENTERO, t.slice[1].lineno, get_Column(t.slice[1])]
+    elif str(t[1]).lower() == 'char':
+        t[0] = [Tipo_dato.CARACTER, t.slice[1].lineno, get_Column(t.slice[1])]
+    elif str(t[1]).lower() == 'double':
+        t[0] = [Tipo_dato.DECIMAL, t.slice[1].lineno, get_Column(t.slice[1])]
+    elif str(t[1]).lower() == 'float':
+        t[0] = [Tipo_dato.DECIMAL, t.slice[1].lineno, get_Column(t.slice[1])]
 
-def p_TIPO_ID(t):
-    '''tipo_ID : ID
-               | ID dimension'''
+
+def p_TIPO_ID_id(t):
+    '''tipo_ID : ID'''
+    t[0] = variables(t[1], t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_TIPO_ID_dimen(t):
+    '''tipo_ID : ID dimension'''
 
 def p_dimension(t):
     '''dimension : dimension CORCHEA val CORCHEC
@@ -348,10 +385,26 @@ def p_dimension(t):
                  | CORCHEA CORCHEC'''
 
 def p_asignacion(t):
-    '''asignacion : ID tipo_asignacion operaciones
-                  | ID dimension tipo_asignacion operaciones
-                  | ID dimension tipo_asignacion LLAVEA lista_filas LLAVEC
-                  | ID dimension tipo_asignacion LLAVEA lista_val LLAVEC'''
+    '''asignacion : lista_asignacion'''
+    t[0] = Asignacion(t[1], t[1][0][0].fila, t[1][0][0].columna)
+
+
+def p_lista_asignacion(t):
+    '''lista_asignacion : lista_asignacion COMA bloque_asignacion'''
+    t[1].append(t[3])
+    t[0] = t[1]
+
+def p_lista_asignacion_b(t):
+    '''lista_asignacion : bloque_asignacion'''
+    t[0] = [t[1]]
+
+def p_bloque_asignacion_1(t):
+    '''bloque_asignacion : tipo_ID tipo_asignacion operaciones'''
+    t[0] = [t[1], t[3], t[2]]
+
+def p_bloque_asignacion_2(t):
+    '''bloque_asignacion : tipo_ID tipo_asignacion LLAVEA lista_filas LLAVEC
+                      | tipo_ID tipo_asignacion LLAVEA lista_val LLAVEC'''
 
 def p_tipo_asign(t):
     '''tipo_asignacion : IGUAL
@@ -365,6 +418,31 @@ def p_tipo_asign(t):
                        | ANDIGUAL
                        | ORIGUAL
                        | XORIGUAL'''
+
+    if t[1] == '=':
+        t[0] = tipo_asign.IGUAL
+    elif t[1] == '+=':
+        t[0] = tipo_asign.MASIGUAL
+    elif t[1] == '-=':
+        t[0] = tipo_asign.MENOSIGUAL
+    elif t[1] == '*=':
+        t[0] = tipo_asign.PORIGUAL
+    elif t[1] == '/=':
+        t[0] = tipo_asign.DIVIIGUAL
+    elif t[1] == '%=':
+        t[0] = tipo_asign.RESIGUAL
+    elif t[1] == '<<=':
+        t[0] = tipo_asign.IZQIGUAL
+    elif t[1] == '>>=':
+        t[0] = tipo_asign.DERIGUAL
+    elif t[1] == '&=':
+        t[0] = tipo_asign.ANDIGUAL
+    elif t[1] == '|=':
+        t[0] = tipo_asign.ORIGUAL
+    elif t[1] == '^=':
+        t[0] = tipo_asign.XORIGUAL
+
+
 def p_lista_filas(t):
     '''lista_filas : lista_filas COMA fila'''
 
@@ -390,9 +468,18 @@ def p_lista_val_val(t):
     '''lista_val : val'''
 
 def p_if(t):
-    '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias
-              | IF PARENTA operaciones PARENTC bloque_sentencias ELSE fun_if
-              | IF PARENTA operaciones PARENTC bloque_sentencias ELSE bloque_sentencias'''
+    '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias'''
+    t[0] = If([t[3]], [t[5]], None, t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_elif(t):
+    '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias ELSE fun_if'''
+    t[3] = [t[3]] + t[7].operaciones
+    t[5] = [t[5]] + t[7].contenido
+    t[0] = If([t[3]], [t[5]], t[7].cont_else, t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_else(t):
+    '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias ELSE bloque_sentencias'''
+    t[0] = If([t[3]],t[5],t[7],t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_switch(t):
     '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA list_switch LLAVEC'''
@@ -441,7 +528,7 @@ def p_print(t):
     '''print : PRINTF PARENTA lista_print PARENTC PUNTOCOMA'''
 
 def p_scan(t):
-    '''scan : SCANF PARENTA lista_print PARENTC PUNTOCOMA'''
+    '''scan : SCANF PARENTA PARENTC PUNTOCOMA'''
 
 def p_continue(t):
     '''fun_continue : CONTINUE'''
@@ -450,121 +537,115 @@ def p_lista_print(t):
     '''lista_print : lista_print COMA operaciones
                    | operaciones'''
 
-def p_operaciones(t):
+def p_operaciones_bin(t):
     '''operaciones : operaciones MAS operaciones
                      | operaciones MENOS operaciones
                      | operaciones POR operaciones
                      | operaciones DIVICION operaciones
-                     | operaciones RESIDUO operaciones
-                     | operaciones AND1 operaciones
-                     | operaciones OR1 operaciones
-                     | operaciones XOR operaciones
-                     | operaciones AND2 operaciones
-                     | operaciones OR2 operaciones
-                     | operaciones SHIFTI operaciones
-                     | operaciones SHIFTD operaciones
-                     | operaciones IGUALIGUAL operaciones
+                     | operaciones RESIDUO operaciones'''
+    if t[2] == '+':
+        t[0] = Operacion_binaria(t[1], t[3], Tipo_operacion.SUMA, t[1].fila, t[1].columna)
+    elif t[2] == '-':
+        t[0] = Operacion_binaria(t[1], t[3], Tipo_operacion.RESTA, t[1].fila, t[1].columna)
+    elif t[2] == '*':
+        t[0] = Operacion_binaria(t[1], t[3], Tipo_operacion.POR, t[1].fila, t[1].columna)
+    elif t[2] == '/':
+        t[0] = Operacion_binaria(t[1], t[3], Tipo_operacion.DIVICION, t[1].fila, t[1].columna)
+    else:
+        t[0] = Operacion_binaria(t[1], t[3], Tipo_operacion.RESIDUIO, t[1].fila, t[1].columna)
+
+def p_operaciones_logicas(t):
+    '''operaciones : operaciones AND1 operaciones
+                     | operaciones OR1 operaciones'''
+
+    if t[2] == '&&':
+        t[0] = Op_logica(t[1], t[3], Operacion_logica.AND, t[1].fila, t[1].columna)
+    elif t[2] == '||':
+        t[0] = Op_logica(t[1], t[3], Operacion_logica.OR, t[1].fila, t[1].columna)
+
+def p_operacion_relacional(t):
+    '''operaciones : operaciones IGUALIGUAL operaciones
                      | operaciones DIFERENTE operaciones
                      | operaciones MAYORIGUAL operaciones
                      | operaciones MENORIGUAL operaciones
                      | operaciones MAYOR operaciones
-                     | operaciones MENOR operaciones
-                     | PARENTA operaciones PARENTC'''
-    '''if t[2] == '+':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.SUMA, t[1].fila, t[1].columna)
-    elif t[2] == '-':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.RESTA, t[1].fila, t[1].columna)
-    elif t[2] == '*':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.POR, t[1].fila, t[1].columna)
-    elif t[2] == '/':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.DIVICION, t[1].fila, t[1].columna)
-    elif t[2] == '%':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.RESIDUIO, t[1].fila, t[1].columna)
-    elif t[2] == '&&':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.AND, t[1].fila, t[1].columna)
-    elif t[2] == '||':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.OR, t[1].fila, t[1].columna)
-    elif t[2] == '&':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Bit.AND, t[1].fila, t[1].columna)
-    elif t[2] == '|':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Bit.OR, t[1].fila, t[1].columna)
-    elif t[2] == '^':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Bit.XOR, t[1].fila, t[1].columna)
-    elif t[2] == '<<':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Bit.SHIFTI, t[1].fila, t[1].columna)
-    elif t[2] == '>>':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Bit.SHIFTD, t[1].fila, t[1].columna)
-    elif t[2] == '==':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.IGUAL_IGUAL, t[1].fila, t[1].columna)
-    elif t[2] == '!=':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.DIFERENTE, t[1].fila, t[1].columna)
-    elif t[2] == '>=':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MAYOR_IGUAL, t[1].fila, t[1].columna)
-    elif t[2] == '<=':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MENOR_IGUAL, t[1].fila, t[1].columna)
-    elif t[2] == '>':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MAYOR, t[1].fila, t[1].columna)
-    elif t[2] == '<':
-        t[0] = Operacion_Binaria(t[1], t[3], Operacion_Logica.MENOR, t[1].fila, t[1].columna)'''
+                     | operaciones MENOR operaciones'''
 
+    if t[2] == '==':
+        t[0] = Op_relacional(t[1], t[3], Operacion_logica.IGUAL_IGUAL, t[1].fila, t[1].columna)
+    elif t[2] == '!=':
+        t[0] = Op_relacional(t[1], t[3], Operacion_logica.DIFERENTE, t[1].fila, t[1].columna)
+    elif t[2] == '>=':
+        t[0] = Op_relacional(t[1], t[3], Operacion_logica.MAYOR_IGUAL, t[1].fila, t[1].columna)
+    elif t[2] == '<=':
+        t[0] = Op_relacional(t[1], t[3], Operacion_logica.MENOR_IGUAL, t[1].fila, t[1].columna)
+    elif t[2] == '>':
+        t[0] = Op_relacional(t[1], t[3], Operacion_logica.MAYOR, t[1].fila, t[1].columna)
+    else:
+        t[0] = Op_relacional(t[1], t[3], Operacion_logica.MENOR, t[1].fila, t[1].columna)
+
+
+def p_operaciones_bit(t):
+    '''operaciones : operaciones XOR operaciones
+                     | operaciones AND2 operaciones
+                     | operaciones OR2 operaciones
+                     | operaciones SHIFTI operaciones
+                     | operaciones SHIFTD operaciones'''
+    if t[2] == '&':
+        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.AND, t[1].fila, t[1].columna)
+    elif t[2] == '|':
+        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.OR, t[1].fila, t[1].columna)
+    elif t[2] == '^':
+        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.XOR, t[1].fila, t[1].columna)
+    elif t[2] == '<<':
+        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.SHIFTI, t[1].fila, t[1].columna)
+    else:
+        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.SHIFTD, t[1].fila, t[1].columna)
 
 def p_operaciones_unaria(t):
-    '''operaciones : MENOS val
-                   | EXCLAMA val
-                   | NOT val
+    '''operaciones : MENOS operaciones
+                   | EXCLAMA operaciones
+                   | NOT operaciones
                    | SCANF PARENTA PARENTC
-                   | AND2 val'''
-
-    '''if t[1] == '-':
-        t[0] = Numerico_Negativo(t[2], t.slice[1].lineno, get_Column(t.slice[1]))
-    elif t[1] == '!':
-        t[0] = Bool_Negado(t[2], t.slice[1].lineno, get_Column(t.slice[1]))
-    elif t[1] == '~':
-        t[0] = Bit_Negado(t[2], t.slice[1].lineno, get_Column(t.slice[1]))
-    elif str(t[1]).lower() == 'abs':
-        t[0] = Numerico_Absoluto(t[3], t.slice[1].lineno, get_Column(t.slice[1]))
-    elif str(t[1]).lower() == 'read':
-        print("llego al read")
-        t[0] = Read(t.slice[1].lineno, get_Column(t.slice[1]))
-    elif str(t[1]).lower() == 'array':
-        t[0] = Array(t.slice[1].lineno, get_Column(t.slice[1]))'''
+                   | AND2 operaciones'''
 
 
 def p_op_ternario(t):
     '''operaciones : operaciones TERNARIO operaciones DOSPUNTOS operaciones'''
 
+def p_op_incre(t):
+    '''operaciones : incre_decre'''
+    t[0] = t[1]
+
 def p_op_val(t):
     '''operaciones : val'''
     t[0] = t[1]
 
-
-#def p_val_conversiones(t):
-#    '''val : conversiones'''
-#    t[0] = t[1]
-
+def p_op_corche(t):
+    '''operaciones : PARENTA operaciones PARENTC'''
+    t[0] = t[2]
 
 def p_val_numerico_entero(t):
     '''val : ENTERO'''
-    t[0] = Numerico_Entero(t[1], Tipo_Dato.ENTERO, t.slice[1].lineno, get_Column(t.slice[1]))
+    print(t)
+    t[0] = Primitivo(t[1], Tipo_dato.ENTERO, t.slice[1].lineno, get_Column(t.slice[1]))
 
 
 def p_val_numerico_decimal(t):
     '''val : DECIMAL'''
-    t[0] = Numerico_Decimal(t[1], Tipo_Dato.DECIMAL, t.slice[1].lineno, get_Column(t.slice[1]))
-    # print(t[0])
-
+    t[0] = Primitivo(t[1], Tipo_dato.DECIMAL, t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_val_cadena(t):
     '''val : CADENA'''
-    t[0] = String_Val(t[1], Tipo_Dato.CADENA, t.slice[1].lineno, get_Column(t.slice[1]))
+    t[0] = Primitivo(t[1], Tipo_dato.CADENA, t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_val_char(t):
     '''val : CHAR'''
-
+    t[0] = Primitivo(t[1],Tipo_dato.CARACTER, t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_val_variables(t):
     '''val : ID'''
-    t[0] = t[1]
+    t[0] = variables(t[1], t.slice[1].lineno, get_Column(t.slice[1]))
 
 
 def p_val_variables_array(t):
@@ -574,8 +655,6 @@ def p_val_variables_array(t):
 
 def p_v_array(t):
     '''variables_array : ID indices'''
-#    if t[1][1] == 't':
-#        t[0] = Var_Array(Tipo_Variable.TEMPORALES, t[1], t[2], t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_indices_incices(t):
     '''indices : indices indice'''
@@ -588,17 +667,6 @@ def p_indices_indice(t):
 def p_indice(t):
     '''indice : CORCHEA val CORCHEC'''
     t[0] = t[2]
-
-#def p_conversiones(t):
-#    '''conversiones : PARENTA INT PARENTC val
-#                    | PARENTA FLOAT PARENTC val
-#                    | PARENTA CHAR PARENTC val'''
-#    if str(t[2]).lower() == 'int':
-#        t[0] = Conversion_Int(t[4], t.slice[1].lineno, get_Column(t.slice[1]))
-#    elif str(t[2]).lower() == 'float':
-#        t[0] = Conversion_Float(t[4], t.slice[1].lineno, get_Column(t.slice[1]))
-#    elif str(t[2]).lower() == 'char':
-#        t[0] = Conversion_Char(t[4], t.slice[1].lineno, get_Column(t.slice[1]))
 
 
 def p_error(t):

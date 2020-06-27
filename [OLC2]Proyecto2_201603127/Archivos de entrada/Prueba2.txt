@@ -4,9 +4,9 @@ int main()
     double n1, n2;
 
     printf("Enter an operator (+, -, *, /): ");
-    scanf("%c", &operator);
+    scanf();
     printf("Enter two operands: ");
-    scanf("%lf %lf",&n1, &n2);
+    scanf();
 
     switch(operator)
     {
