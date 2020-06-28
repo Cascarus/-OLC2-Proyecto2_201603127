@@ -12,6 +12,7 @@ from Traduccion.If import If
 from Traduccion.Print import Print
 from Traduccion.Operacion_unaria import Operacion_unaria
 from Traduccion.Incre_Decre import incre_decre
+from Traduccion.For import For
 
 from Analisis.MiniC.ply import lex
 
@@ -503,12 +504,11 @@ def p_cont_switch(t):
                    | DEFAULT DOSPUNTOS bloque_sentencias
                    | DEFAULT DOSPUNTOS'''
 
-def p_for(t):
+def p_for_lleno(t):
     '''fun_for : FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC bloque_sentencias
-               | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC bloque_sentencias
-               | FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC LLAVEA LLAVEC 
-               | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC LLAVEA LLAVEC'''
+               | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC bloque_sentencias'''
 
+    t[0] = For(t[3], t[5], t[7], t[9], t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_while(t):
     '''fun_while : WHILE PARENTA operaciones PARENTC bloque_sentencias'''

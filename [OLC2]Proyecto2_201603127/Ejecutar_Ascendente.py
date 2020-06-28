@@ -28,7 +28,8 @@ def ejecutar_imprimir(instr, tabla, consola=QPlainTextEdit):
         Lista_errores.append(Err)
         return
 
-    texto += str(resultado) + "\n"
+    #texto += str(resultado) + "\n"
+    texto += str(resultado)
     consola.setPlainText(texto)
 
 

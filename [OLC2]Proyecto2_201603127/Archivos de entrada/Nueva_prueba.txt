@@ -12,19 +12,50 @@ int a = 22, b = 2*3;
 
 if (a > b){
     int c = a + b;
+    printf("op1");
+}else if(a < b){
+    int c = 0;
+    printf("op2");
+}else {
+   int c = 5;
+   printf("else");
+}
+
+int a = 2, b = 5;
+double aa = 2.5;
+float bb = 5.23;
+char ss = 's', dd = 'T';
+
+int c,d,e,f,g,h;
+
+c = a<b;
+d = a>b;
+e = a>=b;
+f = a<=b;
+g = a == b;
+h = a != b;
+
+
+main: 
+$t0 = 's';
+$t2 = 'a';
+$t3 = (int)$t2;
+$t4 = $t0 > $t3;
+$t1 = $t4;
+
+char c;
+
+c = 'a'<'s';
+
+if ( 's' < 4){
+  printf("verdaero");
+}else{
+   printf("falso");
 }
 
 
-
-
-
-   
-
-
-
-
-
-
-
-
-
+if ( 's' < 4 && 's' != 4){
+  printf("verdaero");
+}else{
+   printf("falso");
+}

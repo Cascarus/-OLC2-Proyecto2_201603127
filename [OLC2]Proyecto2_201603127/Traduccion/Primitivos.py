@@ -17,16 +17,13 @@ class Primitivo(abst):
 
     def generar_C3D(self, tipo_A = None):
 
-        if tipo_A == "print":
+        if tipo_A == "print" or not isinstance(tipo_A, Tipo_dato):
             if self.tipo == Tipo_dato.CARACTER:
                 return ["", "\'" + str(self.valor) + "\'"]
             elif self.tipo == Tipo_dato.CADENA:
                 return ["", "\"" + str(self.valor) + "\""]
             else:
                 return["", self.valor]
-
-        if not isinstance(tipo_A, Tipo_dato):
-            return ["", self.valor]
 
         if self.tipo == Tipo_dato.ENTERO:
             if tipo_A == Tipo_dato.DECIMAL:
@@ -74,3 +71,8 @@ class Primitivo(abst):
                 return [aug, val2]
             else:
                 return ["", "\'" + str(self.valor) + "\'"]
+
+    def get_tipo(self, ambt=None):
+        if self.tipo == None:
+            return False
+        return self.tipo
