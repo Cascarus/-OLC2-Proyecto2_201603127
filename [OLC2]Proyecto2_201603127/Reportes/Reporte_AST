@@ -12,8 +12,8 @@ digraph {
 	224 [label=22]
 	main1 -> Asignacion5
 	Asignacion5 [label=Asignacion]
-	Asignacion5 -> "$t36"
-	"$t36" [label="$t3"]
+	Asignacion5 -> "$t56"
+	"$t56" [label="$t5"]
 	Asignacion5 -> "Operacion binaria7"
 	"Operacion binaria7" [label="Operacion binaria"]
 	"Operacion binaria7" -> 28
@@ -26,12 +26,12 @@ digraph {
 	Asignacion11 [label=Asignacion]
 	Asignacion11 -> "$t112"
 	"$t112" [label="$t1"]
-	Asignacion11 -> "$t313"
-	"$t313" [label="$t3"]
+	Asignacion11 -> "$t513"
+	"$t513" [label="$t5"]
 	main1 -> Asignacion14
 	Asignacion14 [label=Asignacion]
-	Asignacion14 -> "$t415"
-	"$t415" [label="$t4"]
+	Asignacion14 -> "$t615"
+	"$t615" [label="$t6"]
 	Asignacion14 -> "Operacion binaria16"
 	"Operacion binaria16" [label="Operacion binaria"]
 	"Operacion binaria16" -> "$t017"
@@ -44,34 +44,84 @@ digraph {
 	"if Goto20" [label="if Goto"]
 	"if Goto20" -> Not21
 	Not21 [label=Not]
-	Not21 -> "$t422"
-	"$t422" [label="$t4"]
+	Not21 -> "$t622"
+	"$t622" [label="$t6"]
 	"if Goto20" -> etq123
 	etq123 [label=etq1]
-	main1 -> Goto24
-	Goto24 [label=Goto]
-	Goto24 -> etq025
-	etq025 [label=etq0]
-	0 -> etq026
-	etq026 [label=etq0]
-	etq026 -> Asignacion27
-	Asignacion27 [label=Asignacion]
-	Asignacion27 -> "$t528"
-	"$t528" [label="$t5"]
-	Asignacion27 -> "Operacion binaria29"
-	"Operacion binaria29" [label="Operacion binaria"]
-	"Operacion binaria29" -> "$t030"
-	"$t030" [label="$t0"]
-	"Operacion binaria29" -> "+31"
-	"+31" [label="+"]
-	"Operacion binaria29" -> "$t132"
-	"$t132" [label="$t1"]
-	etq026 -> Asignacion33
-	Asignacion33 [label=Asignacion]
-	Asignacion33 -> "$t234"
-	"$t234" [label="$t2"]
-	Asignacion33 -> "$t535"
-	"$t535" [label="$t5"]
-	0 -> etq136
-	etq136 [label=etq1]
+	main1 -> Asignacion24
+	Asignacion24 [label=Asignacion]
+	Asignacion24 -> "$t725"
+	"$t725" [label="$t7"]
+	Asignacion24 -> "Operacion binaria26"
+	"Operacion binaria26" [label="Operacion binaria"]
+	"Operacion binaria26" -> "$t027"
+	"$t027" [label="$t0"]
+	"Operacion binaria26" -> "+28"
+	"+28" [label="+"]
+	"Operacion binaria26" -> "$t129"
+	"$t129" [label="$t1"]
+	main1 -> Asignacion30
+	Asignacion30 [label=Asignacion]
+	Asignacion30 -> "$t231"
+	"$t231" [label="$t2"]
+	Asignacion30 -> "$t732"
+	"$t732" [label="$t7"]
+	main1 -> Imprimir33
+	Imprimir33 [label=Imprimir]
+	Imprimir33 -> op134
+	op134 [label=op1]
+	main1 -> Goto35
+	Goto35 [label=Goto]
+	Goto35 -> etq036
+	etq036 [label=etq0]
+	0 -> etq137
+	etq137 [label=etq1]
+	etq137 -> Asignacion38
+	Asignacion38 [label=Asignacion]
+	Asignacion38 -> "$t839"
+	"$t839" [label="$t8"]
+	Asignacion38 -> "Operacion binaria40"
+	"Operacion binaria40" [label="Operacion binaria"]
+	"Operacion binaria40" -> "$t041"
+	"$t041" [label="$t0"]
+	"Operacion binaria40" -> "<42"
+	"<42" [label="<"]
+	"Operacion binaria40" -> "$t143"
+	"$t143" [label="$t1"]
+	etq137 -> "if Goto44"
+	"if Goto44" [label="if Goto"]
+	"if Goto44" -> Not45
+	Not45 [label=Not]
+	Not45 -> "$t846"
+	"$t846" [label="$t8"]
+	"if Goto44" -> etq247
+	etq247 [label=etq2]
+	etq137 -> Asignacion48
+	Asignacion48 [label=Asignacion]
+	Asignacion48 -> "$t349"
+	"$t349" [label="$t3"]
+	Asignacion48 -> 050
+	050 [label=0]
+	etq137 -> Imprimir51
+	Imprimir51 [label=Imprimir]
+	Imprimir51 -> op252
+	op252 [label=op2]
+	etq137 -> Goto53
+	Goto53 [label=Goto]
+	Goto53 -> etq054
+	etq054 [label=etq0]
+	0 -> etq255
+	etq255 [label=etq2]
+	etq255 -> Asignacion56
+	Asignacion56 [label=Asignacion]
+	Asignacion56 -> "$t457"
+	"$t457" [label="$t4"]
+	Asignacion56 -> 558
+	558 [label=5]
+	etq255 -> Imprimir59
+	Imprimir59 [label=Imprimir]
+	Imprimir59 -> else60
+	else60 [label=else]
+	0 -> etq061
+	etq061 [label=etq0]
 }

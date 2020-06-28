@@ -16,6 +16,15 @@ class Primitivo(abst):
         return self.tipo
 
     def generar_C3D(self, tipo_A = None):
+
+        if tipo_A == "print":
+            if self.tipo == Tipo_dato.CARACTER:
+                return ["", "\'" + str(self.valor) + "\'"]
+            elif self.tipo == Tipo_dato.CADENA:
+                return ["", "\"" + str(self.valor) + "\""]
+            else:
+                return["", self.valor]
+
         if not isinstance(tipo_A, Tipo_dato):
             return ["", self.valor]
 

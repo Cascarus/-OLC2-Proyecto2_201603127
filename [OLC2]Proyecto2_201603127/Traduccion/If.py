@@ -71,7 +71,7 @@ class If(abst):
         return True
 
 
-    def generar_C3D(self,):
+    def generar_C3D(self):
         augus = ""
         label = new_etiqueta()
 
@@ -97,7 +97,7 @@ class If(abst):
                 resultado = inst.generar_C3D()
                 augus += resultado[0]
 
-        augus += str(label) + ":\n"
+        augus += "\n" + str(label) + ":\n"
 
         return [augus, ""]
 

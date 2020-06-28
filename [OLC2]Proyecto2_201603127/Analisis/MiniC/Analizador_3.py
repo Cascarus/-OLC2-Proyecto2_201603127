@@ -9,8 +9,11 @@ from Traduccion.Operacion_relacional import Op_relacional
 from Traduccion.Operacion_logica import Op_logica
 from Traduccion.Asignacion import Asignacion
 from Traduccion.If import If
+from Traduccion.Print import Print
+from Traduccion.Operacion_unaria import Operacion_unaria
+from Traduccion.Incre_Decre import incre_decre
 
-from Analisis.Ascendente.ply import lex
+from Analisis.MiniC.ply import lex
 
 reservadas = {
     'main': 'MAIN',
@@ -345,6 +348,10 @@ def p_declaraConVal(t):
     '''declaraConVal : tipo_ID IGUAL operaciones'''
     t[0] = [t[1], t[3]]
 
+def p_declaraConVal_char(t):
+    '''declaraConVal : ID CORCHEA CORCHEC IGUAL CADENA'''
+    t[0] = [t[1], t[5]]
+
 def p_declaraConVal_llave(t):
     '''declaraConVal : tipo_ID IGUAL LLAVEA lista_filas LLAVEC'''
     t[0] = [t[1], t[4]]
@@ -475,11 +482,11 @@ def p_elif(t):
     '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias ELSE fun_if'''
     t[3] = [t[3]] + t[7].operaciones
     t[5] = [t[5]] + t[7].contenido
-    t[0] = If([t[3]], [t[5]], t[7].cont_else, t.slice[1].lineno, get_Column(t.slice[1]))
+    t[0] = If(t[3], t[5], t[7].cont_else, t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_else(t):
     '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias ELSE bloque_sentencias'''
-    t[0] = If([t[3]],t[5],t[7],t.slice[1].lineno, get_Column(t.slice[1]))
+    t[0] = If([t[3]],[t[5]],t[7],t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_switch(t):
     '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA list_switch LLAVEC'''
@@ -502,6 +509,7 @@ def p_for(t):
                | FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC LLAVEA LLAVEC 
                | FOR PARENTA asignacion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC LLAVEA LLAVEC'''
 
+
 def p_while(t):
     '''fun_while : WHILE PARENTA operaciones PARENTC bloque_sentencias'''
 
@@ -523,19 +531,25 @@ def p_inc_dec(t):
                    | DECREMENTO val
                    | val INCREMENTO
                    | val DECREMENTO'''
+    if t[1] == '++':
+        t[0] = incre_decre(t[2], tipo_incre.INCRE, 0, t.slice[1].lineno, get_Column(t.slice[1]))
+    elif t[1] == '--':
+        t[0] = incre_decre(t[2], tipo_incre.DECRE, 0, t.slice[1].lineno, get_Column(t.slice[1]))
+    else:
+        if t[2] == '++':
+            t[0] = incre_decre(t[1], tipo_incre.INCRE, 1, t.slice[2].lineno, get_Column(t.slice[2]))
+        elif t[2] == '--':
+            t[0] = incre_decre(t[1], tipo_incre.DECRE, 1, t.slice[2].lineno, get_Column(t.slice[2]))
 
 def p_print(t):
-    '''print : PRINTF PARENTA lista_print PARENTC PUNTOCOMA'''
+    '''print : PRINTF PARENTA val PARENTC PUNTOCOMA'''
+    t[0] = Print(t[3],t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_scan(t):
     '''scan : SCANF PARENTA PARENTC PUNTOCOMA'''
 
 def p_continue(t):
     '''fun_continue : CONTINUE'''
-
-def p_lista_print(t):
-    '''lista_print : lista_print COMA operaciones
-                   | operaciones'''
 
 def p_operaciones_bin(t):
     '''operaciones : operaciones MAS operaciones
@@ -609,6 +623,16 @@ def p_operaciones_unaria(t):
                    | SCANF PARENTA PARENTC
                    | AND2 operaciones'''
 
+    if t[1] == '-':
+        t[0] = Operacion_unaria(t[2],tipo_unaria.MENOS, t.slice[1].lineno, get_Column(t.slice[1]))
+    elif t[1] == '!':
+        t[0] = Operacion_unaria(t[2],tipo_unaria.EXCLAMA, t.slice[1].lineno, get_Column(t.slice[1]))
+    elif t[1] == '~':
+        t[0] = Operacion_unaria(t[2],tipo_unaria.NOT, t.slice[1].lineno, get_Column(t.slice[1]))
+    else:
+        t[0] = Operacion_unaria(t[2], tipo_unaria.AND, t.slice[1].lineno, get_Column(t.slice[1]))
+
+
 
 def p_op_ternario(t):
     '''operaciones : operaciones TERNARIO operaciones DOSPUNTOS operaciones'''
@@ -629,7 +653,6 @@ def p_val_numerico_entero(t):
     '''val : ENTERO'''
     print(t)
     t[0] = Primitivo(t[1], Tipo_dato.ENTERO, t.slice[1].lineno, get_Column(t.slice[1]))
-
 
 def p_val_numerico_decimal(t):
     '''val : DECIMAL'''
@@ -687,7 +710,7 @@ def p_error(t):
     parser.errok()
     return tok
 
-from Analisis.Ascendente.ply import yacc as yacc
+from Analisis.MiniC.ply import yacc as yacc
 parser = yacc.yacc()
 
 def parse(texto):

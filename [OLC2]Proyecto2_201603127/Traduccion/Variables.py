@@ -12,13 +12,18 @@ class variables(abst):
     def verificar_tipo(self, actual):
         simbolo = actual.get_simbol(self.id)
 
-        if simbolo.id != None:
+        if simbolo != False:
             self.entorno = actual
             return simbolo.tipo
+        print("ERROR: NO EXISTE LA VARIABLE " + str(self.id))
         return False
 
     def generar_C3D(self, ambt = None):
         simbolo = self.entorno.get_simbol(self.id)
         return ["", simbolo.var_aug]
+
+    def get_tipo(self,ambt = None):
+        simbolo = self.entorno.get_simbol(self.id)
+        return simbolo.tipo
 
 

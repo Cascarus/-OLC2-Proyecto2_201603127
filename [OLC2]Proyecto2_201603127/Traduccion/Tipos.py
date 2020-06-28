@@ -37,6 +37,16 @@ class tipo_decla(Enum):
     FLOAT = 'FLOAT'
     CHAR = 'CARACTER'
 
+class tipo_unaria(Enum):
+    MENOS = 1
+    EXCLAMA = 2
+    NOT = 3
+    AND = 4
+
+class tipo_incre(Enum):
+    INCRE = 1
+    DECRE = 2
+
 class tipo_asign(Enum):
     IGUAL = 1
     MASIGUAL = 2

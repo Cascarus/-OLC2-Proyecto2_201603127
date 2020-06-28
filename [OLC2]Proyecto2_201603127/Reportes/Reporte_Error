@@ -4,6 +4,10 @@ digraph {
 	node [shape=plaintext]
 	A [label=<<table border = '1'>
 <tr><td>Token</td><td>Tipo</td><td>Descripcion</td><td>Fila</td><td>Columna</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE HACER UNA OPERACION MENOR QUE ENTRE VALORES DE TIPO ENTERO Y DECIMAL</td><td>9</td><td>13</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE HACER UNA OPERACION MAYOR QUE ENTRE VALORES DE TIPO ENTERO Y DECIMAL</td><td>11</td><td>13</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE HACER UNA OPERACION MAYOR IGUAL ENTRE VALORES DE TIPO ENTERO Y DECIMAL</td><td>13</td><td>15</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE HACER UNA OPERACION MENOR IGUAL ENTRE VALORES DE TIPO ENTERO Y DECIMAL</td><td>15</td><td>15</td></tr>
 </table>>]
 	T [label="Reporte de Errores"]
 }

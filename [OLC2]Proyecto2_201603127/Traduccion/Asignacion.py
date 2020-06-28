@@ -16,7 +16,7 @@ class Asignacion(abst):
             if isinstance(inst[0], variables):
                 simbolos = ambito.get_simbol(inst[0].id)
                 resultado = inst[1].verificar_tipo(ambito)
-                if resultado == False:
+                if resultado == False or simbolos == False:
                     return False
 
                 if simbolos.tipo == Tipo_dato.ENTERO:

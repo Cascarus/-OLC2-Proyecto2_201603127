@@ -32,7 +32,7 @@ tokens = [
              'POR',
              'DIVICION',
              'IGUAL',
-             'MODULO',
+             'RESIDUO',
              'EXCLAMA',
              'AND1',
              'OR1',
@@ -71,7 +71,7 @@ t_MENOS = r'-'
 t_POR = r'\*'
 t_DIVICION = r'/'
 t_IGUAL = r'='
-t_MODULO = r'%'
+t_RESIDUO = r'%'
 t_EXCLAMA = r'!'
 t_AND1 = r'&&'
 t_OR1 = r'\|\|'
@@ -266,7 +266,7 @@ def p_operaciones(t):
                      | val MENOS val
                      | val POR val
                      | val DIVICION val
-                     | val MODULO val
+                     | val RESIDUO val
                      | val AND1 val
                      | val OR1 val
                      | val XOR val

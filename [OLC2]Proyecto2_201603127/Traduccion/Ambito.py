@@ -15,6 +15,7 @@ class ambito():
         return pivote.ts.get_simbolo(id)
 
       pivote = pivote.padre
+    return False
 
   def exite_aqui(self, id):
     return self.ts.existe_id(id)

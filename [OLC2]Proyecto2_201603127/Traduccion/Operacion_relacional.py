@@ -15,10 +15,45 @@ class Op_relacional(abst):
         tipo1 = self.dato1.verificar_tipo(ambito_actual)
         tipo2 = self.dato2.verificar_tipo(ambito_actual)
 
-        if tipo1 == Tipo_dato.ENTERO and tipo2 == Tipo_dato.ENTERO:
-            return Tipo_dato.ENTERO
+        if tipo1 == Tipo_dato.ENTERO:
+            if tipo2 == Tipo_dato.ENTERO:
+                return Tipo_dato.ENTERO
+            elif tipo2 == Tipo_dato.DECIMAL:
+                return Tipo_dato.ENTERO
+            elif tipo2 == Tipo_dato.CARACTER:
+                return Tipo_dato.ENTERO
+            else:
+                print("ERROR: No se puden comparar INT con CADENAS")
+                return False
+        elif tipo1 == Tipo_dato.DECIMAL:
+            if tipo2 == Tipo_dato.ENTERO:
+                return Tipo_dato.ENTERO
+            elif tipo2 == Tipo_dato.DECIMAL:
+                return Tipo_dato.ENTERO
+            elif tipo2 == Tipo_dato.CARACTER:
+                return Tipo_dato.ENTERO
+            else:
+                print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                return False
+        elif tipo1 == Tipo_dato.CARACTER:
+            if tipo2 == Tipo_dato.ENTERO:
+                return Tipo_dato.ENTERO
+            elif tipo2 == Tipo_dato.DECIMAL:
+                return Tipo_dato.ENTERO
+            elif tipo2 == Tipo_dato.CARACTER:
+                return Tipo_dato.ENTERO
+            else:
+                print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                return False
+        elif tipo1 == Tipo_dato.CADENA:
+            if tipo2 == Tipo_dato.CADENA:
+                return Tipo_dato.ENTERO
+            else:
+                print("ERROR: SOLO SE PUEDEN COMPARAR CADENAS CON CADENAS")
+                return False
         else:
             return False
+
 
     def generar_C3D(self, tipo_A = None):
         augus = ""

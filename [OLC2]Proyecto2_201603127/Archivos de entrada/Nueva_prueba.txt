@@ -1,0 +1,30 @@
+	int entero = 10;
+	float decimal1 = 10.1;
+	double decimal2 = 10.2;
+	char caracter = 'a';
+int entero1, entero2 = 10;
+float decimal221, decimal112 = 10.1;
+double decimal23, decila21 = 10.2;
+char caracter1, caracter2 = 'a';
+
+
+int a = 22, b = 2*3;
+
+if (a > b){
+    int c = a + b;
+}
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+

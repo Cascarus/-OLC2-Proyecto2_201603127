@@ -24,10 +24,9 @@ from Traduccion.Traducir import traducir
 
 import Analisis.Ascendente.Analizador as p
 import Analisis.Descendente.Analizador_2 as asc
-import Analisis.MiniC.Analizador as minic
+import Analisis.MiniC.Analizador_3 as minic
 import Ejecutar_Ascendente as Ejec1
 import Tabla_Simbolos as tabla
-
 
 class Ui_MainWindow(object):
     array_rutas = []
@@ -233,8 +232,15 @@ class Ui_MainWindow(object):
         self.actionDebug.setIcon(QtGui.QIcon(self.ruta_iconos + "\\depurar.png"))
         self.actionDebug.triggered.connect(self.debuger)
 
+        self.actionTranslate = QtWidgets.QAction(MainWindow)
+        self.actionTranslate.setText("Traducir")
+        self.actionTranslate.setShortcut("F8")
+        self.actionTranslate.setIcon(QtGui.QIcon(self.ruta_iconos + "\\Traducir.png"))
+        self.actionTranslate.triggered.connect(self.traducir)
+
         self.menuEjecutar.addAction(self.actionEjecutarAscendente)
         self.menuEjecutar.addAction(self.actionEjecutarDescendente)
+        self.menuEjecutar.addAction(self.actionTranslate)
         self.menuEjecutar.addAction(self.actionDebug)
 
         #Declaracion de opciones del menu Reportes
@@ -295,6 +301,7 @@ class Ui_MainWindow(object):
         self.barraHerramientas3 = MainWindow.addToolBar("Ejecutar")
         self.barraHerramientas3.addAction(self.actionEjecutarAscendente)
         self.barraHerramientas3.addAction(self.actionEjecutarDescendente)
+        self.barraHerramientas3.addAction(self.actionTranslate)
         self.barraHerramientas3.addAction(self.actionDebug)
         
         self.retranslateUi(MainWindow)
@@ -488,20 +495,7 @@ class Ui_MainWindow(object):
             self.indice = -1
             Lista_errores.clear()
             self.temp = self.array_editores[self.tbTab.currentIndex()]
-            instrucciones = minic.parse(self.temp.toPlainText())
-            print("todo bien");
-            if len(Lista_errores) < 1:
-                translate = traducir(instrucciones)
-                resultado = translate.inizializar_tablas()
-                if resultado != False:
-                    print("todo bien 2")
-                    resultado = translate.verificar_tipos()
-                    if resultado != False:
-                        print("todo bien 3")
-                        codigo_aug = translate.comenzar_traduccion()
-                        self.crear_pestania(codigo_aug,1)
-                        print(codigo_aug)
-            '''instrucciones = p.parse(self.temp.toPlainText())
+            instrucciones = p.parse(self.temp.toPlainText())
             self.tabla_global = tabla.Tabla_Simbolos()
             self.tabla_global.clear()
 
@@ -521,7 +515,7 @@ class Ui_MainWindow(object):
 
             except:
                 print("Problemas en la ejecucion")
-                self.txtConsola.setPlainText(self.txtConsola.toPlainText() + "Problemas en la ejecucion \n")'''
+                self.txtConsola.setPlainText(self.txtConsola.toPlainText() + "Problemas en la ejecucion \n")
 
         else:
             self.pop_ups_error("No exiten pestañas")
@@ -583,6 +577,28 @@ class Ui_MainWindow(object):
             except:
                 print("Problemas en la ejecucion")
                 self.txtConsola.setPlainText(self.txtConsola.toPlainText() + "Problemas en la ejecucion \n")
+        else:
+            self.pop_ups_error("No exiten pestañas")
+
+    def traducir(self):
+        if len(self.tbTab) > 0:
+            self.indice = -1
+            Lista_errores.clear()
+            self.temp = self.array_editores[self.tbTab.currentIndex()]
+            instrucciones = minic.parse(self.temp.toPlainText())
+            print("todo bien");
+            if len(Lista_errores) < 1:
+                translate = traducir(instrucciones)
+                resultado = translate.inizializar_tablas()
+                if resultado != False:
+                    print("todo bien 2")
+                    resultado = translate.verificar_tipos()
+                    if resultado != False:
+                        print("todo bien 3")
+                        codigo_aug = translate.comenzar_traduccion()
+                        self.crear_pestania(codigo_aug, 1)
+                        print(codigo_aug)
+
         else:
             self.pop_ups_error("No exiten pestañas")
 

@@ -28,7 +28,7 @@ Rule 22    operaciones -> val MAS val
 Rule 23    operaciones -> val MENOS val
 Rule 24    operaciones -> val POR val
 Rule 25    operaciones -> val DIVICION val
-Rule 26    operaciones -> val MODULO val
+Rule 26    operaciones -> val RESIDUO val
 Rule 27    operaciones -> val AND1 val
 Rule 28    operaciones -> val OR1 val
 Rule 29    operaciones -> val XOR val
@@ -106,7 +106,6 @@ MAYORIGUAL           : 37
 MENOR                : 40
 MENORIGUAL           : 38
 MENOS                : 23 41
-MODULO               : 26
 NOT                  : 43
 OR1                  : 28
 OR2                  : 31
@@ -119,6 +118,7 @@ PRINT                : 18 19
 PUNTERO_PILA         : 59 65
 PUNTOCOMA            : 14 15 16 17 18 19 20 21
 READ                 : 45
+RESIDUO              : 26
 SHIFTD               : 34
 SHIFTI               : 33
 SIMULADO             : 57 63
@@ -542,7 +542,7 @@ state 21
     MENOS           reduce using rule 54 (variables -> TEMPORALES .)
     POR             reduce using rule 54 (variables -> TEMPORALES .)
     DIVICION        reduce using rule 54 (variables -> TEMPORALES .)
-    MODULO          reduce using rule 54 (variables -> TEMPORALES .)
+    RESIDUO         reduce using rule 54 (variables -> TEMPORALES .)
     AND1            reduce using rule 54 (variables -> TEMPORALES .)
     OR1             reduce using rule 54 (variables -> TEMPORALES .)
     XOR             reduce using rule 54 (variables -> TEMPORALES .)
@@ -578,7 +578,7 @@ state 22
     MENOS           reduce using rule 55 (variables -> PARAMETROS .)
     POR             reduce using rule 55 (variables -> PARAMETROS .)
     DIVICION        reduce using rule 55 (variables -> PARAMETROS .)
-    MODULO          reduce using rule 55 (variables -> PARAMETROS .)
+    RESIDUO         reduce using rule 55 (variables -> PARAMETROS .)
     AND1            reduce using rule 55 (variables -> PARAMETROS .)
     OR1             reduce using rule 55 (variables -> PARAMETROS .)
     XOR             reduce using rule 55 (variables -> PARAMETROS .)
@@ -614,7 +614,7 @@ state 23
     MENOS           reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
     POR             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
     DIVICION        reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
-    MODULO          reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
+    RESIDUO         reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
     AND1            reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
     OR1             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
     XOR             reduce using rule 56 (variables -> VALORES_DEVUELTOS .)
@@ -650,7 +650,7 @@ state 24
     MENOS           reduce using rule 57 (variables -> SIMULADO .)
     POR             reduce using rule 57 (variables -> SIMULADO .)
     DIVICION        reduce using rule 57 (variables -> SIMULADO .)
-    MODULO          reduce using rule 57 (variables -> SIMULADO .)
+    RESIDUO         reduce using rule 57 (variables -> SIMULADO .)
     AND1            reduce using rule 57 (variables -> SIMULADO .)
     OR1             reduce using rule 57 (variables -> SIMULADO .)
     XOR             reduce using rule 57 (variables -> SIMULADO .)
@@ -686,7 +686,7 @@ state 25
     MENOS           reduce using rule 58 (variables -> PILA .)
     POR             reduce using rule 58 (variables -> PILA .)
     DIVICION        reduce using rule 58 (variables -> PILA .)
-    MODULO          reduce using rule 58 (variables -> PILA .)
+    RESIDUO         reduce using rule 58 (variables -> PILA .)
     AND1            reduce using rule 58 (variables -> PILA .)
     OR1             reduce using rule 58 (variables -> PILA .)
     XOR             reduce using rule 58 (variables -> PILA .)
@@ -722,7 +722,7 @@ state 26
     MENOS           reduce using rule 59 (variables -> PUNTERO_PILA .)
     POR             reduce using rule 59 (variables -> PUNTERO_PILA .)
     DIVICION        reduce using rule 59 (variables -> PUNTERO_PILA .)
-    MODULO          reduce using rule 59 (variables -> PUNTERO_PILA .)
+    RESIDUO         reduce using rule 59 (variables -> PUNTERO_PILA .)
     AND1            reduce using rule 59 (variables -> PUNTERO_PILA .)
     OR1             reduce using rule 59 (variables -> PUNTERO_PILA .)
     XOR             reduce using rule 59 (variables -> PUNTERO_PILA .)
@@ -812,7 +812,7 @@ state 30
     (23) operaciones -> . val MENOS val
     (24) operaciones -> . val POR val
     (25) operaciones -> . val DIVICION val
-    (26) operaciones -> . val MODULO val
+    (26) operaciones -> . val RESIDUO val
     (27) operaciones -> . val AND1 val
     (28) operaciones -> . val OR1 val
     (29) operaciones -> . val XOR val
@@ -886,7 +886,7 @@ state 31
     (23) operaciones -> . val MENOS val
     (24) operaciones -> . val POR val
     (25) operaciones -> . val DIVICION val
-    (26) operaciones -> . val MODULO val
+    (26) operaciones -> . val RESIDUO val
     (27) operaciones -> . val AND1 val
     (28) operaciones -> . val OR1 val
     (29) operaciones -> . val XOR val
@@ -967,7 +967,7 @@ state 33
     (23) operaciones -> . val MENOS val
     (24) operaciones -> . val POR val
     (25) operaciones -> . val DIVICION val
-    (26) operaciones -> . val MODULO val
+    (26) operaciones -> . val RESIDUO val
     (27) operaciones -> . val AND1 val
     (28) operaciones -> . val OR1 val
     (29) operaciones -> . val XOR val
@@ -1126,7 +1126,7 @@ state 37
     MENOS           reduce using rule 60 (variables_array -> TEMPORALES indices .)
     POR             reduce using rule 60 (variables_array -> TEMPORALES indices .)
     DIVICION        reduce using rule 60 (variables_array -> TEMPORALES indices .)
-    MODULO          reduce using rule 60 (variables_array -> TEMPORALES indices .)
+    RESIDUO         reduce using rule 60 (variables_array -> TEMPORALES indices .)
     AND1            reduce using rule 60 (variables_array -> TEMPORALES indices .)
     OR1             reduce using rule 60 (variables_array -> TEMPORALES indices .)
     XOR             reduce using rule 60 (variables_array -> TEMPORALES indices .)
@@ -1158,7 +1158,7 @@ state 38
     MENOS           reduce using rule 67 (indices -> indice .)
     POR             reduce using rule 67 (indices -> indice .)
     DIVICION        reduce using rule 67 (indices -> indice .)
-    MODULO          reduce using rule 67 (indices -> indice .)
+    RESIDUO         reduce using rule 67 (indices -> indice .)
     AND1            reduce using rule 67 (indices -> indice .)
     OR1             reduce using rule 67 (indices -> indice .)
     XOR             reduce using rule 67 (indices -> indice .)
@@ -1230,7 +1230,7 @@ state 40
     MENOS           reduce using rule 61 (variables_array -> PARAMETROS indices .)
     POR             reduce using rule 61 (variables_array -> PARAMETROS indices .)
     DIVICION        reduce using rule 61 (variables_array -> PARAMETROS indices .)
-    MODULO          reduce using rule 61 (variables_array -> PARAMETROS indices .)
+    RESIDUO         reduce using rule 61 (variables_array -> PARAMETROS indices .)
     AND1            reduce using rule 61 (variables_array -> PARAMETROS indices .)
     OR1             reduce using rule 61 (variables_array -> PARAMETROS indices .)
     XOR             reduce using rule 61 (variables_array -> PARAMETROS indices .)
@@ -1263,7 +1263,7 @@ state 41
     MENOS           reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
     POR             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
     DIVICION        reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
-    MODULO          reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
+    RESIDUO         reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
     AND1            reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
     OR1             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
     XOR             reduce using rule 62 (variables_array -> VALORES_DEVUELTOS indices .)
@@ -1296,7 +1296,7 @@ state 42
     MENOS           reduce using rule 63 (variables_array -> SIMULADO indices .)
     POR             reduce using rule 63 (variables_array -> SIMULADO indices .)
     DIVICION        reduce using rule 63 (variables_array -> SIMULADO indices .)
-    MODULO          reduce using rule 63 (variables_array -> SIMULADO indices .)
+    RESIDUO         reduce using rule 63 (variables_array -> SIMULADO indices .)
     AND1            reduce using rule 63 (variables_array -> SIMULADO indices .)
     OR1             reduce using rule 63 (variables_array -> SIMULADO indices .)
     XOR             reduce using rule 63 (variables_array -> SIMULADO indices .)
@@ -1329,7 +1329,7 @@ state 43
     MENOS           reduce using rule 64 (variables_array -> PILA indices .)
     POR             reduce using rule 64 (variables_array -> PILA indices .)
     DIVICION        reduce using rule 64 (variables_array -> PILA indices .)
-    MODULO          reduce using rule 64 (variables_array -> PILA indices .)
+    RESIDUO         reduce using rule 64 (variables_array -> PILA indices .)
     AND1            reduce using rule 64 (variables_array -> PILA indices .)
     OR1             reduce using rule 64 (variables_array -> PILA indices .)
     XOR             reduce using rule 64 (variables_array -> PILA indices .)
@@ -1362,7 +1362,7 @@ state 44
     MENOS           reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
     POR             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
     DIVICION        reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
-    MODULO          reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
+    RESIDUO         reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
     AND1            reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
     OR1             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
     XOR             reduce using rule 65 (variables_array -> PUNTERO_PILA indices .)
@@ -1392,7 +1392,7 @@ state 45
     MENOS           reduce using rule 52 (val -> variables .)
     POR             reduce using rule 52 (val -> variables .)
     DIVICION        reduce using rule 52 (val -> variables .)
-    MODULO          reduce using rule 52 (val -> variables .)
+    RESIDUO         reduce using rule 52 (val -> variables .)
     AND1            reduce using rule 52 (val -> variables .)
     OR1             reduce using rule 52 (val -> variables .)
     XOR             reduce using rule 52 (val -> variables .)
@@ -1425,7 +1425,7 @@ state 47
     (23) operaciones -> val . MENOS val
     (24) operaciones -> val . POR val
     (25) operaciones -> val . DIVICION val
-    (26) operaciones -> val . MODULO val
+    (26) operaciones -> val . RESIDUO val
     (27) operaciones -> val . AND1 val
     (28) operaciones -> val . OR1 val
     (29) operaciones -> val . XOR val
@@ -1446,7 +1446,7 @@ state 47
     MENOS           shift and go to state 76
     POR             shift and go to state 77
     DIVICION        shift and go to state 78
-    MODULO          shift and go to state 79
+    RESIDUO         shift and go to state 79
     AND1            shift and go to state 80
     OR1             shift and go to state 81
     XOR             shift and go to state 82
@@ -1628,7 +1628,7 @@ state 55
     MENOS           reduce using rule 48 (val -> conversiones .)
     POR             reduce using rule 48 (val -> conversiones .)
     DIVICION        reduce using rule 48 (val -> conversiones .)
-    MODULO          reduce using rule 48 (val -> conversiones .)
+    RESIDUO         reduce using rule 48 (val -> conversiones .)
     AND1            reduce using rule 48 (val -> conversiones .)
     OR1             reduce using rule 48 (val -> conversiones .)
     XOR             reduce using rule 48 (val -> conversiones .)
@@ -1656,7 +1656,7 @@ state 56
     MENOS           reduce using rule 49 (val -> ENTERO .)
     POR             reduce using rule 49 (val -> ENTERO .)
     DIVICION        reduce using rule 49 (val -> ENTERO .)
-    MODULO          reduce using rule 49 (val -> ENTERO .)
+    RESIDUO         reduce using rule 49 (val -> ENTERO .)
     AND1            reduce using rule 49 (val -> ENTERO .)
     OR1             reduce using rule 49 (val -> ENTERO .)
     XOR             reduce using rule 49 (val -> ENTERO .)
@@ -1684,7 +1684,7 @@ state 57
     MENOS           reduce using rule 50 (val -> DECIMAL .)
     POR             reduce using rule 50 (val -> DECIMAL .)
     DIVICION        reduce using rule 50 (val -> DECIMAL .)
-    MODULO          reduce using rule 50 (val -> DECIMAL .)
+    RESIDUO         reduce using rule 50 (val -> DECIMAL .)
     AND1            reduce using rule 50 (val -> DECIMAL .)
     OR1             reduce using rule 50 (val -> DECIMAL .)
     XOR             reduce using rule 50 (val -> DECIMAL .)
@@ -1712,7 +1712,7 @@ state 58
     MENOS           reduce using rule 51 (val -> CADENA .)
     POR             reduce using rule 51 (val -> CADENA .)
     DIVICION        reduce using rule 51 (val -> CADENA .)
-    MODULO          reduce using rule 51 (val -> CADENA .)
+    RESIDUO         reduce using rule 51 (val -> CADENA .)
     AND1            reduce using rule 51 (val -> CADENA .)
     OR1             reduce using rule 51 (val -> CADENA .)
     XOR             reduce using rule 51 (val -> CADENA .)
@@ -1740,7 +1740,7 @@ state 59
     MENOS           reduce using rule 53 (val -> variables_array .)
     POR             reduce using rule 53 (val -> variables_array .)
     DIVICION        reduce using rule 53 (val -> variables_array .)
-    MODULO          reduce using rule 53 (val -> variables_array .)
+    RESIDUO         reduce using rule 53 (val -> variables_array .)
     AND1            reduce using rule 53 (val -> variables_array .)
     OR1             reduce using rule 53 (val -> variables_array .)
     XOR             reduce using rule 53 (val -> variables_array .)
@@ -1871,7 +1871,7 @@ state 72
     MENOS           reduce using rule 66 (indices -> indices indice .)
     POR             reduce using rule 66 (indices -> indices indice .)
     DIVICION        reduce using rule 66 (indices -> indices indice .)
-    MODULO          reduce using rule 66 (indices -> indices indice .)
+    RESIDUO         reduce using rule 66 (indices -> indices indice .)
     AND1            reduce using rule 66 (indices -> indices indice .)
     OR1             reduce using rule 66 (indices -> indices indice .)
     XOR             reduce using rule 66 (indices -> indices indice .)
@@ -2084,7 +2084,7 @@ state 78
 
 state 79
 
-    (26) operaciones -> val MODULO . val
+    (26) operaciones -> val RESIDUO . val
     (48) val -> . conversiones
     (49) val -> . ENTERO
     (50) val -> . DECIMAL
@@ -2855,7 +2855,7 @@ state 108
     MENOS           reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
     POR             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
     DIVICION        reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
-    MODULO          reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
+    RESIDUO         reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
     AND1            reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
     OR1             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
     XOR             reduce using rule 68 (indice -> CORCHEA val CORCHEC .)
@@ -2909,10 +2909,10 @@ state 112
 
 state 113
 
-    (26) operaciones -> val MODULO val .
+    (26) operaciones -> val RESIDUO val .
 
-    PUNTOCOMA       reduce using rule 26 (operaciones -> val MODULO val .)
-    PARENTC         reduce using rule 26 (operaciones -> val MODULO val .)
+    PUNTOCOMA       reduce using rule 26 (operaciones -> val RESIDUO val .)
+    PARENTC         reduce using rule 26 (operaciones -> val RESIDUO val .)
 
 
 state 114
@@ -3256,7 +3256,7 @@ state 139
     MENOS           reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
     POR             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
     DIVICION        reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
-    MODULO          reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
+    RESIDUO         reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
     AND1            reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
     OR1             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
     XOR             reduce using rule 69 (conversiones -> PARENTA INT PARENTC val .)
@@ -3284,7 +3284,7 @@ state 140
     MENOS           reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
     POR             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
     DIVICION        reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
-    MODULO          reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
+    RESIDUO         reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
     AND1            reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
     OR1             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
     XOR             reduce using rule 70 (conversiones -> PARENTA FLOAT PARENTC val .)
@@ -3312,7 +3312,7 @@ state 141
     MENOS           reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
     POR             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
     DIVICION        reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
-    MODULO          reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
+    RESIDUO         reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
     AND1            reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
     OR1             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
     XOR             reduce using rule 71 (conversiones -> PARENTA CHAR PARENTC val .)
