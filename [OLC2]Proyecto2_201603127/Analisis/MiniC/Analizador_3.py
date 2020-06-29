@@ -13,6 +13,8 @@ from Traduccion.Print import Print
 from Traduccion.Operacion_unaria import Operacion_unaria
 from Traduccion.Incre_Decre import incre_decre
 from Traduccion.For import For
+from Traduccion.While import While
+from Traduccion.Do_While import Do_While
 
 from Analisis.MiniC.ply import lex
 
@@ -165,17 +167,11 @@ def t_ENTERO(t):
 def t_CHAR(t):
     r'\'.\''
     t.value = t.value[1:-1]
-    t.value = t.value.replace("\\n", "\n")
-    t.value = t.value.replace("\\t", "\t")
-    t.value = t.value.replace("\\r", "\r")
     return t
 
 def t_CADENA(t):
     r'\".*?\"'
     t.value = t.value[1:-1]
-    t.value = t.value.replace("\\n", "\n")
-    t.value = t.value.replace("\\t", "\t")
-    t.value = t.value.replace("\\r", "\r")
     return t
 
 
@@ -512,11 +508,11 @@ def p_for_lleno(t):
 
 def p_while(t):
     '''fun_while : WHILE PARENTA operaciones PARENTC bloque_sentencias'''
+    t[0] = While(t[3], t[5], t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_do_while(t):
-    '''fun_do_while : DO bloque_sentencias WHILE PARENTA operaciones PARENTC PUNTOCOMA
-                    | DO LLAVEA LLAVEC WHILE PARENTA operaciones PARENTC PUNTOCOMA'''
-
+    '''fun_do_while : DO bloque_sentencias WHILE PARENTA operaciones PARENTC PUNTOCOMA'''
+    t[0] = Do_While(t[5], t[2], t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_return(t):
     '''fun_return : RETURN operaciones

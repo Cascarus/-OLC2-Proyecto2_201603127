@@ -40,7 +40,7 @@ class For(abst):
             for inst in self.contenido:
                 resultado = inst.agregar_Tabla(entorno_temp, ambito_actual + str('_for'))
 
-            if resultado == False:#falta tab
+            if resultado == False:
                 return False
 
         self.entorno = entorno_temp
@@ -91,9 +91,10 @@ class For(abst):
 
             augus += "if(!" + str(condicion[1]) + ") goto " + str(label2) + ";\n"
 
-            for inst in self.contenido:
-                resultado = inst.generar_C3D()
-                augus += resultado[0]
+            if self.contenido != None:
+                for inst in self.contenido:
+                    resultado = inst.generar_C3D()
+                    augus += resultado[0]
 
             incre_decre = self.incre_decre.generar_C3D()
             augus += incre_decre[0]
@@ -116,9 +117,10 @@ class For(abst):
 
             augus += "if(!" + str(condicion[1]) + ") goto " + str(label2) + ";\n"
 
-            for inst in self.contenido:
-                resultado = inst.generar_C3D()
-                augus += resultado[0]
+            if self.contenido != None:
+                for inst in self.contenido:
+                    resultado = inst.generar_C3D()
+                    augus += resultado[0]
 
             incre_decre = self.incre_decre.generar_C3D()
             augus += incre_decre[0]

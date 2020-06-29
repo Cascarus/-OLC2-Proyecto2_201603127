@@ -2,70 +2,70 @@
 digraph {
 	node [shape=box]
 	0 [label=Inicio]
-	0 -> mian1
-	mian1 [label=mian]
-	mian1 -> Asignacion2
+	0 -> main1
+	main1 [label=main]
+	main1 -> Asignacion2
 	Asignacion2 [label=Asignacion]
 	Asignacion2 -> "$t03"
 	"$t03" [label="$t0"]
-	Asignacion2 -> 224
-	224 [label=22]
-	mian1 -> Imprimir5
+	Asignacion2 -> 04
+	04 [label=0]
+	main1 -> Imprimir5
 	Imprimir5 [label=Imprimir]
-	Imprimir5 -> "antes del for6"
-	"antes del for6" [label="antes del for"]
-	mian1 -> Asignacion7
-	Asignacion7 [label=Asignacion]
-	Asignacion7 -> "$t08"
-	"$t08" [label="$t0"]
-	Asignacion7 -> 09
-	09 [label=0]
-	0 -> etq010
-	etq010 [label=etq0]
-	etq010 -> Asignacion11
-	Asignacion11 [label=Asignacion]
-	Asignacion11 -> "$t112"
-	"$t112" [label="$t1"]
-	Asignacion11 -> "Operacion binaria13"
-	"Operacion binaria13" [label="Operacion binaria"]
-	"Operacion binaria13" -> "$t014"
-	"$t014" [label="$t0"]
-	"Operacion binaria13" -> "<15"
-	"<15" [label="<"]
-	"Operacion binaria13" -> 316
-	316 [label=3]
-	etq010 -> "if Goto17"
-	"if Goto17" [label="if Goto"]
-	"if Goto17" -> Not18
-	Not18 [label=Not]
-	Not18 -> "$t119"
-	"$t119" [label="$t1"]
-	"if Goto17" -> etq120
-	etq120 [label=etq1]
-	etq010 -> Imprimir21
-	Imprimir21 [label=Imprimir]
-	Imprimir21 -> "$t022"
-	"$t022" [label="$t0"]
-	etq010 -> Asignacion23
-	Asignacion23 [label=Asignacion]
-	Asignacion23 -> "$t024"
-	"$t024" [label="$t0"]
-	Asignacion23 -> "Operacion binaria25"
-	"Operacion binaria25" [label="Operacion binaria"]
-	"Operacion binaria25" -> "$t026"
-	"$t026" [label="$t0"]
-	"Operacion binaria25" -> "+27"
-	"+27" [label="+"]
-	"Operacion binaria25" -> 128
-	128 [label=1]
-	etq010 -> Goto29
-	Goto29 [label=Goto]
-	Goto29 -> etq030
-	etq030 [label=etq0]
-	0 -> etq131
-	etq131 [label=etq1]
-	etq131 -> Imprimir32
-	Imprimir32 [label=Imprimir]
-	Imprimir32 -> "fuera del for33"
-	"fuera del for33" [label="fuera del for"]
+	Imprimir5 -> "antes del do while
+6"
+	"antes del do while
+6" [label="antes del do while
+"]
+	0 -> etq07
+	etq07 [label=etq0]
+	etq07 -> Imprimir8
+	Imprimir8 [label=Imprimir]
+	Imprimir8 -> "dentro del do while
+9"
+	"dentro del do while
+9" [label="dentro del do while
+"]
+	etq07 -> Asignacion10
+	Asignacion10 [label=Asignacion]
+	Asignacion10 -> "$t011"
+	"$t011" [label="$t0"]
+	Asignacion10 -> "Operacion binaria12"
+	"Operacion binaria12" [label="Operacion binaria"]
+	"Operacion binaria12" -> "$t013"
+	"$t013" [label="$t0"]
+	"Operacion binaria12" -> "+14"
+	"+14" [label="+"]
+	"Operacion binaria12" -> 115
+	115 [label=1]
+	etq07 -> Asignacion16
+	Asignacion16 [label=Asignacion]
+	Asignacion16 -> "$t117"
+	"$t117" [label="$t1"]
+	Asignacion16 -> "Operacion binaria18"
+	"Operacion binaria18" [label="Operacion binaria"]
+	"Operacion binaria18" -> "$t019"
+	"$t019" [label="$t0"]
+	"Operacion binaria18" -> "<20"
+	"<20" [label="<"]
+	"Operacion binaria18" -> 321
+	321 [label=3]
+	etq07 -> "if Goto22"
+	"if Goto22" [label="if Goto"]
+	"if Goto22" -> Not23
+	Not23 [label=Not]
+	Not23 -> "$t124"
+	"$t124" [label="$t1"]
+	"if Goto22" -> etq125
+	etq125 [label=etq1]
+	etq07 -> Goto26
+	Goto26 [label=Goto]
+	Goto26 -> etq027
+	etq027 [label=etq0]
+	0 -> etq128
+	etq128 [label=etq1]
+	etq128 -> Imprimir29
+	Imprimir29 [label=Imprimir]
+	Imprimir29 -> "fuera del do while30"
+	"fuera del do while30" [label="fuera del do while"]
 }
