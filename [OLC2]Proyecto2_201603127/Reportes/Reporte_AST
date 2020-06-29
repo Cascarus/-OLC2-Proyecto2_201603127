@@ -8,64 +8,122 @@ digraph {
 	Asignacion2 [label=Asignacion]
 	Asignacion2 -> "$t03"
 	"$t03" [label="$t0"]
-	Asignacion2 -> 04
-	04 [label=0]
+	Asignacion2 -> 104
+	104 [label=10]
 	main1 -> Imprimir5
 	Imprimir5 [label=Imprimir]
-	Imprimir5 -> "antes del do while
+	Imprimir5 -> "antes switch
 6"
-	"antes del do while
-6" [label="antes del do while
+	"antes switch
+6" [label="antes switch
 "]
-	0 -> etq07
-	etq07 [label=etq0]
-	etq07 -> Imprimir8
-	Imprimir8 [label=Imprimir]
-	Imprimir8 -> "dentro del do while
-9"
-	"dentro del do while
-9" [label="dentro del do while
+	main1 -> "if Goto7"
+	"if Goto7" [label="if Goto"]
+	"if Goto7" -> "Operacion binaria8"
+	"Operacion binaria8" [label="Operacion binaria"]
+	"Operacion binaria8" -> "$t09"
+	"$t09" [label="$t0"]
+	"Operacion binaria8" -> "==10"
+	"==10" [label="=="]
+	"Operacion binaria8" -> 111
+	111 [label=1]
+	"if Goto7" -> etq112
+	etq112 [label=etq1]
+	main1 -> Goto13
+	Goto13 [label=Goto]
+	Goto13 -> etq214
+	etq214 [label=etq2]
+	0 -> etq115
+	etq115 [label=etq1]
+	etq115 -> Imprimir16
+	Imprimir16 [label=Imprimir]
+	Imprimir16 -> "Es numero 1
+17"
+	"Es numero 1
+17" [label="Es numero 1
 "]
-	etq07 -> Asignacion10
-	Asignacion10 [label=Asignacion]
-	Asignacion10 -> "$t011"
-	"$t011" [label="$t0"]
-	Asignacion10 -> "Operacion binaria12"
-	"Operacion binaria12" [label="Operacion binaria"]
-	"Operacion binaria12" -> "$t013"
-	"$t013" [label="$t0"]
-	"Operacion binaria12" -> "+14"
-	"+14" [label="+"]
-	"Operacion binaria12" -> 115
-	115 [label=1]
-	etq07 -> Asignacion16
-	Asignacion16 [label=Asignacion]
-	Asignacion16 -> "$t117"
-	"$t117" [label="$t1"]
-	Asignacion16 -> "Operacion binaria18"
-	"Operacion binaria18" [label="Operacion binaria"]
-	"Operacion binaria18" -> "$t019"
-	"$t019" [label="$t0"]
-	"Operacion binaria18" -> "<20"
-	"<20" [label="<"]
-	"Operacion binaria18" -> 321
-	321 [label=3]
-	etq07 -> "if Goto22"
-	"if Goto22" [label="if Goto"]
-	"if Goto22" -> Not23
-	Not23 [label=Not]
-	Not23 -> "$t124"
-	"$t124" [label="$t1"]
-	"if Goto22" -> etq125
-	etq125 [label=etq1]
-	etq07 -> Goto26
-	Goto26 [label=Goto]
-	Goto26 -> etq027
-	etq027 [label=etq0]
-	0 -> etq128
-	etq128 [label=etq1]
-	etq128 -> Imprimir29
-	Imprimir29 [label=Imprimir]
-	Imprimir29 -> "fuera del do while30"
-	"fuera del do while30" [label="fuera del do while"]
+	etq115 -> Goto18
+	Goto18 [label=Goto]
+	Goto18 -> etq019
+	etq019 [label=etq0]
+	0 -> etq220
+	etq220 [label=etq2]
+	etq220 -> "if Goto21"
+	"if Goto21" [label="if Goto"]
+	"if Goto21" -> "Operacion binaria22"
+	"Operacion binaria22" [label="Operacion binaria"]
+	"Operacion binaria22" -> "$t023"
+	"$t023" [label="$t0"]
+	"Operacion binaria22" -> "==24"
+	"==24" [label="=="]
+	"Operacion binaria22" -> 225
+	225 [label=2]
+	"if Goto21" -> etq326
+	etq326 [label=etq3]
+	etq220 -> Goto27
+	Goto27 [label=Goto]
+	Goto27 -> etq428
+	etq428 [label=etq4]
+	0 -> etq329
+	etq329 [label=etq3]
+	etq329 -> Imprimir30
+	Imprimir30 [label=Imprimir]
+	Imprimir30 -> "Es numero 2
+31"
+	"Es numero 2
+31" [label="Es numero 2
+"]
+	etq329 -> Goto32
+	Goto32 [label=Goto]
+	Goto32 -> etq033
+	etq033 [label=etq0]
+	0 -> etq434
+	etq434 [label=etq4]
+	etq434 -> "if Goto35"
+	"if Goto35" [label="if Goto"]
+	"if Goto35" -> "Operacion binaria36"
+	"Operacion binaria36" [label="Operacion binaria"]
+	"Operacion binaria36" -> "$t037"
+	"$t037" [label="$t0"]
+	"Operacion binaria36" -> "==38"
+	"==38" [label="=="]
+	"Operacion binaria36" -> 339
+	339 [label=3]
+	"if Goto35" -> etq540
+	etq540 [label=etq5]
+	etq434 -> Goto41
+	Goto41 [label=Goto]
+	Goto41 -> etq642
+	etq642 [label=etq6]
+	0 -> etq543
+	etq543 [label=etq5]
+	etq543 -> Imprimir44
+	Imprimir44 [label=Imprimir]
+	Imprimir44 -> "Es numero 3
+45"
+	"Es numero 3
+45" [label="Es numero 3
+"]
+	etq543 -> Goto46
+	Goto46 [label=Goto]
+	Goto46 -> etq047
+	etq047 [label=etq0]
+	0 -> etq648
+	etq648 [label=etq6]
+	etq648 -> Imprimir49
+	Imprimir49 [label=Imprimir]
+	Imprimir49 -> "Es el default
+50"
+	"Es el default
+50" [label="Es el default
+"]
+	0 -> etq051
+	etq051 [label=etq0]
+	etq051 -> Imprimir52
+	Imprimir52 [label=Imprimir]
+	Imprimir52 -> "despues del switch
+53"
+	"despues del switch
+53" [label="despues del switch
+"]
 }

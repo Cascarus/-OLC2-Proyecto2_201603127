@@ -10,11 +10,14 @@ from Traduccion.Operacion_logica import Op_logica
 from Traduccion.Asignacion import Asignacion
 from Traduccion.If import If
 from Traduccion.Print import Print
+from Traduccion.Scanf import Scanf
 from Traduccion.Operacion_unaria import Operacion_unaria
 from Traduccion.Incre_Decre import incre_decre
 from Traduccion.For import For
 from Traduccion.While import While
 from Traduccion.Do_While import Do_While
+from Traduccion.Break import Break
+from Traduccion.Switch import Switch
 
 from Analisis.MiniC.ply import lex
 
@@ -315,7 +318,6 @@ def p_sentencia(t):
                  | fun_while
                  | fun_do_while
                  | print
-                 | scan
                  | fun_return PUNTOCOMA
                  | fun_break PUNTOCOMA
                  | incre_decre PUNTOCOMA
@@ -348,6 +350,10 @@ def p_declaraConVal(t):
 def p_declaraConVal_char(t):
     '''declaraConVal : ID CORCHEA CORCHEC IGUAL CADENA'''
     t[0] = [t[1], t[5]]
+
+def p_declaraConVal_Scan(t):
+    '''declaraConVal : tipo_ID IGUAL SCANF PARENTA PARENTC'''
+    t[0] = [t[1],Scanf(t.slice[2].lineno, get_Column(t.slice[2]))]
 
 def p_declaraConVal_llave(t):
     '''declaraConVal : tipo_ID IGUAL LLAVEA lista_filas LLAVEC'''
@@ -407,6 +413,10 @@ def p_bloque_asignacion_1(t):
     t[0] = [t[1], t[3], t[2]]
 
 def p_bloque_asignacion_2(t):
+    '''bloque_asignacion : tipo_ID IGUAL SCANF PARENTA PARENTC'''
+    t[0] = [t[1], Scanf(t.slice[2].lineno,get_Column(t.slice[2])), t[2]]
+
+def p_bloque_asignacion_3(t):
     '''bloque_asignacion : tipo_ID tipo_asignacion LLAVEA lista_filas LLAVEC
                       | tipo_ID tipo_asignacion LLAVEA lista_val LLAVEC'''
 
@@ -485,20 +495,45 @@ def p_else(t):
     '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias ELSE bloque_sentencias'''
     t[0] = If([t[3]],[t[5]],t[7],t.slice[1].lineno, get_Column(t.slice[1]))
 
-def p_switch(t):
+def p_switch_1(t):
+    '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA list_switch default LLAVEC'''
+    t[0] = Switch(t[3], t[6], t[7], t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_switch_2(t):
     '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA list_switch LLAVEC'''
+    t[0] = Switch(t[3], t[6], None, t.slice[1].lineno, get_Column(t.slice[1]))
 
-def p_list_switch(t):
-    '''list_switch : list_switch cont_switch
-                    | cont_switch'''
+def p_switch_3(t):
+    '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA default LLAVEC'''
+    t[0] = Switch(t[3], None, t[7], t.slice[1].lineno, get_Column(t.slice[1]))
+def p_switch_4(t):
+    '''fun_switch : SWITCH PARENTA operaciones PARENTC LLAVEA LLAVEC'''
+    t[0] = Switch(t[3], None, None, t.slice[1].lineno, get_Column(t.slice[1]))
 
-def p_cont_switch(t):
-    '''cont_switch : CASE val DOSPUNTOS lista_sentencias
-                   | CASE val DOSPUNTOS bloque_sentencias
-                   | CASE val DOSPUNTOS
-                   | DEFAULT DOSPUNTOS lista_sentencias
-                   | DEFAULT DOSPUNTOS bloque_sentencias
-                   | DEFAULT DOSPUNTOS'''
+def p_list_switch_1(t):
+    '''list_switch : list_switch cont_switch'''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+def p_list_switch_2(t):
+    '''list_switch :  cont_switch'''
+    t[0] = [t[1]]
+
+def p_cont_switch_1(t):
+    '''cont_switch : CASE val DOSPUNTOS lista_sentencias'''
+    t[0] = [t[2], t[4]]
+
+def p_cont_switch_2(t):
+    '''cont_switch : CASE val DOSPUNTOS'''
+    t[0] = [t[2], None]
+
+def p_default_1(t):
+    '''default : DEFAULT DOSPUNTOS lista_sentencias'''
+    t[0] = t[3]
+
+def p_default_2(t):
+    '''default : DEFAULT DOSPUNTOS'''
+    t[0] = None
 
 def p_for_lleno(t):
     '''fun_for : FOR PARENTA declaracion PUNTOCOMA operaciones PUNTOCOMA incre_decre PARENTC bloque_sentencias
@@ -521,6 +556,7 @@ def p_return(t):
 
 def p_break(t):
     '''fun_break : BREAK'''
+    t[0] = Break(t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_inc_dec(t):
     '''incre_decre : INCREMENTO val
@@ -540,9 +576,6 @@ def p_inc_dec(t):
 def p_print(t):
     '''print : PRINTF PARENTA val PARENTC PUNTOCOMA'''
     t[0] = Print(t[3],t.slice[1].lineno, get_Column(t.slice[1]))
-
-def p_scan(t):
-    '''scan : SCANF PARENTA PARENTC PUNTOCOMA'''
 
 def p_continue(t):
     '''fun_continue : CONTINUE'''
@@ -616,9 +649,7 @@ def p_operaciones_unaria(t):
     '''operaciones : MENOS operaciones
                    | EXCLAMA operaciones
                    | NOT operaciones
-                   | SCANF PARENTA PARENTC
                    | AND2 operaciones'''
-
     if t[1] == '-':
         t[0] = Operacion_unaria(t[2],tipo_unaria.MENOS, t.slice[1].lineno, get_Column(t.slice[1]))
     elif t[1] == '!':
@@ -627,7 +658,6 @@ def p_operaciones_unaria(t):
         t[0] = Operacion_unaria(t[2],tipo_unaria.NOT, t.slice[1].lineno, get_Column(t.slice[1]))
     else:
         t[0] = Operacion_unaria(t[2], tipo_unaria.AND, t.slice[1].lineno, get_Column(t.slice[1]))
-
 
 
 def p_op_ternario(t):

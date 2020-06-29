@@ -2,6 +2,6 @@
 digraph {
 	graph [rankdir=LR]
 	node [shape=plaintext]
-	A [label=<<table border = '1'><tr><td>ID</td><td>Valor</td><td>Tipo</td><td>Dimension</td><td>Declarada</td><td>Referencias</td></tr><tr><td>$t0</td><td>1</td><td>ENTERO</td><td>1</td><td>main</td><td>None</td></tr><tr><td>$t1</td><td>0</td><td>ENTERO</td><td>1</td><td>etq0</td><td>None</td></tr></table>>]
+	A [label=<<table border = '1'><tr><td>ID</td><td>Valor</td><td>Tipo</td><td>Dimension</td><td>Declarada</td><td>Referencias</td></tr><tr><td>$t0</td><td>55</td><td>ENTERO</td><td>1</td><td>main</td><td>None</td></tr><tr><td>$t1</td><td>asdf</td><td>CADENA</td><td>1</td><td>main</td><td>None</td></tr></table>>]
 	T [label="Tabla de Simbolos"]
 }

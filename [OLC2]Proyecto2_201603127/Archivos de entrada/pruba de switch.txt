@@ -1,0 +1,35 @@
+printf("antes del for");
+for(int x = 0; x <3; ++x){
+    printf(x);
+}
+printf("fuera del for");
+
+
+printf("antes del for");
+printf("\n");
+for(int x = 0; x <3; ++x){
+    for(int y = 0; y <1; ++y){
+          printf("[");
+          printf(x);
+          printf(",");
+          printf(y);
+          printf("]");
+          printf("\n");
+    }
+}
+printf("fuera del for\n");
+
+int a = scanf(), c;
+
+c = scanf();
+
+int a = 1;
+printf("antes switch\n");
+switch(a){
+ case 1: printf("Es numero 1"); break;
+ case 2: printf("Es numero 2"); break;
+ case 3: printf("Es numero 3"); break;
+ default: printf("Es el default");
+}
+printf("despues del switch");
+
