@@ -426,7 +426,8 @@ def resolver_operaciones(Val_variable, tabla):
         #EMPIEZAN LAS OPERACIONES BIT A BIT
         elif Val_variable.operacion == Operacion_Bit.AND:
             if tipo1 == Tipo_Dato.ENTERO and tipo2 == Tipo_Dato.ENTERO:
-                return exp1 & exp2
+                temp = exp1 & exp2
+                return temp
             else:
                 Err = Error(Val_variable.val1.id, "SEMANTICO",
                             "SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS",

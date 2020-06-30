@@ -48,12 +48,30 @@ class Asignacion(abst):
                 if instr[1] != None:
                     temp = instr[1].generar_C3D(simbolos.tipo)
                     augus += temp[0]
-                    op = "" + str(simbolos.var_aug) + str(" = ") + str(temp[1]) + ";" + str('\n')
-                    augus += op
 
-                else:
-                    default_v = self.valor_defecto(self.tipo)
-                    op = str(simbolos.var_aug) + str("=") + str(default_v) + ";" +'\n'
-                    augus += op
+
+                    if instr[2] == tipo_asign.IGUAL:
+                        augus += str(simbolos.var_aug) + str(" = ") + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.MASIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " + " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.MENOSIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " - " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.PORIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " * " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.DIVIIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " / " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.RESIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " % " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.IZQIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " << " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.DERIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " >> " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.ANDIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " & " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.ORIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " | " + str(temp[1]) + ";\n"
+                    elif instr[2] == tipo_asign.XORIGUAL:
+                        augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " ^ " + str(temp[1]) + ";\n"
+
 
         return [augus, '']

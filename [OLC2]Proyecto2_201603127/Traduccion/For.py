@@ -3,6 +3,8 @@ from Traduccion.Ambito import ambito
 from Traduccion.Tipos import *
 from Traduccion.Declaracion import Declaracion
 from Traduccion.Valores import *
+from Traduccion.Break import Break
+from Traduccion.Continue import Continue
 
 
 class For(abst):
@@ -90,14 +92,18 @@ class For(abst):
             augus += condicion[0]
 
             augus += "if(!" + str(condicion[1]) + ") goto " + str(label2) + ";\n"
+            incre_decre = self.incre_decre.generar_C3D()
+            augus += incre_decre[0]
 
             if self.contenido != None:
                 for inst in self.contenido:
-                    resultado = inst.generar_C3D()
-                    augus += resultado[0]
-
-            incre_decre = self.incre_decre.generar_C3D()
-            augus += incre_decre[0]
+                    if isinstance(inst, Break):
+                        augus += "goto " + label2 + "; #Break\n"
+                    elif isinstance(inst, Continue):
+                        augus += "goto " + label1 + "; #Continue\n"
+                    else:
+                        resultado = inst.generar_C3D()
+                        augus += resultado[0]
 
             augus += "goto " + str(label1) + ";\n\n"
             augus += str(label2) + ":\n"
@@ -116,14 +122,20 @@ class For(abst):
             augus += condicion[0]
 
             augus += "if(!" + str(condicion[1]) + ") goto " + str(label2) + ";\n"
+            incre_decre = self.incre_decre.generar_C3D()
+            augus += incre_decre[0]
 
             if self.contenido != None:
                 for inst in self.contenido:
-                    resultado = inst.generar_C3D()
-                    augus += resultado[0]
+                    if isinstance(inst, Break):
+                        augus += "goto " + label2 + "; #Break\n"
+                    elif isinstance(inst, Continue):
+                        augus += "goto " + label1 + "; #Continue\n"
+                    else:
+                        resultado = inst.generar_C3D()
+                        augus += resultado[0]
 
-            incre_decre = self.incre_decre.generar_C3D()
-            augus += incre_decre[0]
+
 
             augus += "goto " + str(label1) + ";\n\n"
             augus += str(label2) + ":\n"

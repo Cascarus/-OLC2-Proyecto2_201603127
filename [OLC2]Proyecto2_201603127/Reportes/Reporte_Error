@@ -4,15 +4,13 @@ digraph {
 	node [shape=plaintext]
 	A [label=<<table border = '1'>
 <tr><td>Token</td><td>Tipo</td><td>Descripcion</td><td>Fila</td><td>Columna</td></tr>
-<tr><td>\</td><td>Lexico</td><td>Caracter no reconocido</td><td>5</td><td>30</td></tr>
-<tr><td>n</td><td>Sintactico</td><td>Token no esperado</td><td>5</td><td>31</td></tr>
-<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>5</td><td>33</td></tr>
-<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>5</td><td>40</td></tr>
-<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>6</td><td>33</td></tr>
-<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>6</td><td>40</td></tr>
-<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>7</td><td>36</td></tr>
-<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>9</td><td>31</td></tr>
-<tr><td>EOF</td><td>Sintactico</td><td>Token no esperado</td><td>0</td><td>0</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE RESTAR VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>3</td><td>7</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE MULTIPLICAR VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>4</td><td>7</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE DIVIDIR VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>5</td><td>7</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE CALCULAR RESIDUO VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>6</td><td>7</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS</td><td>7</td><td>7</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS</td><td>8</td><td>7</td></tr>
+<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS</td><td>9</td><td>7</td></tr>
 </table>>]
 	T [label="Reporte de Errores"]
 }

@@ -17,6 +17,7 @@ from Traduccion.For import For
 from Traduccion.While import While
 from Traduccion.Do_While import Do_While
 from Traduccion.Break import Break
+from Traduccion.Continue import Continue
 from Traduccion.Switch import Switch
 
 from Analisis.MiniC.ply import lex
@@ -579,6 +580,7 @@ def p_print(t):
 
 def p_continue(t):
     '''fun_continue : CONTINUE'''
+    t[0] = Continue(t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_operaciones_bin(t):
     '''operaciones : operaciones MAS operaciones
