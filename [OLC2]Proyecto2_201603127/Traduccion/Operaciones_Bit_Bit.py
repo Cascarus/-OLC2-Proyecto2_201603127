@@ -1,6 +1,6 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
-from Traduccion.Valores import new_temp
+from Traduccion.Valores import *
 from Traduccion.Variables import variables
 from Traduccion.Primitivos import Primitivo
 
@@ -100,3 +100,27 @@ class Op_Bit_Bit(abst):
 
         return [augus, val]
 
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = ""
+        name = ""
+        if self.operacion == Operacion_bit.AND:
+            nombre_hijo += "bAnd_" + str(new_nombre())
+            name += "&"
+        elif self.operacion == Operacion_bit.OR:
+            nombre_hijo += "bOr_" + str(new_nombre())
+            name += "|"
+        elif self.operacion == Operacion_bit.XOR:
+            nombre_hijo += "bXor_" + new_nombre()
+            name += "^"
+        elif self.operacion == Operacion_bit.SHIFTI:
+            nombre_hijo += "shifti_" + new_nombre()
+            name += "<<"
+        else:
+            nombre_hijo += "shiftd_" + new_nombre()
+            name += ">>"
+
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, name)
+        self.dato1.generar_AST(dot, nombre_hijo)
+        self.dato2.generar_AST(dot, nombre_hijo)

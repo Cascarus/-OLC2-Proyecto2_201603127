@@ -240,6 +240,11 @@ class AST():
                 lista += "[" + str(self.obt_val(val)) + "]"
             nodo = Nodo_AST(str(id + lista), [])
             return nodo
+        elif isinstance(Val_variable, Numerico_Negativo):
+            resultado = self.obtener_valores(Val_variable.val)
+            lista = [resultado]
+            nodo = Nodo_AST("Negativo", lista)
+            return nodo
 
     def obt_val(self, Val_variable):
         if isinstance(Val_variable, Numerico_Decimal):

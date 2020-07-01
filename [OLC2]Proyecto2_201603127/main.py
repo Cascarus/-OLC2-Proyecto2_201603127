@@ -17,6 +17,8 @@ from Editor import Editor_Codigo
 from Reportes import Reporte_Tabla_Simbolos
 from Reportes import Reporte_Errores
 from Reportes import Reporte_AST
+from Reportes.Reporte_Simbolos import Reporte_Simbolos
+from Reportes.AST_MiniC import AST_MiniC
 from Errores import *
 from AST import *
 from Traduccion.Traducir import traducir
@@ -256,9 +258,20 @@ class Ui_MainWindow(object):
         self.actionAST.setText("Ver AST")
         self.actionAST.triggered.connect(self.abrir_AST)
 
+        self.actionRepSimbolos = QtWidgets.QAction(MainWindow)
+        self.actionRepSimbolos.setText("Ver Reporte Simbolos")
+        self.actionRepSimbolos.triggered.connect(self.abrir_simbolos)
+
+        self.actionAST_C = QtWidgets.QAction(MainWindow)
+        self.actionAST_C.setText("Ver AST - mini C")
+        self.actionAST_C.triggered.connect(self.abrir_AST_C)
+
         self.menuReportes.addAction(self.actionTablaSimbolos)
         self.menuReportes.addAction(self.actionErrores)
         self.menuReportes.addAction(self.actionAST)
+        self.menuReportes.addSeparator()
+        self.menuReportes.addAction(self.actionRepSimbolos)
+        self.menuReportes.addAction(self.actionAST_C)
 
         #Declaracion de opciones del menu ayuda
         self.actionManualUsu = QtWidgets.QAction(MainWindow)
@@ -623,6 +636,36 @@ class Ui_MainWindow(object):
         map = QtGui.QPixmap("Reportes/Reporte_AST.png")
         escena.addPixmap(map)
         self.visor.setScene(escena)
+
+    def abrir_simbolos(self):
+        reporte = Reporte_Simbolos()
+        reporte.crear_reporte()
+        escena = QtWidgets.QGraphicsScene()
+        map = QtGui.QPixmap("Reportes/Reporte_Simbolos.png")
+        escena.addPixmap(map)
+        self.visor.setScene(escena)
+
+    def abrir_AST_C(self):
+        if len(self.tbTab) > 0:
+            self.indice = -1
+            Lista_errores.clear()
+            self.temp = self.array_editores[self.tbTab.currentIndex()]
+            instrucciones = minic.parse(self.temp.toPlainText())
+
+            AST_C = AST_MiniC()
+            AST_C.crear_reporte(instrucciones)
+
+            try:
+                escena = QtWidgets.QGraphicsScene()
+                map = QtGui.QPixmap("Reportes/Reporte_AST_C.png")
+                escena.addPixmap(map)
+                self.visor.setScene(escena)
+            except:
+                self.txtConsola.setPlainText("No se ha podido generar el AST de MiniC")
+
+
+        else:
+            self.pop_ups_error("No exiten pestañas")
 
     def acerca_d(self):
         self.msg = QtWidgets.QMessageBox()

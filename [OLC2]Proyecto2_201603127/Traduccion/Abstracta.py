@@ -8,3 +8,6 @@ class abst():
 
     def verificar_tipo(self, ambito):
         '''verifica todos los tipos y la semantica '''
+
+    def generar_AST(self, dot, nombre):
+        '''Genera el ASt'''

@@ -1,4 +1,5 @@
 from enum import Enum
+from Valores_Variables import Tipo_Dato
 
 class TIPO_DATO(Enum):
     ENTERO = 1
@@ -26,6 +27,9 @@ class Tabla_Simbolos():
         if not id in self.simbolos:
             print("no existe el simbolo")
             return Simbolo(None,None,None,None,None,None)
+        sim = self.simbolos[id]
+        if sim.tipo == Tipo_Dato.ARRAY:
+            ''''''
         return self.simbolos[id]
         #imprimir error
 

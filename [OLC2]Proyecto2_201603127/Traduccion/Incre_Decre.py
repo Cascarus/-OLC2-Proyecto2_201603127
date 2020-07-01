@@ -87,3 +87,17 @@ class incre_decre(abst):
                     augus += str(dato1[1]) + " = " + str(val2) + ";\n"
 
             return [augus, val]
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = ""
+        name = ""
+        if self.operacion == tipo_incre.INCRE:
+            nombre_hijo += "masmas_" + str(new_nombre())
+            name += "++"
+        else:
+            nombre_hijo += "menosmenos_" + new_nombre()
+            name += "--"
+
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, name)
+        self.valor.generar_AST(dot, nombre_hijo)

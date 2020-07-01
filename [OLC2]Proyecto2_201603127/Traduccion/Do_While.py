@@ -81,3 +81,20 @@ class Do_While(abst):
         augus += str(label3) + ":\n"
 
         return [augus, ""]
+
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = "Dowhile_" + new_nombre()
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, "Do While")
+
+        nombre_2 = "cont_do_" + new_nombre()
+        dot.edge(nombre_hijo, nombre_2)
+        dot.node(nombre_2, "Contenido\n Do While")
+
+        if self.contenido is not None:
+            for inst in self.contenido:
+                inst.generar_AST(dot, nombre_2)
+
+        self.condicion.generar_AST(dot, nombre_hijo)
+

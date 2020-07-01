@@ -1,6 +1,6 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
-from Traduccion.Valores import new_temp
+from Traduccion.Valores import *
 from Traduccion.Variables import variables
 from Traduccion.Primitivos import Primitivo
 
@@ -95,3 +95,17 @@ class Op_logica(abst):
 
         return [augus, val]
 
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = ""
+        name = ""
+        if self.operacion == Operacion_logica.AND:
+            nombre_hijo += "AND_" + str(new_nombre())
+            name += "&&"
+        else:
+            nombre_hijo += "OR_" + new_nombre()
+            name += "||"
+
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, name)
+        self.dato1.generar_AST(dot, nombre_hijo)
+        self.dato2.generar_AST(dot, nombre_hijo)

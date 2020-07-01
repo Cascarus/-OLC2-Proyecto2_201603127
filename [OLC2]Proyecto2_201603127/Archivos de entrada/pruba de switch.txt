@@ -19,6 +19,7 @@ for(int x = 0; x <3; ++x){
 }
 printf("fuera del for\n");
 
+
 int a = scanf(), c;
 
 c = scanf();
@@ -26,10 +27,26 @@ c = scanf();
 int a = 1;
 printf("antes switch\n");
 switch(a){
- case 1: printf("Es numero 1"); break;
- case 2: printf("Es numero 2"); break;
- case 3: printf("Es numero 3"); break;
- default: printf("Es el default");
+ case 1: printf("Es numero 1\n"); break;
+ case 2: printf("Es numero 2\n"); break;
+ case 3: printf("Es numero 3\n"); break;
+ default: printf("Es el default\n");
 }
 printf("despues del switch");
 
+$t0 = 0;
+$t0 = $t0 & 5;
+
+int a;
+a += 10;
+a -= 5;
+a *= 6;
+a /= 3;
+a %= 3;
+a <<= 5;
+a >>= 2;
+a &= 5;
+
+
+int a = 3, b = 10 *2 + 5;
+double c;

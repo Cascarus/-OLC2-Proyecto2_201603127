@@ -4,13 +4,27 @@ digraph {
 	node [shape=plaintext]
 	A [label=<<table border = '1'>
 <tr><td>Token</td><td>Tipo</td><td>Descripcion</td><td>Fila</td><td>Columna</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE RESTAR VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>3</td><td>7</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE MULTIPLICAR VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>4</td><td>7</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE DIVIDIR VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>5</td><td>7</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDE CALCULAR RESIDUO VALORES DE TIPO ENTERO O DE TIPO DECIMAL</td><td>6</td><td>7</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS</td><td>7</td><td>7</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS</td><td>8</td><td>7</td></tr>
-<tr><td>$t0</td><td>SEMANTICO</td><td>SOLO SE PUEDEN HACER OPERACIONES BIT A BIT CON ENTEROS</td><td>9</td><td>7</td></tr>
+<tr><td>:</td><td>Sintactico</td><td>Token no esperado</td><td>2</td><td>8</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>3</td><td>39</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>4</td><td>29</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>5</td><td>14</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>6</td><td>40</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>7</td><td>30</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>8</td><td>14</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>9</td><td>40</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>10</td><td>24</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>11</td><td>22</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>12</td><td>14</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>14</td><td>75</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>16</td><td>76</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>18</td><td>85</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>20</td><td>79</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>23</td><td>37</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>24</td><td>26</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>26</td><td>21</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>27</td><td>14</td></tr>
+<tr><td>;</td><td>Sintactico</td><td>Token no esperado</td><td>29</td><td>20</td></tr>
+<tr><td>EOF</td><td>Sintactico</td><td>Token no esperado</td><td>0</td><td>0</td></tr>
 </table>>]
 	T [label="Reporte de Errores"]
 }

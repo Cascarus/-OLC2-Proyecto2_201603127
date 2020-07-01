@@ -1,0 +1,52 @@
+// Reporte AST descendente
+digraph {
+	node [shape=box]
+	0 [label=Inicio]
+	0 -> declaracion_1
+	declaracion_1 [label="Declaracion 
+ ="]
+	declaracion_1 -> a_2
+	a_2 [label=a]
+	declaracion_1 -> primitivo_3
+	primitivo_3 [label=1]
+	0 -> print_4
+	print_4 [label=Printf]
+	print_4 -> primitivo_5
+	primitivo_5 [label="antes switch\n"]
+	0 -> switch_6
+	switch_6 [label=Switch]
+	switch_6 -> case_7
+	case_7 [label="Case: 1"]
+	case_7 -> print_8
+	print_8 [label=Printf]
+	print_8 -> primitivo_9
+	primitivo_9 [label="Es numero 1\n"]
+	case_7 -> break_10
+	break_10 [label=Break]
+	switch_6 -> case_11
+	case_11 [label="Case: 2"]
+	case_11 -> print_12
+	print_12 [label=Printf]
+	print_12 -> primitivo_13
+	primitivo_13 [label="Es numero 2\n"]
+	case_11 -> break_14
+	break_14 [label=Break]
+	switch_6 -> case_15
+	case_15 [label="Case: 3"]
+	case_15 -> print_16
+	print_16 [label=Printf]
+	print_16 -> primitivo_17
+	primitivo_17 [label="Es numero 3\n"]
+	case_15 -> break_18
+	break_18 [label=Break]
+	switch_6 -> default_19
+	default_19 [label=Default]
+	default_19 -> print_20
+	print_20 [label=Printf]
+	print_20 -> primitivo_21
+	primitivo_21 [label="Es el default\n"]
+	0 -> print_22
+	print_22 [label=Printf]
+	print_22 -> primitivo_23
+	primitivo_23 [label="despues del switch"]
+}

@@ -142,3 +142,20 @@ class For(abst):
 
             return [augus, ""]
 
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = "for_" + new_nombre()
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, "For")
+
+        self.variable.generar_AST(dot, nombre_hijo)
+        self.condicion.generar_AST(dot, nombre_hijo)
+        self.incre_decre.generar_AST(dot, nombre_hijo)
+
+        nombre_2 = "cont_for_" + new_nombre()
+        dot.edge(nombre_hijo, nombre_2)
+        dot.node(nombre_2, "Contenido\n For")
+
+        for inst in self.contenido:
+            inst.generar_AST(dot, nombre_2)
+
+

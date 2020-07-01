@@ -1,0 +1,7 @@
+// Minor C - Reporte de simbolos
+digraph {
+	graph [rankdir=LR]
+	node [shape=plaintext]
+	A [label=<<table border = '1'><tr><td>Fila</td><td>ID</td><td>Tipo</td><td>Ambito</td><td>Dimensiones</td><td>Parametros</td></tr><tr><td>1</td><td>a</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr><tr><td>1</td><td>b</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr><tr><td>2</td><td>c</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr></table>>]
+	T [label="Reporte de Simbolos"]
+}

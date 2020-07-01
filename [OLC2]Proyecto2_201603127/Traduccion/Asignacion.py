@@ -2,6 +2,7 @@ from Traduccion.Abstracta import abst
 from Traduccion.Variables import variables
 from Traduccion.Tipos import Tipo_dato
 from Traduccion.Tipos import tipo_asign
+from Traduccion.Valores import *
 
 class Asignacion(abst):
     def __init__(self,lista, fila, columna):
@@ -73,5 +74,37 @@ class Asignacion(abst):
                     elif instr[2] == tipo_asign.XORIGUAL:
                         augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " ^ " + str(temp[1]) + ";\n"
 
-
         return [augus, '']
+
+    def generar_AST(self, dot, nombre):
+        for instr in self.lista:
+            nombre_hijo = "asignacion_" + str(new_nombre())
+            dot.edge(nombre, nombre_hijo)
+
+            if instr[2] == tipo_asign.IGUAL:
+                dot.node(nombre_hijo, "Asignacion \n =")
+            elif instr[2] == tipo_asign.MASIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n +=")
+            elif instr[2] == tipo_asign.MENOSIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n -=")
+            elif instr[2] == tipo_asign.PORIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n *=")
+            elif instr[2] == tipo_asign.DIVIIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n /=")
+            elif instr[2] == tipo_asign.RESIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n %=")
+            elif instr[2] == tipo_asign.IZQIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n <<=")
+            elif instr[2] == tipo_asign.DERIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n >>=")
+            elif instr[2] == tipo_asign.ANDIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n &=")
+            elif instr[2] == tipo_asign.ORIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n |=")
+            elif instr[2] == tipo_asign.XORIGUAL:
+                dot.node(nombre_hijo, "Asignacion \n ^=")
+            
+
+            if isinstance(instr[0], variables):
+                instr[0].generar_AST(dot, nombre_hijo)
+                instr[1].generar_AST(dot, nombre_hijo)

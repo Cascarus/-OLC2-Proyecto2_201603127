@@ -76,3 +76,8 @@ class Primitivo(abst):
         if self.tipo == None:
             return False
         return self.tipo
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = "primitivo_" + str(new_nombre())
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, str(self.valor))

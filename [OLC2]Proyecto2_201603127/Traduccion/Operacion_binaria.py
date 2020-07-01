@@ -1,6 +1,6 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
-from Traduccion.Valores import new_temp
+from Traduccion.Valores import *
 
 class Operacion_binaria(abst):
     def __init__(self, dato1, dato2, operacion, fila, columna):
@@ -49,4 +49,28 @@ class Operacion_binaria(abst):
             augus += str(val) + " = " + str(dato1[1]) + " % " + str(dato2[1]) + ";" + "\n"
 
         return [augus, val]
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = ""
+        name = ""
+        if self.operacion == Tipo_operacion.SUMA:
+            nombre_hijo += "suma_" + str(new_nombre())
+            name += "+"
+        elif self.operacion == Tipo_operacion.RESTA:
+            nombre_hijo += "resta_" + str(new_nombre())
+            name += "-"
+        elif self.operacion == Tipo_operacion.POR:
+            nombre_hijo += "por_" + new_nombre()
+            name += "*"
+        elif self.operacion == Tipo_operacion.DIVICION:
+            nombre_hijo += "divi_" + new_nombre()
+            name += "/"
+        else:
+            nombre_hijo += "residuo_" + new_nombre()
+            name += "%"
+
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, name)
+        self.dato1.generar_AST(dot, nombre_hijo)
+        self.dato2.generar_AST(dot, nombre_hijo)
 

@@ -1,7 +1,7 @@
 from Traduccion.Abstracta import abst
 from Traduccion.Ambito import ambito
 from Traduccion.Tipos import Tipo_dato
-from Traduccion.Valores import new_etiqueta
+from Traduccion.Valores import *
 from Traduccion.Break import Break
 
 class Switch(abst):
@@ -111,3 +111,25 @@ class Switch(abst):
         augus += "\n" + salida + ":\n"
 
         return [augus, ""]
+
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = "switch_" + new_nombre()
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, "Switch")
+
+        for inst in self.cases:
+            nombre_case = "case_" + new_nombre()
+            dot.edge(nombre_hijo, nombre_case)
+            dot.node(nombre_case, "Case: " + str(inst[0].valor))
+
+            for cont in inst[1]:
+                cont.generar_AST(dot, nombre_case)
+
+        if self.default is not None:
+            nombre_default = "default_" + new_nombre()
+            dot.edge(nombre_hijo, nombre_default)
+            dot.node(nombre_default, "Default")
+            for inst in self.default:
+                inst.generar_AST(dot, nombre_default)
+

@@ -1,6 +1,6 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
-from Traduccion.Valores import new_temp
+from Traduccion.Valores import *
 
 class Operacion_unaria(abst):
     def __init__(self, dato, operacion, fila, columna):
@@ -39,3 +39,23 @@ class Operacion_unaria(abst):
             augus += str(val) + " = &" + str(dato1[1]) + ";\n"
 
         return [augus, val]
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = ""
+        name = ""
+        if self.operacion == tipo_unaria.MENOS:
+            nombre_hijo += "Umenos_" + str(new_nombre())
+            name += "-"
+        elif self.operacion == tipo_unaria.EXCLAMA:
+            nombre_hijo += "Uexclama_" + str(new_nombre())
+            name += "!"
+        elif self.operacion == tipo_unaria.NOT:
+            nombre_hijo += "Unot_" + new_nombre()
+            name += "~"
+        else:
+            nombre_hijo += "Uand_" + new_nombre()
+            name += "&"
+
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, name)
+        self.dato.generar_AST(dot, nombre_hijo)

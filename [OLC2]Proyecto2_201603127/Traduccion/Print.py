@@ -1,4 +1,5 @@
 from Traduccion.Abstracta import abst
+from Traduccion.Valores import new_nombre
 
 class Print(abst):
 
@@ -25,3 +26,9 @@ class Print(abst):
         augus += "print(" + str(contenido[1]) + ");\n"
 
         return[augus, ""]
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = "print_" + new_nombre()
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, "Printf")
+        self.contenido.generar_AST(dot, nombre_hijo)

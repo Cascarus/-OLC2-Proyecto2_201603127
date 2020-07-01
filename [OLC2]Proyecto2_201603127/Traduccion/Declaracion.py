@@ -16,7 +16,8 @@ class Declaracion(abst):
         for inst in self.lista:
             if isinstance(inst[0], variables):
                 if not actual.exite_aqui(str(inst[0].id)):
-                    sim = Simbolo(inst[0].id, self.tipo, "variable", ambito_actual, None, 0, new_temp())
+                    sim = Simbolo(inst[0].id, self.tipo, "variable", ambito_actual, None, 0, new_temp(), self.fila, self.columna)
+                    add_sim_report(sim)
                     actual.agregar_simbolo(sim)
                 else:
                     print("la variable ya existe y no se puede vovler a declarar")
@@ -89,3 +90,19 @@ class Declaracion(abst):
         if tipo_decla == Tipo_dato.ENTERO:
             if tipo_dato == Tipo_dato.ENTERO:
                 return True
+
+
+    def generar_AST(self, dot, nombre):
+
+        for inst in self.lista:
+            nombre_hijo = "declaracion_" + str(new_nombre())
+            dot.edge(nombre, nombre_hijo)
+            if inst[1] != None:
+                dot.node(nombre_hijo,"Declaracion \n =")
+            else:
+                dot.node(nombre_hijo, "Declaracion")
+
+            if isinstance(inst[0], variables):
+                inst[0].generar_AST(dot, nombre_hijo)
+                if inst[1] != None:
+                    inst[1].generar_AST(dot, nombre_hijo)

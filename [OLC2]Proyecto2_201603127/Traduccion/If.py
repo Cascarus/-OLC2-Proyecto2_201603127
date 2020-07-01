@@ -1,7 +1,8 @@
 from Traduccion.Abstracta import abst
 from Traduccion.Ambito import ambito
 from Traduccion.Tipos import Tipo_dato
-from Traduccion.Valores import new_etiqueta
+from Traduccion.Valores import *
+
 
 class If(abst):
     def __init__(self, operaciones, contenido, cont_else, fila, columna):
@@ -12,7 +13,6 @@ class If(abst):
         self.columna = columna
         self.entornos_if = []
         self.entornos_else = None
-
 
     def agregar_Tabla(self, actual, ambito_actual):
         estado = True
@@ -40,9 +40,7 @@ class If(abst):
 
         return True
 
-
-
-    def verificar_tipo(self, ambito = None):
+    def verificar_tipo(self, ambito=None):
         conta = 0
 
         while conta < len(self.operaciones):
@@ -69,7 +67,6 @@ class If(abst):
                     return False
 
         return True
-
 
     def generar_C3D(self):
         augus = ""
@@ -101,3 +98,33 @@ class If(abst):
 
         return [augus, ""]
 
+    def generar_AST(self, dot, nombre):
+        conta = 0
+
+        nombre_h1 = "sent_if_" + new_nombre()
+        dot.edge(nombre, nombre_h1)
+        dot.node(nombre_h1, "Sentencia If")
+        while conta < len(self.operaciones):
+            nombre_hijo = ""
+            if conta == 0:
+                nombre_hijo = "if_" + new_nombre()
+                dot.edge(nombre_h1, nombre_hijo)
+                dot.node(nombre_hijo, "If")
+            else:
+                nombre_hijo = "elif_" + new_nombre()
+                dot.edge(nombre_h1, nombre_hijo)
+                dot.node(nombre_hijo, "Else If")
+            self.operaciones[conta].generar_AST(dot, nombre_hijo)
+
+            for inst in self.contenido[conta]:
+                inst.generar_AST(dot, nombre_hijo)
+
+            conta += 1
+
+        if self.cont_else is not None:
+            nombre_hijo = "else_" + new_nombre()
+            dot.edge(nombre_h1, nombre_hijo)
+            dot.node(nombre_hijo, "Else")
+
+            for inst in self.cont_else:
+                inst.generar_AST(dot, nombre_hijo)

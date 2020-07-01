@@ -5,6 +5,8 @@ pila = 0
 simulador = 0
 puntero = 0
 etiqueta = 0
+conta_nombre = 0
+sim_report = []
 
 def new_temp():
     global temporales
@@ -39,6 +41,16 @@ def new_dev():
     devueltos += 11
     return nombre
 
+def add_sim_report(simbolo):
+    global sim_report
+    sim_report.append(simbolo)
+
+def new_nombre():
+    global conta_nombre
+    nombre = str(conta_nombre)
+    conta_nombre += 1
+    return nombre
+
 def limpiar():
     global temporales
     global parametros
@@ -47,6 +59,7 @@ def limpiar():
     global simulador
     global puntero
     global etiqueta
+    global sim_report
 
     temporales = 0
     parametros = 0
@@ -55,5 +68,6 @@ def limpiar():
     simulador = 0
     puntero = 0
     etiqueta = 0
+    sim_report.clear()
 
 

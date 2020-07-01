@@ -262,25 +262,25 @@ def p_exit(t):
 
 
 def p_operaciones(t):
-    '''operaciones : val MAS val
-                     | val MENOS val
-                     | val POR val
-                     | val DIVICION val
-                     | val RESIDUO val
-                     | val AND1 val
-                     | val OR1 val
-                     | val XOR val
-                     | val AND2 val
-                     | val OR2 val
-                     | val XOR2 val
-                     | val SHIFTI val
-                     | val SHIFTD val
-                     | val IGUALIGUAL val
-                     | val DIFERENTE val
-                     | val MAYORIGUAL val
-                     | val MENORIGUAL val
-                     | val MAYOR val
-                     | val MENOR val'''
+    '''operaciones : operaciones MAS operaciones
+                     | operaciones MENOS operaciones
+                     | operaciones POR operaciones
+                     | operaciones DIVICION operaciones
+                     | operaciones RESIDUO operaciones
+                     | operaciones AND1 operaciones
+                     | operaciones OR1 operaciones
+                     | operaciones XOR operaciones
+                     | operaciones AND2 operaciones
+                     | operaciones OR2 operaciones
+                     | operaciones XOR2 operaciones
+                     | operaciones SHIFTI operaciones
+                     | operaciones SHIFTD operaciones
+                     | operaciones IGUALIGUAL operaciones
+                     | operaciones DIFERENTE operaciones
+                     | operaciones MAYORIGUAL operaciones
+                     | operaciones MENORIGUAL operaciones
+                     | operaciones MAYOR operaciones
+                     | operaciones MENOR operaciones'''
     if t[2] == '+':
         t[0] = Operacion_Binaria(t[1], t[3], Operacion_Aritmetica.SUMA, t[1].fila, t[1].columna)
     elif t[2] == '-':
@@ -322,10 +322,10 @@ def p_operaciones(t):
 
 
 def p_operaciones_unaria(t):
-    '''operaciones : MENOS val
-                   | EXCLAMA val
-                   | NOT val
-                   | ABS PARENTA val PARENTC
+    '''operaciones : MENOS operaciones
+                   | EXCLAMA operaciones
+                   | NOT operaciones
+                   | ABS PARENTA operaciones PARENTC
                    | READ PARENTA PARENTC
                    | ARRAY PARENTA PARENTC'''
 

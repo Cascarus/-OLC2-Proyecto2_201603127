@@ -166,8 +166,9 @@ def ejecutar_Unset(instr, tabla):
 
 def resolver_operaciones(Val_variable, tabla):
     if isinstance(Val_variable, Operacion_Binaria):
-        exp1 = obtener_valores(Val_variable.val1, tabla)
-        exp2 = obtener_valores(Val_variable.val2, tabla)
+
+        exp1 = resolver_operaciones(Val_variable.val1, tabla)
+        exp2 = resolver_operaciones(Val_variable.val2, tabla)
         tipo1 = obtener_tipo(Val_variable.val1, tabla)
         tipo2 = obtener_tipo(Val_variable.val2, tabla)
 
@@ -371,7 +372,7 @@ def resolver_operaciones(Val_variable, tabla):
                 temp2 = True
 
             if temp1 and temp2:
-                if (int(exp1) == 1 and int(exp2) == 1) or (int(exp1) == 0 and int(exp2) == 0):
+                if int(exp1) == 1 and int(exp2) == 1:
                     return 1
                 return 0
             else:
@@ -661,6 +662,8 @@ def obtener_tipo(Val_variable, tabla):
         return tabla.get_simbolo(Val_variable.id).tipo
     elif isinstance(Val_variable, Var_Puntero_Pila):
         return tabla.get_simbolo(Val_variable.id).tipo
+    elif isinstance(Val_variable, Numerico_Negativo):
+        return obtener_tipo(Val_variable.val, tabla)
 
 
 def obt_tipo(resultado):

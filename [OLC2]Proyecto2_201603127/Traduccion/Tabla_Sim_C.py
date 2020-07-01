@@ -1,5 +1,5 @@
 class Simbolo():
-    def __init__(self, id, tipo, rol, ambito, parametros, tam, var_aug):
+    def __init__(self, id, tipo, rol, ambito, parametros, tam, var_aug, fila, columna):
         self.id = id
         self.tipo = tipo
         self.rol = rol
@@ -7,6 +7,8 @@ class Simbolo():
         self.parametros = parametros
         self.tam = tam
         self.var_aug = var_aug
+        self.fila = fila
+        self.columna = columna
 
 class Tabla_Simbolos():
     def __init__(self):

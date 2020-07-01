@@ -1,6 +1,6 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
-from Traduccion.Valores import new_temp
+from Traduccion.Valores import *
 from Traduccion.Variables import variables
 from Traduccion.Primitivos import Primitivo
 
@@ -112,4 +112,32 @@ class Op_relacional(abst):
             augus += str(val) + " = " + str(dato1[1]) + " == " + str(dato2[1]) + ";" + "\n"
 
         return [augus, val]
+
+
+    def generar_AST(self, dot, nombre):
+        nombre_hijo = ""
+        name = ""
+        if self.operacion == Operacion_logica.MAYOR:
+            nombre_hijo += "mayor_" + str(new_nombre())
+            name += ">"
+        elif self.operacion == Operacion_logica.MENOR:
+            nombre_hijo += "menor_" + str(new_nombre())
+            name += "<"
+        elif self.operacion == Operacion_logica.MAYOR_IGUAL:
+            nombre_hijo += "mayorigual_" + new_nombre()
+            name += ">="
+        elif self.operacion == Operacion_logica.MENOR_IGUAL:
+            nombre_hijo += "menorigual_" + new_nombre()
+            name += "<="
+        elif self.operacion == Operacion_logica.IGUAL_IGUAL:
+            nombre_hijo += "igualigual_" + new_nombre()
+            name += "=="
+        else:
+            nombre_hijo += "diferente_" + new_nombre()
+            name += "!="
+
+        dot.edge(nombre, nombre_hijo)
+        dot.node(nombre_hijo, name)
+        self.dato1.generar_AST(dot, nombre_hijo)
+        self.dato2.generar_AST(dot, nombre_hijo)
 
