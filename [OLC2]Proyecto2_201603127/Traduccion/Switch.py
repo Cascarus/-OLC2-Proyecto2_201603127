@@ -3,6 +3,7 @@ from Traduccion.Ambito import ambito
 from Traduccion.Tipos import Tipo_dato
 from Traduccion.Valores import *
 from Traduccion.Break import Break
+from Errores import *
 
 class Switch(abst):
     def __init__(self, variable, cases, default, fila, columna):
@@ -24,6 +25,9 @@ class Switch(abst):
                     resultado = inst.agregar_Tabla(entorno_temp, ambito_actual + str('_switch'))
 
                     if resultado == False:
+                        Err = Error("Switch", "Semantico",
+                                    "No se pudo crear el Case", self.fila, self.columna)
+                        Lista_errores.append(Err)
                         return False
 
         self.entornos_cases = entorno_temp
@@ -34,6 +38,9 @@ class Switch(abst):
                 resultado = cont.agregar_Tabla(entorno_temp, ambito_actual + "_switch")
 
                 if resultado == False:
+                    Err = Error("Switch", "Semantico", "No se puede crear el default",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         self.entorno_default = entorno_temp
@@ -48,20 +55,28 @@ class Switch(abst):
             resultado = self.variable.verificar_tipo(ambito)
 
             if resultado == False:
+                Err = Error("Switch", "Semantico", "El tipo de la variable no es valido para el Switch",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.cases != None:
             for caso in self.cases:
                 if caso[0] != None:
                     resultado = caso[0].verificar_tipo(ambito)
-
                     if resultado == False:
+                        Err = Error("Switch", "Semantico",
+                                    "Algo salio mal en el seitch", self.fila, self.columna)
+                        Lista_errores.append(Err)
                         return False
 
                 for inst in caso[1]:
                     resultado = inst.verificar_tipo(self.entornos_cases)
 
                     if resultado == False:
+                        Err = Error("Switch", "Semantico",
+                                    "EL caso no se puede crear", self.fila, self.columna)
+                        Lista_errores.append(Err)
                         return False
 
         if self.default != None:
@@ -69,6 +84,9 @@ class Switch(abst):
                 resultado = inst.verificar_tipo(self.entorno_default)
 
                 if resultado == False:
+                    Err = Error("Switch", "Semantico", "El default no se pudo crear",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         return True

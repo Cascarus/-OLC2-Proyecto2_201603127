@@ -2,6 +2,7 @@ from Traduccion.Abstracta import abst
 from Traduccion.Ambito import ambito
 from Traduccion.Tipos import Tipo_dato
 from Traduccion.Valores import *
+from Errores import *
 
 
 class If(abst):
@@ -25,6 +26,9 @@ class If(abst):
                 estado = False
 
                 if resultado == False:
+                    Err = Error("If", "Semantico", "Ha fallado alguan asignacion o declaracion",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
             self.entornos_if.append(entorno_temp)
 
@@ -34,6 +38,9 @@ class If(abst):
                 resultado = cont.agregar_Tabla(entorno_temp, ambito_actual + "_else")
 
                 if resultado == False:
+                    Err = Error("Else", "Semantico", "Algo ha fallado en el else",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         self.entornos_else = entorno_temp
@@ -47,14 +54,23 @@ class If(abst):
             resultado = self.operaciones[conta].verificar_tipo(self.entornos_if[conta])
 
             if resultado == False:
+                Err = Error("If", "Semantico", "La condicion no es de tipo entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
             elif resultado != Tipo_dato.ENTERO:
+                Err = Error("If", "Semantico", "La condicion no es de tipo entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
             for inst in self.contenido[conta]:
                 resultado = inst.verificar_tipo(self.entornos_if[conta])
 
                 if resultado == False:
+                    Err = Error("If", "Semantico", "Algo ha fallado en el cuerpo del if",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
             conta += 1
@@ -64,6 +80,9 @@ class If(abst):
                 resultado = inst.verificar_tipo(self.entornos_else)
 
                 if resultado == False:
+                    Err = Error("Else", "Semantico", "Algo ha pasado en el cuerpo de else",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         return True

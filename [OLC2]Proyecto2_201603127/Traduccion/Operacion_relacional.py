@@ -3,6 +3,7 @@ from Traduccion.Abstracta import abst
 from Traduccion.Valores import *
 from Traduccion.Variables import variables
 from Traduccion.Primitivos import Primitivo
+from Errores import *
 
 class Op_relacional(abst):
     def __init__(self, dato1, dato2, operacion, fila, columna):
@@ -26,6 +27,9 @@ class Op_relacional(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar INT con CADENAS")
+                Err = Error("Operacoines Relacionales", "Semantico", "No se puede comparar INT con Cadenas",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.DECIMAL:
             if tipo2 == Tipo_dato.ENTERO:
@@ -36,6 +40,9 @@ class Op_relacional(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                Err = Error("Operaciones Relacionales", "Semantico", "No se puede comparar Decimales con Cadenas",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.CARACTER:
             if tipo2 == Tipo_dato.ENTERO:
@@ -46,6 +53,9 @@ class Op_relacional(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar CARACTERES con " + str(tipo2))
+                Err = Error("Operaciones Relacionales", "Semantico", "No se pueden compara CARACTERES CON " + str(tipo2),
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.CADENA:
             if tipo2 == Tipo_dato.CADENA:
@@ -53,9 +63,15 @@ class Op_relacional(abst):
                     return Tipo_dato.ENTERO
                 else:
                     print("ERROR: SOLO SE PUEDEN COMPARAR CADENAS CON == O !=")
+                    Err = Error("Operaciones relacionales", "Semantico", "Solo se pueden comparar cadenas con == O !=",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
             else:
                 print("ERROR: SOLO SE PUEDEN COMPARAR CADENAS CON CADENAS")
+                Err = Error("Operacoines Relacionales", "Semantico", "Solo se pueden comparar cadenas con cadenas",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         else:
             return False

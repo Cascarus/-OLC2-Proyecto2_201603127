@@ -2,6 +2,7 @@ from Traduccion.Abstracta import abst
 from Traduccion.Tabla_Sim_C import Simbolo
 from Traduccion.Tipos import Tipo_dato
 from Traduccion.Valores import *
+from Errores import *
 
 class variables(abst):
     def __init__(self, id, fila, columna):
@@ -17,6 +18,9 @@ class variables(abst):
             self.entorno = actual
             return simbolo.tipo
         print("ERROR: NO EXISTE LA VARIABLE " + str(self.id))
+        Err = Error("Variable", "Semantico", "No existe la variable", self.fila,
+                    self.columna)
+        Lista_errores.append(Err)
         return False
 
     def generar_C3D(self, ambt = None):

@@ -1,6 +1,7 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
 from Traduccion.Valores import *
+from Errores import *
 
 class Operacion_unaria(abst):
     def __init__(self, dato, operacion, fila, columna):
@@ -20,6 +21,9 @@ class Operacion_unaria(abst):
             elif tipo1 == Tipo_dato.DECIMAL:
                 return Tipo_dato.DECIMAL
         else:
+            Err = Error("Operacion Unaria", "Semantico", "No se puede hacer unarias de Cadenas o Caracteres",
+                        self.fila, self.columna)
+            Lista_errores.append(Err)
             return False#agregar error
 
     def generar_C3D(self, tipo_A = None):#(self, tipo_A)

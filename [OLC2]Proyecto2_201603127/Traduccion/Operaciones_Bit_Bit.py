@@ -3,6 +3,7 @@ from Traduccion.Abstracta import abst
 from Traduccion.Valores import *
 from Traduccion.Variables import variables
 from Traduccion.Primitivos import Primitivo
+from Errores import *
 
 class Op_Bit_Bit(abst):
     def __init__(self, dato1, dato2, operacion, fila, columna):
@@ -26,6 +27,9 @@ class Op_Bit_Bit(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar INT con CADENAS")
+                Err = Error("Operacion Bit", "Semantico", "Solo se peude hacer con datos de tipo Entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.DECIMAL:
             if tipo2 == Tipo_dato.ENTERO:
@@ -36,6 +40,9 @@ class Op_Bit_Bit(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                Err = Error("Operacion Bit", "Semantico", "Solo se pueden hacer con datos de tipo Entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.CARACTER:
             if tipo2 == Tipo_dato.ENTERO:
@@ -46,6 +53,9 @@ class Op_Bit_Bit(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                Err = Error("Operacion Bit", "Semantico", "No se puede hacer la operacion con datos de tipo Cadena",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         else:
             return False

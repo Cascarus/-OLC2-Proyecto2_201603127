@@ -5,6 +5,7 @@ from Traduccion.Declaracion import Declaracion
 from Traduccion.Valores import *
 from Traduccion.Break import Break
 from Traduccion.Continue import Continue
+from Errores import *
 
 
 class For(abst):
@@ -24,18 +25,27 @@ class For(abst):
             resultado = self.variable.agregar_Tabla(entorno_temp, ambito_actual + str('_for'))
 
             if resultado == False:
+                Err = Error("For", "Semantico", "Ha fallado la asignacion o declaracion de la variable de iteracion",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.condicion != None:
             resultado = self.condicion.agregar_Tabla(entorno_temp, ambito_actual + str('_for'))
 
             if resultado == False:
+                Err = Error("For", "Semantico", "La condicion no devuelve un tipo entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.incre_decre != None:
             resultado = self.incre_decre.agregar_Tabla(entorno_temp, ambito_actual + str('_for'))
 
             if resultado == False:
+                Err = Error("For", "Semantico", "El incremento ha fallado",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.contenido != None:
@@ -43,6 +53,9 @@ class For(abst):
                 resultado = inst.agregar_Tabla(entorno_temp, ambito_actual + str('_for'))
 
             if resultado == False:
+                Err = Error("For", "Semantico", "algo ha fallado en le contenido",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         self.entorno = entorno_temp
@@ -53,6 +66,9 @@ class For(abst):
             resultado = self.variable.verificar_tipo(self.entorno)
 
             if resultado == False or resultado == Tipo_dato.CARACTER or resultado == Tipo_dato.CADENA:
+                Err = Error("For", "Semantico", "Solo se puede utilizar una variable de tipo int para iterar",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
 
@@ -60,12 +76,18 @@ class For(abst):
             resultado = self.condicion.verificar_tipo(self.entorno)
 
             if resultado == False or resultado == Tipo_dato.CARACTER or resultado == Tipo_dato.CADENA:
+                Err = Error("For", "Semantico", "La condicion no devuelve un tipo entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.incre_decre != None:
             resultado = self.incre_decre.verificar_tipo(self.entorno)
 
             if resultado == False or resultado == Tipo_dato.CARACTER or resultado == Tipo_dato.CADENA:
+                Err = Error("For", "Semantico", "Solo se puede utilizar una variable de tipo int para el incremento o decremento",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.contenido != None:
@@ -73,6 +95,9 @@ class For(abst):
                 resultado = instr.verificar_tipo(self.entorno)
 
                 if resultado == False:
+                    Err = Error("For", "Semantico", "Algo a fallado en el cuerpo",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         return True
@@ -94,19 +119,6 @@ class For(abst):
             augus += "if(!" + str(condicion[1]) + ") goto " + str(label2) + ";\n"
             incre_decre = self.incre_decre.generar_C3D()
             augus += incre_decre[0]
-
-            '''
-
-
-            if self.contenido != None:
-                for inst in self.contenido:
-                    if isinstance(inst, Break):
-                        augus += "goto " + label2 + "; #Break\n"
-                    elif isinstance(inst, Continue):
-                        augus += "goto " + label1 + "; #Continue\n"
-                    else:
-                        resultado = inst.generar_C3D()
-                        augus += resultado[0]'''
 
             if self.contenido is not None:
                 for inst in self.contenido:

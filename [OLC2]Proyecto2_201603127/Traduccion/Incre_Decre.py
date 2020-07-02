@@ -1,6 +1,7 @@
 from Traduccion.Abstracta import abst
 from Traduccion.Tipos import *
 from Traduccion.Valores import *
+from Errores import *
 
 class incre_decre(abst):
     def __init__(self, valor, operacion, posicion, fila, columna):
@@ -23,8 +24,14 @@ class incre_decre(abst):
             elif tipo == Tipo_dato.CARACTER:
                 return Tipo_dato.CARACTER
             else:
+                Err = Error("Incremento-Decremento", "Semantico", "No se puede incrementar/decrementar un dato de tipo string",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         else:
+            Err = Error("Incremento-Decremento", "Semantico", "No se puede realizar el incremento/decremento",
+                        self.fila, self.columna)
+            Lista_errores.append(Err)
             return False  # agregar error
 
 

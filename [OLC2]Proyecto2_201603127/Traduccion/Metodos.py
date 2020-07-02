@@ -3,6 +3,7 @@ from Traduccion.Ambito import ambito
 from Traduccion.Tabla_Sim_C import Simbolo
 from Traduccion.Valores import *
 from Traduccion.Tipos import *
+from Errores import *
 
 
 class clase_metodos(abst):
@@ -40,11 +41,17 @@ class clase_metodos(abst):
                     entorno_temp.agregar_simbolo(sim)
                 else:
                     print("la variable ya existe y no se puede vovler a declarar")
+                    Err = Error("Metodos", "Semantico", "La variable ya existe y no se puede volver a declarar",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         for inst in self.instrucciones:
             resultado = inst.agregar_Tabla(entorno_temp, ambito_actual + "_" + str(self.id))
             if resultado is False:
+                Err = Error("Metodos", "Semantico", "Algo ha ocurrido en el cuerpo del metodo",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         self.entorno = entorno_temp
         return True
@@ -53,6 +60,9 @@ class clase_metodos(abst):
         for inst in self.instrucciones:
             resultado = inst.verificar_tipo(self.entorno)
             if resultado is False:
+                Err = Error("Metodos", "Semantico", "Algo ha ocurrido en el cuerpo de Metodos",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         return True
 

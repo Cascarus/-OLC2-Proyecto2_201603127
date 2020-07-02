@@ -1,6 +1,7 @@
 from Traduccion.Abstracta import abst
 from Traduccion.Valores import new_nombre
 from Traduccion.Tipos import Tipo_dato
+from Errores import *
 
 class Print(abst):
 
@@ -17,6 +18,9 @@ class Print(abst):
                 resultado = instr.verificar_tipo(ambito)
 
                 if resultado == False:
+                    Err = Error("Printf", "Semantico", "Algo ha fallado en el contenido ",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
                 self.tipo.append(resultado)
 

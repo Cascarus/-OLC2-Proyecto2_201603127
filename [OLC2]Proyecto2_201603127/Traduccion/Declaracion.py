@@ -3,6 +3,7 @@ from Traduccion.Variables import variables
 from Traduccion.Tabla_Sim_C import Simbolo
 from Traduccion.Valores import *
 from Traduccion.Tipos import Tipo_dato
+from Errores import *
 
 class Declaracion(abst):
     def __init__(self, tipo, lista, fila, columna):
@@ -21,6 +22,9 @@ class Declaracion(abst):
                     actual.agregar_simbolo(sim)
                 else:
                     print("la variable ya existe y no se puede vovler a declarar")
+                    Err = Error("Declaracion", "Semantico", "La variable ya existe y no se puede volver a declarar",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
         return True
 
@@ -38,18 +42,34 @@ class Declaracion(abst):
                     if simbolos.tipo == Tipo_dato.ENTERO:
                         if resultado == Tipo_dato.CADENA:
                             print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "No se puede asignar un valor string a uno de tipo entero", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
                             return False
                     elif simbolos.tipo == Tipo_dato.DECIMAL:
                         if resultado == Tipo_dato.CADENA:
                             print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "No se puede asignar un valor string a uno de tipo decimal", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
                             return False
                     elif simbolos.tipo == Tipo_dato.CARACTER:
                         if resultado == Tipo_dato.CADENA:
                             print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "No se puede asignar un valor string a uno de tipo caracter", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
                             return False
                     elif simbolos.tipo == Tipo_dato.CADENA:
                         if resultado != Tipo_dato.CADENA and resultado != Tipo_dato.CARACTER:
                             print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "Solo se puede asignar un valor string o caracter a uno de tipo string", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
                             return False
 
         self.entorno = ambito

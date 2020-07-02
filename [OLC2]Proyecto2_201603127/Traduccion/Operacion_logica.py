@@ -3,6 +3,7 @@ from Traduccion.Abstracta import abst
 from Traduccion.Valores import *
 from Traduccion.Variables import variables
 from Traduccion.Primitivos import Primitivo
+from Errores import *
 
 class Op_logica(abst):
     def __init__(self, dato1, dato2, operacion, fila, columna):
@@ -26,6 +27,9 @@ class Op_logica(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar INT con CADENAS")
+                Err = Error("Operacoin Logica", "Semantico", "No se pueden comparar int con cadena",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.DECIMAL:
             if tipo2 == Tipo_dato.ENTERO:
@@ -36,6 +40,9 @@ class Op_logica(abst):
                 return Tipo_dato.ENTERO
             else:
                 print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                Err = Error("Operacion Logica", "Semantico", "No se pueden comparar decimales con cadenas",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         elif tipo1 == Tipo_dato.CARACTER:
             if tipo2 == Tipo_dato.ENTERO:
@@ -45,7 +52,19 @@ class Op_logica(abst):
             elif tipo2 == Tipo_dato.CARACTER:
                 return Tipo_dato.ENTERO
             else:
-                print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                print("ERROR: No se puden comparar Caracteres con CADENAS")
+                Err = Error("Operacoin Logica", "Semantico", "No se pueden comparar Caracteres con Cadenas",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
+                return False
+
+        elif tipo1 == Tipo_dato.CADENA:
+            if tipo2 == Tipo_dato.CADENA:
+                return Tipo_dato.ENTERO
+            else:
+                Err = Error("Operacoin logica", "Semantico", "Solo se pueden comparar cadenas con cadenas",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         else:
             return False

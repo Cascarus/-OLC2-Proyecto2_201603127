@@ -4,6 +4,7 @@ from Traduccion.Tipos import *
 from Traduccion.Valores import *
 from Traduccion.Break import Break
 from Traduccion.Continue import Continue
+from Errores import *
 
 
 class Do_While(abst):
@@ -22,6 +23,9 @@ class Do_While(abst):
             resultado = self.condicion.agregar_Tabla(entorno_temp, ambito_actual + str('_do-while'))
 
             if resultado == False:
+                Err = Error("Do While", "Semantico", "El tipo de dato de la condicion no es int",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.contenido != None:
@@ -29,6 +33,9 @@ class Do_While(abst):
                 resultado = inst.agregar_Tabla(entorno_temp, ambito_actual + str('_do-while'))
 
             if resultado == False:
+                Err = Error("Do While", "Semantico", "Fallo una asignacion o declaracion",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         self.entorno = entorno_temp
@@ -40,6 +47,9 @@ class Do_While(abst):
             resultado = self.condicion.verificar_tipo(self.entorno)
 
             if resultado == False or resultado == Tipo_dato.CARACTER or resultado == Tipo_dato.CADENA:
+                Err = Error("Do While", "Semantico", "El tipo de la condicion no es devuelve entero",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         if self.contenido != None:
@@ -47,6 +57,9 @@ class Do_While(abst):
                 resultado = instr.verificar_tipo(self.entorno)
 
                 if resultado == False:
+                    Err = Error("Do While", "Semantico", "Algo ha fallado dentro del Do",
+                                self.fila, self.columna)
+                    Lista_errores.append(Err)
                     return False
 
         return True

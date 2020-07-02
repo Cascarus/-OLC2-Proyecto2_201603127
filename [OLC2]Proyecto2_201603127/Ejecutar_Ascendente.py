@@ -33,7 +33,7 @@ def ejecutar_imprimir(instr, tabla, consola=QPlainTextEdit):
     consola.setPlainText(texto)
 
 
-def ejecutar_asignacion(instr, tabla, ambito, main =QMainWindow):
+def ejecutar_asignacion(instr, tabla, ambito, main =QMainWindow, consola=QPlainTextEdit):
     print(str(diccionario_banderas["contador"]), ". Entro a ejecutar asignacion", instr.variable.id)
     resultado = None
 
@@ -42,6 +42,9 @@ def ejecutar_asignacion(instr, tabla, ambito, main =QMainWindow):
         val_sin_tipo = ""
         while resultado1 == False:
             valor, resultado1 = QInputDialog.getText(main, "Read()", "Ingrese el valor para " + str(instr.variable.id) + ":", QLineEdit.Normal, "")
+            texto = consola.toPlainText()
+            texto += valor
+            consola.setPlainText(texto)
             if resultado1 == True:
                 val_sin_tipo = valor
 
@@ -802,7 +805,7 @@ def ejecutar(instrucciones, tabla, consola, main):
 
         if isinstance(instrucciones[conta], Asignacion):
             diccionario_banderas["contador"] = diccionario_banderas["contador"] + 1
-            ejecutar_asignacion(instrucciones[conta], tabla, ambito, main)
+            ejecutar_asignacion(instrucciones[conta], tabla, ambito, main, consola)
 
         elif isinstance(instrucciones[conta], Imprimir):
             ejecutar_imprimir(instrucciones[conta], tabla, consola)
@@ -830,7 +833,7 @@ def debbug(instruccion, tabla, consola, main, indice):
 
         elif isinstance(instruccion[indice], Asignacion):
             diccionario_banderas["contador"] = diccionario_banderas["contador"] + 1
-            ejecutar_asignacion(instruccion[indice], tabla, ambito, main)
+            ejecutar_asignacion(instruccion[indice], tabla, ambito, main, consola)
 
         elif isinstance(instruccion[indice], Imprimir):
             ejecutar_imprimir(instruccion[indice], tabla, consola)

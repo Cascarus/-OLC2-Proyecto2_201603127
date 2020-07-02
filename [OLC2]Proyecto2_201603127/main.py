@@ -600,17 +600,20 @@ class Ui_MainWindow(object):
             self.temp = self.array_editores[self.tbTab.currentIndex()]
             instrucciones = minic.parse(self.temp.toPlainText())
             print("todo bien");
-            if len(Lista_errores) < 1:
-                translate = traducir(instrucciones)
-                resultado = translate.inizializar_tablas()
-                if resultado != False:
-                    print("todo bien 2")
-                    resultado = translate.verificar_tipos()
+            try:
+                if len(Lista_errores) < 1:
+                    translate = traducir(instrucciones)
+                    resultado = translate.inizializar_tablas()
                     if resultado != False:
-                        print("todo bien 3")
-                        codigo_aug = translate.comenzar_traduccion()
-                        self.crear_pestania(codigo_aug, 1)
-                        print(codigo_aug)
+                        print("todo bien 2")
+                        resultado = translate.verificar_tipos()
+                        if resultado != False:
+                            print("todo bien 3")
+                            codigo_aug = translate.comenzar_traduccion()
+                            self.crear_pestania(codigo_aug, 1)
+                            print(codigo_aug)
+            except:
+                self.txtConsola.setPlainText(self.txtConsola.toPlainText() + "Problemas en la ejecucion \n")
 
         else:
             self.pop_ups_error("No exiten pestañas")

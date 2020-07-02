@@ -1,6 +1,7 @@
 from Traduccion.Tipos import *
 from Traduccion.Abstracta import abst
 from Traduccion.Valores import *
+from Errores import *
 
 class Operacion_binaria(abst):
     def __init__(self, dato1, dato2, operacion, fila, columna):
@@ -25,6 +26,9 @@ class Operacion_binaria(abst):
                 return Tipo_dato.DECIMAL
 
         else:
+            Err = Error("Op Binaria", "Semantico", "El tipo de uno de los datos no coincide con el otro",
+                        self.fila, self.columna)
+            Lista_errores.append(Err)
             return False#agregar error
 
     def generar_C3D(self, tipo_A = None):#(self, tipo_A)

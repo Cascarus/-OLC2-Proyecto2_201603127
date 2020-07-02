@@ -3,7 +3,7 @@ from Traduccion.Ambito import ambito
 from Traduccion.Tabla_Sim_C import Simbolo
 from Traduccion.Valores import *
 from Traduccion.Tipos import *
-
+from Errores import *
 
 class clase_llamada(abst):
     def __init__(self, id, parametros, fila, columna):
@@ -30,9 +30,15 @@ class clase_llamada(abst):
                     resultado = self.parametros[i].verificar_tipo(ambito)
 
                     if resultado != param[i][1]:
+                        Err = Error("Llamada", "Semantico",
+                                    "El parametro dado no es del mismo tipo que el del metodo", self.fila, self.columna)
+                        Lista_errores.append(Err)
                         return False
                     i += 1
             else:
+                Err = Error("Llamada", "Semantico", "No se estan dando los parametros correctamente",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
 
         self.ambito = ambito

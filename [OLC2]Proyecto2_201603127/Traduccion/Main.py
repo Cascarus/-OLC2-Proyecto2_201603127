@@ -3,6 +3,7 @@ from Traduccion.Ambito import ambito
 from Traduccion.Tabla_Sim_C import Simbolo
 from Traduccion.Valores import *
 from Traduccion.Tipos import *
+from Errores import *
 
 
 class clase_main(abst):
@@ -19,6 +20,9 @@ class clase_main(abst):
         for inst in self.instrucciones:
             resultado = inst.agregar_Tabla(entorno_temp, ambito_actual + str('_main'))
             if resultado is False:
+                Err = Error("Main", "Semantico", "No se han podido declarar o asignar algunas variables",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         self.entorno = entorno_temp
         return True
@@ -27,6 +31,9 @@ class clase_main(abst):
         for inst in self.instrucciones:
             resultado = inst.verificar_tipo(self.entorno)
             if resultado is False:
+                Err = Error("Main", "Semantico", "Algo ha ocurrido en el main",
+                            self.fila, self.columna)
+                Lista_errores.append(Err)
                 return False
         return True
 
