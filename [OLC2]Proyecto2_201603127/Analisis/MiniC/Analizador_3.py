@@ -7,6 +7,7 @@ from Traduccion.Tipos import *
 from Traduccion.Operacion_binaria import Operacion_binaria
 from Traduccion.Operacion_relacional import Op_relacional
 from Traduccion.Operacion_logica import Op_logica
+from Traduccion.Operaciones_Bit_Bit import Op_Bit_Bit
 from Traduccion.Asignacion import Asignacion
 from Traduccion.If import If
 from Traduccion.Print import Print
@@ -19,6 +20,11 @@ from Traduccion.Do_While import Do_While
 from Traduccion.Break import Break
 from Traduccion.Continue import Continue
 from Traduccion.Switch import Switch
+from Traduccion.Main import clase_main
+from Traduccion.Etiqueta import Etiqueta
+from Traduccion.Goto import Goto
+from Traduccion.Metodos import clase_metodos
+from Traduccion.Llamada import clase_llamada
 
 from Analisis.MiniC.ply import lex
 
@@ -33,7 +39,7 @@ reservadas = {
     'else': 'ELSE',
 #    'enum': 'ENUM',
     'for': 'FOR',
-#    'goto': 'GOTO',
+    'goto': 'GOTO',
     'if': 'IF',
     'int': 'INT',
     'return': 'RETURN',
@@ -238,8 +244,8 @@ precedence = (
 
 
 def p_init(t):
-#    '''inicio : instrucciones'''
-    '''inicio : lista_sentencias'''
+    '''inicio : instrucciones'''
+#    '''inicio : lista_sentencias'''
     t[0] = t[1]
 
 
@@ -257,19 +263,25 @@ def p_instrucciones_instruccion(t):
 def p_instruccion(t):
     '''instruccion : metodos
                    | funciones
-                   | structs'''
+                   | structs
+                   | declaracion PUNTOCOMA'''
     t[0] = t[1]
 
 
-def p_metodos(t):
-    '''metodos : VOID ID PARENTA PARENTC bloque_sentencias
-               | VOID ID PARENTA lista_param PARENTC bloque_sentencias'''
+def p_metodos_v(t):
+    '''metodos : VOID ID PARENTA PARENTC bloque_sentencias'''
+    t[0] = clase_metodos(t[2], None, t[5], t.slice[1].lineno, get_Column(t.slice[1]))
 
+def p_metodos_c(t):
+    '''metodos : VOID ID PARENTA lista_param PARENTC bloque_sentencias'''
+    t[0] = clase_metodos(t[2], t[4], t[6], t.slice[1].lineno, get_Column(t.slice[1]))
+def p_funciones_1(t):
+    '''funciones : tipo ID PARENTA PARENTC bloque_sentencias'''
+    #t[0] = funciones(t[1], t[2], None, t[5],t.slice[3].lineno, get_Column(t.slice[3]))
 
-def p_funciones(t):
-    '''funciones : tipo ID PARENTA PARENTC bloque_sentencias
-                 | INT MAIN PARENTA PARENTC bloque_sentencias'''
-    t[0] = funciones(t[1], t[2], None, t[5],t.slice[3].lineno, get_Column(t.slice[3]))
+def p_funciones_2(t):
+    '''funciones : INT MAIN PARENTA PARENTC bloque_sentencias'''
+    t[0] = clase_main(t[5], t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_funciones_param(t):
     '''funciones : tipo ID PARENTA lista_param PARENTC bloque_sentencias'''
@@ -280,14 +292,16 @@ def p_structs(t):
 
 def p_lista_param_lista(t):
     '''lista_param : lista_param COMA param'''
-
+    t[1].append(t[3])
+    t[0] = t[1]
 
 def p_lista_param_param(t):
     '''lista_param : param'''
-
+    t[0] = [t[1]]
 
 def p_param(t):
     '''param : tipo ID'''
+    t[0] = [t[2], t[1][0]]
 
 def p_bloque_sentencias(t):
     '''bloque_sentencias : LLAVEA lista_sentencias LLAVEC'''
@@ -322,7 +336,10 @@ def p_sentencia(t):
                  | fun_return PUNTOCOMA
                  | fun_break PUNTOCOMA
                  | incre_decre PUNTOCOMA
-                 | fun_continue PUNTOCOMA'''
+                 | fun_continue PUNTOCOMA
+                 | fun_goto PUNTOCOMA
+                 | fun_label
+                 | llamadas_fun'''
     t[0] = t[1]
 
 
@@ -477,10 +494,14 @@ def p_columna(t):
     '''columna : operaciones '''
 
 def p_lista_val_lista(t):
-    '''lista_val : lista_val COMA val'''
+    '''lista_val : lista_val COMA operaciones'''
+    t[1].append(t[3])
+    t[0] = t[1]
+
 
 def p_lista_val_val(t):
-    '''lista_val : val'''
+    '''lista_val : operaciones'''
+    t[0] = [t[1]]
 
 def p_if(t):
     '''fun_if : IF PARENTA operaciones PARENTC bloque_sentencias'''
@@ -575,12 +596,29 @@ def p_inc_dec(t):
             t[0] = incre_decre(t[1], tipo_incre.DECRE, 1, t.slice[2].lineno, get_Column(t.slice[2]))
 
 def p_print(t):
-    '''print : PRINTF PARENTA val PARENTC PUNTOCOMA'''
+    '''print : PRINTF PARENTA lista_val PARENTC PUNTOCOMA'''
     t[0] = Print(t[3],t.slice[1].lineno, get_Column(t.slice[1]))
 
 def p_continue(t):
     '''fun_continue : CONTINUE'''
     t[0] = Continue(t.slice[1].lineno, get_Column(t.slice[1]))
+
+
+def p_fun_label(t):
+    '''fun_label : ID DOSPUNTOS'''
+    t[0] = Etiqueta(t[1], t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_fun_goto(t):
+    '''fun_goto : GOTO ID'''
+    t[0] = Goto(t[2],t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_llamadas_v(t):
+    "llamadas_fun : ID PARENTA PARENTC PUNTOCOMA"
+    t[0] = clase_llamada(t[1], None, t.slice[1], get_Column(t.slice[1]))
+
+def p_llamadas_c(t):
+    "llamadas_fun : ID PARENTA lista_val PARENTC PUNTOCOMA"
+    t[0] = clase_llamada(t[1], t[3], t.slice[1], get_Column(t.slice[1]))
 
 def p_operaciones_bin(t):
     '''operaciones : operaciones MAS operaciones
@@ -637,15 +675,15 @@ def p_operaciones_bit(t):
                      | operaciones SHIFTI operaciones
                      | operaciones SHIFTD operaciones'''
     if t[2] == '&':
-        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.AND, t[1].fila, t[1].columna)
+        t[0] = Op_Bit_Bit(t[1], t[3], Operacion_bit.AND, t[1].fila, t[1].columna)
     elif t[2] == '|':
-        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.OR, t[1].fila, t[1].columna)
+        t[0] = Op_Bit_Bit(t[1], t[3], Operacion_bit.OR, t[1].fila, t[1].columna)
     elif t[2] == '^':
-        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.XOR, t[1].fila, t[1].columna)
+        t[0] = Op_Bit_Bit(t[1], t[3], Operacion_bit.XOR, t[1].fila, t[1].columna)
     elif t[2] == '<<':
-        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.SHIFTI, t[1].fila, t[1].columna)
+        t[0] = Op_Bit_Bit(t[1], t[3], Operacion_bit.SHIFTI, t[1].fila, t[1].columna)
     else:
-        t[0] = Operacion_binaria(t[1], t[3], Operacion_bit.SHIFTD, t[1].fila, t[1].columna)
+        t[0] = Op_Bit_Bit(t[1], t[3], Operacion_bit.SHIFTD, t[1].fila, t[1].columna)
 
 def p_operaciones_unaria(t):
     '''operaciones : MENOS operaciones

@@ -24,7 +24,7 @@ class Operacion_unaria(abst):
 
     def generar_C3D(self, tipo_A = None):#(self, tipo_A)
         augus = ""
-        dato1 = self.dato1.generar_C3D(tipo_A)
+        dato1 = self.dato.generar_C3D(tipo_A)
         augus += dato1[0]
 
         val = new_temp()

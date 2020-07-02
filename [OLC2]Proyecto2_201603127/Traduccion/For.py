@@ -95,7 +95,24 @@ class For(abst):
             incre_decre = self.incre_decre.generar_C3D()
             augus += incre_decre[0]
 
+            '''
+
+
             if self.contenido != None:
+                for inst in self.contenido:
+                    if isinstance(inst, Break):
+                        augus += "goto " + label2 + "; #Break\n"
+                    elif isinstance(inst, Continue):
+                        augus += "goto " + label1 + "; #Continue\n"
+                    else:
+                        resultado = inst.generar_C3D()
+                        augus += resultado[0]'''
+
+            if self.contenido is not None:
+                for inst in self.contenido:
+                    print("Si paso puto")
+
+            if self.contenido is not None:
                 for inst in self.contenido:
                     if isinstance(inst, Break):
                         augus += "goto " + label2 + "; #Break\n"

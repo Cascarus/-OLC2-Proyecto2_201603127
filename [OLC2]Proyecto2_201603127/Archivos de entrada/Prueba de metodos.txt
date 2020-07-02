@@ -1,0 +1,20 @@
+int a = 55;
+double ff = 35.1;
+
+void print_hola(){
+       printf("hola primer void\n");
+}
+
+void suma_simple(int a, int b){
+        int suma = a + b;
+        printf("resultado: %d\n", suma);
+}
+
+
+int main(){
+    printf("prueba voids\n");
+    print_hola();
+    suma_simple(2, 3);
+    printf("fin prueba\n");
+
+}

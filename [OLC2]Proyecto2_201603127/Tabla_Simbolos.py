@@ -1,5 +1,6 @@
 from enum import Enum
 from Valores_Variables import Tipo_Dato
+import copy
 
 class TIPO_DATO(Enum):
     ENTERO = 1
@@ -29,8 +30,10 @@ class Tabla_Simbolos():
             return Simbolo(None,None,None,None,None,None)
         sim = self.simbolos[id]
         if sim.tipo == Tipo_Dato.ARRAY:
-            ''''''
-        return self.simbolos[id]
+            sim2 = copy.deepcopy(sim)
+            return sim2
+        else:
+            return sim
         #imprimir error
 
     def update_simbolo(self, simbolo):

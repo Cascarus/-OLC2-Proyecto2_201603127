@@ -42,10 +42,10 @@ class Op_relacional(abst):
                 return Tipo_dato.ENTERO
             elif tipo2 == Tipo_dato.DECIMAL:
                 return Tipo_dato.ENTERO
-            elif tipo2 == Tipo_dato.CARACTER:
+            elif tipo2 == Tipo_dato.CARACTER or tipo2 == Tipo_dato.CADENA:
                 return Tipo_dato.ENTERO
             else:
-                print("ERROR: No se puden comparar DECIMALES con CADENAS")
+                print("ERROR: No se puden comparar CARACTERES con " + str(tipo2))
                 return False
         elif tipo1 == Tipo_dato.CADENA:
             if tipo2 == Tipo_dato.CADENA:

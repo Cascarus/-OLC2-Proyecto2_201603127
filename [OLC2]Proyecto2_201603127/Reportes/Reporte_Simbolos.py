@@ -11,7 +11,7 @@ class Reporte_Simbolos:
 
         for simbolo in sim_report:
             temp = simbolo
-            contenido += "<tr><td>" + str(temp.fila)+ "</td><td>" + str(temp.id) + "</td><td>" + str(temp.rol) + "</td><td>" + str(temp.ambito) + "</td><td>" + str(temp.tam) + "</td><td>" + str(temp.parametros) + "</td></tr>"
+            contenido += "<tr><td>" + str(temp.fila)+ "</td><td>" + str(temp.id) + "</td><td>" + str(temp.rol) + "</td><td>" + str(temp.ambito) + "</td><td>" + str(temp.tam) + "</td><td>" + str(temp.parametros) + "</td></tr>\n"
 
         contenido += "</table>>"
         dot.node("A", contenido)

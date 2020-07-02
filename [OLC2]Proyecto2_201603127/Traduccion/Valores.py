@@ -7,6 +7,12 @@ puntero = 0
 etiqueta = 0
 conta_nombre = 0
 sim_report = []
+ret = ""
+entorno = None
+salida = None
+lista_retorno = {}
+conta_ambito = 0
+
 
 def new_temp():
     global temporales
@@ -38,7 +44,7 @@ def new_param():
 def new_dev():
     global devueltos
     nombre = "$v" + str(devueltos)
-    devueltos += 11
+    devueltos += 1
     return nombre
 
 def add_sim_report(simbolo):
@@ -51,6 +57,43 @@ def new_nombre():
     conta_nombre += 1
     return nombre
 
+def set_ret(id):
+    global ret
+    ret = id
+
+def set_entorno(entor):
+    global entorno
+    entorno = entor
+
+def get_entorno():
+    global entorno
+    return entorno
+
+def set_salida(id):
+    global salida
+    salida = id
+
+def get_salida():
+    global salida
+    return salida
+
+def incrementar_global():
+    global conta_ambito
+    conta_ambito += 1
+
+def get_global():
+    global conta_ambito
+    return conta_ambito
+
+def add_etiquetaL(id):
+    global lista_retorno
+    global conta_ambito
+    lista_retorno[conta_ambito] = id
+
+def get_etiquetal():
+    global lista_retorno
+    return lista_retorno;
+
 def limpiar():
     global temporales
     global parametros
@@ -60,6 +103,11 @@ def limpiar():
     global puntero
     global etiqueta
     global sim_report
+    global ret
+    global entorno
+    global salida
+    global lista_retorno
+    global conta_ambito
 
     temporales = 0
     parametros = 0
@@ -68,6 +116,11 @@ def limpiar():
     simulador = 0
     puntero = 0
     etiqueta = 0
+    ret = ""
+    entorno = None
+    salida = None
+    lista_retorno = {}
+    conta_ambito = 0
     sim_report.clear()
 
 

@@ -2,6 +2,51 @@
 digraph {
 	graph [rankdir=LR]
 	node [shape=plaintext]
-	A [label=<<table border = '1'><tr><td>Fila</td><td>ID</td><td>Tipo</td><td>Ambito</td><td>Dimensiones</td><td>Parametros</td></tr><tr><td>1</td><td>a</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr><tr><td>1</td><td>b</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr><tr><td>2</td><td>c</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr></table>>]
+	A [label=<<table border = '1'><tr><td>Fila</td><td>ID</td><td>Tipo</td><td>Ambito</td><td>Dimensiones</td><td>Parametros</td></tr><tr><td>2</td><td>var1</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr>
+<tr><td>3</td><td>punteo</td><td>variable</td><td>global</td><td>0</td><td>None</td></tr>
+<tr><td>5</td><td>Declaracion</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>8</td><td>n4</td><td>variable</td><td>global_Declaracion</td><td>0</td><td>None</td></tr>
+<tr><td>9</td><td>db4</td><td>variable</td><td>global_Declaracion</td><td>0</td><td>None</td></tr>
+<tr><td>10</td><td>db1</td><td>variable</td><td>global_Declaracion</td><td>0</td><td>None</td></tr>
+<tr><td>11</td><td>chr4</td><td>variable</td><td>global_Declaracion</td><td>0</td><td>None</td></tr>
+<tr><td>22</td><td>operacionesBasicas</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>25</td><td>a</td><td>variable</td><td>global_operacionesBasicas</td><td>0</td><td>None</td></tr>
+<tr><td>26</td><td>a2</td><td>variable</td><td>global_operacionesBasicas</td><td>0</td><td>None</td></tr>
+<tr><td>27</td><td>b</td><td>variable</td><td>global_operacionesBasicas</td><td>0</td><td>None</td></tr>
+<tr><td>28</td><td>b2</td><td>variable</td><td>global_operacionesBasicas</td><td>0</td><td>None</td></tr>
+<tr><td>29</td><td>c</td><td>variable</td><td>global_operacionesBasicas</td><td>0</td><td>None</td></tr>
+<tr><td>30</td><td>c2</td><td>variable</td><td>global_operacionesBasicas</td><td>0</td><td>None</td></tr>
+<tr><td>45</td><td>operacionesAvanzadas</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>46</td><td>aritmetica1</td><td>variable</td><td>global_operacionesAvanzadas</td><td>0</td><td>None</td></tr>
+<tr><td>47</td><td>aritmetica2</td><td>variable</td><td>global_operacionesAvanzadas</td><td>0</td><td>None</td></tr>
+<tr><td>49</td><td>aritmetica3</td><td>variable</td><td>global_operacionesAvanzadas</td><td>0</td><td>None</td></tr>
+<tr><td>51</td><td>aritmetica4</td><td>variable</td><td>global_operacionesAvanzadas</td><td>0</td><td>None</td></tr>
+<tr><td>61</td><td>Aritmeticas</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>66</td><td>n1</td><td>variable</td><td>global_Aritmeticas</td><td>0</td><td>None</td></tr>
+<tr><td>77</td><td>n4</td><td>variable</td><td>global_Aritmeticas</td><td>0</td><td>None</td></tr>
+<tr><td>78</td><td>n3</td><td>variable</td><td>global_Aritmeticas</td><td>0</td><td>None</td></tr>
+<tr><td>93</td><td>Logicas2</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>94</td><td>n0</td><td>variable</td><td>global_Logicas2</td><td>0</td><td>None</td></tr>
+<tr><td>104</td><td>n1</td><td>variable</td><td>global_Logicas2</td><td>0</td><td>None</td></tr>
+<tr><td>106</td><td>condicion1</td><td>variable</td><td>global_Logicas2</td><td>0</td><td>None</td></tr>
+<tr><td>107</td><td>aritmetica1</td><td>variable</td><td>global_Logicas2</td><td>0</td><td>None</td></tr>
+<tr><td>108</td><td>condicion2</td><td>variable</td><td>global_Logicas2</td><td>0</td><td>None</td></tr>
+<tr><td>109</td><td>condicion3</td><td>variable</td><td>global_Logicas2</td><td>0</td><td>None</td></tr>
+<tr><td>120</td><td>BitABit</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>121</td><td>n0</td><td>variable</td><td>global_BitABit</td><td>0</td><td>None</td></tr>
+<tr><td>124</td><td>n1</td><td>variable</td><td>global_BitABit</td><td>0</td><td>None</td></tr>
+<tr><td>137</td><td>n2</td><td>variable</td><td>global_BitABit</td><td>0</td><td>None</td></tr>
+<tr><td>151</td><td>Logicas</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>172</td><td>relaciones1</td><td>Metodo</td><td>global</td><td>0</td><td>['salida']</td></tr>
+<tr><td>172</td><td>salida</td><td>variable</td><td>global_relaciones1</td><td>0</td><td>None</td></tr>
+<tr><td>175</td><td>n0</td><td>variable</td><td>global_relaciones1</td><td>0</td><td>None</td></tr>
+<tr><td>205</td><td>relaciones2</td><td>Metodo</td><td>global</td><td>0</td><td>['n0']</td></tr>
+<tr><td>205</td><td>n0</td><td>variable</td><td>global_relaciones2</td><td>0</td><td>None</td></tr>
+<tr><td>239</td><td>Relacionales</td><td>Metodo</td><td>global</td><td>0</td><td>[]</td></tr>
+<tr><td>241</td><td>n0</td><td>variable</td><td>global_Relacionales</td><td>0</td><td>None</td></tr>
+<tr><td>242</td><td>n1</td><td>variable</td><td>global_Relacionales</td><td>0</td><td>None</td></tr>
+<tr><td>248</td><td>main</td><td>Funcion</td><td>global</td><td>0</td><td>None</td></tr>
+<tr><td>250</td><td>var1</td><td>variable</td><td>global_main</td><td>0</td><td>None</td></tr>
+</table>>]
 	T [label="Reporte de Simbolos"]
 }
