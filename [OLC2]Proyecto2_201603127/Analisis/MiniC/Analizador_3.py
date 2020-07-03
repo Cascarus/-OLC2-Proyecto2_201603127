@@ -25,8 +25,11 @@ from Traduccion.Etiqueta import Etiqueta
 from Traduccion.Goto import Goto
 from Traduccion.Metodos import clase_metodos
 from Traduccion.Llamada import clase_llamada
+from Traduccion.Var_Array import var_arry
 
 from Analisis.MiniC.ply import lex
+
+import numpy as np
 
 reservadas = {
     'main': 'MAIN',
@@ -364,17 +367,17 @@ def p_declaraConVal(t):
     '''declaraConVal : tipo_ID IGUAL operaciones'''
     t[0] = [t[1], t[3]]
 
-def p_declaraConVal_char(t):
-    '''declaraConVal : ID CORCHEA CORCHEC IGUAL CADENA'''
-    t[0] = [t[1], t[5]]
-
 def p_declaraConVal_Scan(t):
     '''declaraConVal : tipo_ID IGUAL SCANF PARENTA PARENTC'''
     t[0] = [t[1],Scanf(t.slice[2].lineno, get_Column(t.slice[2]))]
 
 def p_declaraConVal_llave(t):
     '''declaraConVal : tipo_ID IGUAL LLAVEA lista_filas LLAVEC'''
-    t[0] = [t[1], t[4]]
+    temp = np.array(t[4])
+    temp = temp.flatten()
+    temp = temp.tolist()
+    t[0] = [t[1], temp]
+
 def p_declaraConVal_Fila(t):
     '''declaraConVal : tipo_ID IGUAL LLAVEA lista_val LLAVEC'''
     t[0] = [t[1], t[4]]
@@ -403,18 +406,26 @@ def p_TIPO_ID_id(t):
     '''tipo_ID : ID'''
     t[0] = variables(t[1], t.slice[1].lineno, get_Column(t.slice[1]))
 
-def p_TIPO_ID_dimen(t):
-    '''tipo_ID : ID dimension'''
+def p_TIPO_ID_dimen1(t):
+    '''tipo_ID : ID CORCHEA CORCHEC'''
+    t[0] = variables(t[1], t.slice[1].lineno, get_Column(t.slice[1]), True)
 
-def p_dimension(t):
-    '''dimension : dimension CORCHEA val CORCHEC
-                 | CORCHEA val CORCHEC
-                 | CORCHEA CORCHEC'''
+def p_TIPO_ID_dimen2(t):
+    '''tipo_ID : ID dimension'''
+    t[0] = var_arry(t[1], t[2], t.slice[1].lineno, get_Column(t.slice[1]))
+
+def p_dimension_1(t):
+    '''dimension : dimension CORCHEA operaciones CORCHEC'''
+    t[1].append(t[3])
+    t[0] = t[1]
+
+def p_dimension_2(t):
+    '''dimension : CORCHEA operaciones CORCHEC'''
+    t[0] = [t[2]]
 
 def p_asignacion(t):
     '''asignacion : lista_asignacion'''
     t[0] = Asignacion(t[1], t[1][0][0].fila, t[1][0][0].columna)
-
 
 def p_lista_asignacion(t):
     '''lista_asignacion : lista_asignacion COMA bloque_asignacion'''
@@ -434,8 +445,15 @@ def p_bloque_asignacion_2(t):
     t[0] = [t[1], Scanf(t.slice[2].lineno,get_Column(t.slice[2])), t[2]]
 
 def p_bloque_asignacion_3(t):
-    '''bloque_asignacion : tipo_ID tipo_asignacion LLAVEA lista_filas LLAVEC
-                      | tipo_ID tipo_asignacion LLAVEA lista_val LLAVEC'''
+    '''bloque_asignacion : tipo_ID tipo_asignacion LLAVEA lista_filas LLAVEC'''
+    temp = np.array(t[4])
+    temp = temp.flatten()
+    temp = temp.tolist()
+    t[0] = [t[1], t[2], temp]
+
+def p_bloque_asignacion_4(t):
+    '''bloque_asignacion : tipo_ID tipo_asignacion LLAVEA lista_val LLAVEC'''
+    t[0] = [t[1], t[2], t[4]]
 
 def p_tipo_asign(t):
     '''tipo_asignacion : IGUAL
@@ -476,21 +494,29 @@ def p_tipo_asign(t):
 
 def p_lista_filas(t):
     '''lista_filas : lista_filas COMA fila'''
+    t[1].append(t[3])
+    t[0] = t[1]
 
 def p_lista_filas_fila(t):
     '''lista_filas : fila'''
+    t[0] = [t[1]]
 
 def p_fila(t):
     '''fila : LLAVEA lista_columna LLAVEC'''
+    t[0] = t[2]
 
 def p_lista_columna(t):
     '''lista_columna : lista_columna COMA columna'''
+    t[1].append(t[3])
+    t[0] = t[1]
 
 def p_lista_columna_colum(t):
     '''lista_columna : columna'''
+    t[0] = [t[1]]
 
 def p_columna(t):
     '''columna : operaciones '''
+    t[0] = t[1]
 
 def p_lista_val_lista(t):
     '''lista_val : lista_val COMA operaciones'''
@@ -743,18 +769,16 @@ def p_val_variables_array(t):
 
 def p_v_array(t):
     '''variables_array : ID indices'''
-
+    t[0] = var_arry(t[1], t[2], t.slice[1].lineno, get_Column(t.slice[1]))
 def p_indices_incices(t):
-    '''indices : indices indice'''
-    t[1].append(t[2])
+    '''indices : indices CORCHEA operaciones CORCHEC'''
+    t[1].append(t[3])
     t[0] = t[1]
 
 def p_indices_indice(t):
-    '''indices : indice'''
-    t[0] = [t[1]]
-def p_indice(t):
-    '''indice : CORCHEA val CORCHEC'''
-    t[0] = t[2]
+    '''indices : CORCHEA operaciones CORCHEC'''
+    t[0] = [t[2]]
+
 
 
 def p_error(t):

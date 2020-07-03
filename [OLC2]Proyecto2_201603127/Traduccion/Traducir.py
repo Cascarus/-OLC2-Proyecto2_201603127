@@ -47,7 +47,7 @@ class traducir():
         salida_salida = new_etiqueta()
         codigo_main += "goto " + salida_salida + ";\n\n"
 
-        if retornos != 0:
+        if len(retornos) != 0:
             conta = 0
             temporal = new_temp()
             lista_llave = list(retornos.keys())

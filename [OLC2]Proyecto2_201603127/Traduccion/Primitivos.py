@@ -71,6 +71,10 @@ class Primitivo(abst):
                 return [aug, val2]
             else:
                 return ["", "\'" + str(self.valor) + "\'"]
+        else:
+            if tipo_A == Tipo_dato.CADENA:
+                return ["", "\"" + str(self.valor) + "\""]
+
 
     def get_tipo(self, ambt=None):
         if self.tipo == None:

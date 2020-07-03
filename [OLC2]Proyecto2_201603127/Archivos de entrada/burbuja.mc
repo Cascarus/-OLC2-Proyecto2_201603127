@@ -13,7 +13,7 @@ void burbuja10()
 			{
 				aux = arreglo[ j + 1 ];
 				arreglo[ j + 1 ] = arreglo[ j ];
-                    				arreglo[ j ] = aux;
+                arreglo[ j ] = aux;
 			}
 		}
 	}

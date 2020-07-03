@@ -5,11 +5,12 @@ from Traduccion.Valores import *
 from Errores import *
 
 class variables(abst):
-    def __init__(self, id, fila, columna):
+    def __init__(self, id, fila, columna, cadena = False):
         self.id = id
         self.fila = fila
         self. columna = columna
         self.entorno = None
+        self.cadena = cadena
 
     def verificar_tipo(self, actual):
         simbolo = actual.get_simbol(self.id)

@@ -603,15 +603,41 @@ class Ui_MainWindow(object):
             try:
                 if len(Lista_errores) < 1:
                     translate = traducir(instrucciones)
+                    self.txtConsola.setPlainText("Traduciendo.................\n")
                     resultado = translate.inizializar_tablas()
+                    txt = self.txtConsola.toPlainText()
+                    txt += "Generando tablas de simbolos.........\n"
+                    self.txtConsola.setPlainText(txt)
                     if resultado != False:
-                        print("todo bien 2")
+                        txt = self.txtConsola.toPlainText()
+                        txt += "Tablas generadas!\n"
+                        txt += "Verifianco tipos.................\n"
+                        self.txtConsola.setPlainText(txt)
                         resultado = translate.verificar_tipos()
                         if resultado != False:
+                            txt = self.txtConsola.toPlainText()
+                            txt += "Tipos correctos!\n"
+                            txt += "Traduciendo.....................\n"
+                            self.txtConsola.setPlainText(txt)
                             print("todo bien 3")
                             codigo_aug = translate.comenzar_traduccion()
                             self.crear_pestania(codigo_aug, 1)
                             print(codigo_aug)
+                            txt = self.txtConsola.toPlainText()
+                            txt += "Traduccion completa!\n"
+                            self.txtConsola.setPlainText(txt)
+                        else:
+                            txt = self.txtConsola.toPlainText()
+                            txt += "Tipos incorrectos!\n"
+                            txt += "Revise el reporte de errores\n"
+                            self.txtConsola.setPlainText(txt)
+                    else:
+                        txt = self.txtConsola.toPlainText()
+                        txt += "No se pudo generar las tablas!\n"
+                        txt += "Revise el reporte de errores\n"
+                        self.txtConsola.setPlainText(txt)
+                else:
+                    self.txtConsola.setPlainText("No se pudo generar debido a errores lexicos o sintacticos\n")
             except:
                 self.txtConsola.setPlainText(self.txtConsola.toPlainText() + "Problemas en la ejecucion \n")
 

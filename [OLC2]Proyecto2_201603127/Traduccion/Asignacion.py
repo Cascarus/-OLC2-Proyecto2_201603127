@@ -3,6 +3,7 @@ from Traduccion.Variables import variables
 from Traduccion.Tipos import Tipo_dato
 from Traduccion.Tipos import tipo_asign
 from Traduccion.Valores import *
+from Traduccion.Var_Array import var_arry
 from Errores import *
 
 class Asignacion(abst):
@@ -48,6 +49,53 @@ class Asignacion(abst):
                                     "Solo se puede asignar un valor string o caracter a uno de tipo string", self.fila, self.columna)
                         Lista_errores.append(Err)
                         return False
+            elif isinstance(inst[0], var_arry):
+                simbolos = ambito.get_simbol(inst[0].id)
+
+                for cont in inst[0].dimensiones:
+                    resultado = cont.verificar_tipo(ambito)
+
+                    if resultado == False or resultado != Tipo_dato.ENTERO:
+                        return False
+
+                if inst[1] is not None:
+                    resultado = inst[1].verificar_tipo(ambito)
+                    if resultado == False:
+                        return False
+
+                    if simbolos.tipo == Tipo_dato.ENTERO:
+                        if resultado == Tipo_dato.CADENA:
+                            print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "No se puede asignar un valor string a uno de tipo entero", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
+                            return False
+                    elif simbolos.tipo == Tipo_dato.DECIMAL:
+                        if resultado == Tipo_dato.CADENA:
+                            print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "No se puede asignar un valor string a uno de tipo decimal", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
+                            return False
+                    elif simbolos.tipo == Tipo_dato.CARACTER:
+                        if resultado == Tipo_dato.CADENA:
+                            print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "No se puede asignar un valor string a uno de tipo caracter", self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
+                            return False
+                    elif simbolos.tipo == Tipo_dato.CADENA:
+                        if resultado != Tipo_dato.CADENA and resultado != Tipo_dato.CARACTER:
+                            print("Error no se puede asignar un valor")
+                            Err = Error("Declaracion", "Semantico",
+                                        "Solo se puede asignar un valor string o caracter a uno de tipo string",
+                                        self.fila,
+                                        self.columna)
+                            Lista_errores.append(Err)
+                            return False
 
         self.entorno = ambito
 
@@ -85,6 +133,44 @@ class Asignacion(abst):
                         augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " | " + str(temp[1]) + ";\n"
                     elif instr[2] == tipo_asign.XORIGUAL:
                         augus += str(simbolos.var_aug) + " = " + str(simbolos.var_aug) + " ^ " + str(temp[1]) + ";\n"
+
+            else:
+                simbolos = self.entorno.get_simbol(instr[0].id)
+                ultima_temp = ""
+                conta = 0
+
+                for cont in instr[0].dimensiones:
+                    resultado = cont.generar_C3D()
+                    augus += resultado[0]
+
+                    if resultado[0] == "":
+                        temp = new_temp()
+                        if conta == 0:
+                            augus += str(temp) + " = " + str(resultado[1]) + ";\n"
+                            augus += str(temp) + " = " + str(temp) + " + 1;\n"
+                            ultima_temp = temp
+
+                        else:
+                            augus += str(temp) + " = " + str(resultado[1]) + " + 1;\n"
+                            augus += str(temp) + " = " + str(temp) + " * " + str(ultima_temp) + ";\n"
+                            ultima_temp = temp
+
+                    else:
+                        if conta == 0:
+                            augus += str(resultado[1]) + " = " + str(resultado[1]) + " + 1;\n"
+                            ultima_temp = str(resultado[1])
+                        else:
+                            augus += str(resultado[1]) + " = " + str(resultado[1]) + " + 1;\n"
+                            augus += str(resultado[1]) + " = " + str(resultado[1]) + " * " + ultima_temp + ";\n"
+                            ultima_temp = str(resultado[1])
+                    conta += 1
+
+                res = instr[1].generar_C3D(simbolos.tipo)
+                augus += res[0]
+                augus += ultima_temp + " = " + ultima_temp + " - 1;\n"
+                augus += str(simbolos.var_aug) + "[" + str(ultima_temp) + "] = " + str(res[1]) + ";\n"
+                #augus += str(simbolos.var_aug) + "[" + str(ultima_temp) + "] = "
+                #augus += str(res[1]) + ";\n"
 
         return [augus, '']
 
