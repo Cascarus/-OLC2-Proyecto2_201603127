@@ -245,7 +245,6 @@ precedence = (
 
 def p_init(t):
     '''inicio : instrucciones'''
-#    '''inicio : lista_sentencias'''
     t[0] = t[1]
 
 

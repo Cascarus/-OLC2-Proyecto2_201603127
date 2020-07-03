@@ -2,174 +2,1399 @@
 digraph {
 	node [shape=box]
 	0 [label=Inicio]
-	0 -> main_1
-	main_1 [label=Main]
-	main_1 -> etiqueta_2
-	etiqueta_2 [label="Etiqueta
-inicio"]
-	main_1 -> print_3
-	print_3 [label=Printf]
-	print_3 -> primitivo_4
-	primitivo_4 [label="Ingrese el primer numero:\n"]
-	main_1 -> declaracion_5
-	declaracion_5 [label="Declaracion 
+	0 -> declaracion_1
+	declaracion_1 [label="Declaracion 
  ="]
-	declaracion_5 -> primer_numero_6
-	primer_numero_6 [label=primer_numero]
-	declaracion_5 -> scanf_7
-	scanf_7 [label=Scanf]
-	main_1 -> print_8
+	declaracion_1 -> var1_2
+	var1_2 [label=var1]
+	declaracion_1 -> primitivo_3
+	primitivo_3 [label=1]
+	0 -> declaracion_4
+	declaracion_4 [label="Declaracion 
+ ="]
+	declaracion_4 -> punteo_5
+	punteo_5 [label=punteo]
+	declaracion_4 -> primitivo_6
+	primitivo_6 [label=0]
+	0 -> Declaracion_7
+	Declaracion_7 [label=Declaracion]
+	Declaracion_7 -> print_8
 	print_8 [label=Printf]
 	print_8 -> primitivo_9
-	primitivo_9 [label="\n"]
-	main_1 -> print_10
-	print_10 [label=Printf]
-	print_10 -> primitivo_11
-	primitivo_11 [label="Ingrese el segundo numero:\n"]
-	main_1 -> declaracion_12
-	declaracion_12 [label="Declaracion 
+	primitivo_9 [label="========= Metodo Declaracion =========\n"]
+	Declaracion_7 -> declaracion_10
+	declaracion_10 [label="Declaracion 
  ="]
-	declaracion_12 -> segundo_numero_13
-	segundo_numero_13 [label=segundo_numero]
-	declaracion_12 -> scanf_14
-	scanf_14 [label=Scanf]
-	main_1 -> print_15
-	print_15 [label=Printf]
-	print_15 -> primitivo_16
-	primitivo_16 [label="\n"]
-	main_1 -> print_17
-	print_17 [label=Printf]
-	print_17 -> primitivo_18
-	primitivo_18 [label="Que opcion desea realizar?\n"]
-	main_1 -> print_19
-	print_19 [label=Printf]
-	print_19 -> primitivo_20
-	primitivo_20 [label="+, -, *, /\n"]
-	main_1 -> declaracion_21
-	declaracion_21 [label="Declaracion 
+	declaracion_10 -> n4_11
+	n4_11 [label=n4]
+	declaracion_10 -> primitivo_12
+	primitivo_12 [label=2]
+	Declaracion_7 -> declaracion_13
+	declaracion_13 [label="Declaracion 
  ="]
-	declaracion_21 -> signo_22
-	signo_22 [label=signo]
-	declaracion_21 -> scanf_23
-	scanf_23 [label=Scanf]
-	main_1 -> print_24
-	print_24 [label=Printf]
-	print_24 -> primitivo_25
-	primitivo_25 [label="\n"]
-	main_1 -> sent_if_26
-	sent_if_26 [label="Sentencia If"]
-	sent_if_26 -> if_27
-	if_27 [label=If]
-	if_27 -> igualigual_28
-	igualigual_28 [label="=="]
-	igualigual_28 -> signo_29
-	signo_29 [label=signo]
-	igualigual_28 -> primitivo_30
-	primitivo_30 [label="+"]
-	if_27 -> print_31
-	print_31 [label=Printf]
-	print_31 -> primitivo_32
-	primitivo_32 [label="El resultado de la suma es: %d\n"]
-	print_31 -> suma_33
-	suma_33 [label="+"]
-	suma_33 -> primer_numero_34
-	primer_numero_34 [label=primer_numero]
-	suma_33 -> segundo_numero_35
-	segundo_numero_35 [label=segundo_numero]
-	sent_if_26 -> elif_36
-	elif_36 [label="Else If"]
-	elif_36 -> igualigual_37
-	igualigual_37 [label="=="]
-	igualigual_37 -> signo_38
-	signo_38 [label=signo]
-	igualigual_37 -> primitivo_39
-	primitivo_39 [label="-"]
-	elif_36 -> print_40
+	declaracion_13 -> db4_14
+	db4_14 [label=db4]
+	declaracion_13 -> primitivo_15
+	primitivo_15 [label=0.0]
+	Declaracion_7 -> declaracion_16
+	declaracion_16 [label="Declaracion 
+ ="]
+	declaracion_16 -> db1_17
+	db1_17 [label=db1]
+	declaracion_16 -> db4_18
+	db4_18 [label=db4]
+	Declaracion_7 -> declaracion_19
+	declaracion_19 [label="Declaracion 
+ ="]
+	declaracion_19 -> chr4_20
+	chr4_20 [label=chr4]
+	declaracion_19 -> primitivo_21
+	primitivo_21 [label=s]
+	Declaracion_7 -> sent_if_22
+	sent_if_22 [label="Sentencia If"]
+	sent_if_22 -> if_23
+	if_23 [label=If]
+	if_23 -> igualigual_24
+	igualigual_24 [label="=="]
+	igualigual_24 -> db1_25
+	db1_25 [label=db1]
+	igualigual_24 -> db4_26
+	db4_26 [label=db4]
+	if_23 -> print_27
+	print_27 [label=Printf]
+	print_27 -> primitivo_28
+	primitivo_28 [label="Declaraciones Bien :D\n"]
+	if_23 -> asignacion_29
+	asignacion_29 [label="Asignacion 
+ ="]
+	asignacion_29 -> punteo_30
+	punteo_30 [label=punteo]
+	asignacion_29 -> suma_31
+	suma_31 [label="+"]
+	suma_31 -> punteo_32
+	punteo_32 [label=punteo]
+	suma_31 -> primitivo_33
+	primitivo_33 [label=5]
+	sent_if_22 -> else_34
+	else_34 [label=Else]
+	else_34 -> print_35
+	print_35 [label=Printf]
+	print_35 -> primitivo_36
+	primitivo_36 [label="Problemas en el metodo declaracion :(\n"]
+	Declaracion_7 -> print_37
+	print_37 [label=Printf]
+	print_37 -> primitivo_38
+	primitivo_38 [label="======================================\n"]
+	0 -> operacionesBasicas_39
+	operacionesBasicas_39 [label=operacionesBasicas]
+	operacionesBasicas_39 -> print_40
 	print_40 [label=Printf]
 	print_40 -> primitivo_41
-	primitivo_41 [label="El resultado de la resta es: %d\n"]
-	print_40 -> resta_42
-	resta_42 [label="-"]
-	resta_42 -> primer_numero_43
-	primer_numero_43 [label=primer_numero]
-	resta_42 -> segundo_numero_44
-	segundo_numero_44 [label=segundo_numero]
-	sent_if_26 -> elif_45
-	elif_45 [label="Else If"]
-	elif_45 -> igualigual_46
-	igualigual_46 [label="=="]
-	igualigual_46 -> signo_47
-	signo_47 [label=signo]
-	igualigual_46 -> primitivo_48
-	primitivo_48 [label="*"]
-	elif_45 -> print_49
-	print_49 [label=Printf]
-	print_49 -> primitivo_50
-	primitivo_50 [label="El resultado de la multiplicacion es: %d\n"]
-	print_49 -> por_51
-	por_51 [label="*"]
-	por_51 -> primer_numero_52
-	primer_numero_52 [label=primer_numero]
-	por_51 -> segundo_numero_53
-	segundo_numero_53 [label=segundo_numero]
-	sent_if_26 -> elif_54
-	elif_54 [label="Else If"]
-	elif_54 -> igualigual_55
-	igualigual_55 [label="=="]
-	igualigual_55 -> signo_56
-	signo_56 [label=signo]
-	igualigual_55 -> primitivo_57
-	primitivo_57 [label="/"]
-	elif_54 -> print_58
-	print_58 [label=Printf]
-	print_58 -> primitivo_59
-	primitivo_59 [label="El resultado de la division es: %d\n"]
-	print_58 -> divi_60
-	divi_60 [label="/"]
-	divi_60 -> primer_numero_61
-	primer_numero_61 [label=primer_numero]
-	divi_60 -> segundo_numero_62
-	segundo_numero_62 [label=segundo_numero]
-	main_1 -> print_63
-	print_63 [label=Printf]
-	print_63 -> primitivo_64
-	primitivo_64 [label="Â¿Deseas continuar? Y/N\n"]
-	main_1 -> declaracion_65
-	declaracion_65 [label="Declaracion 
+	primitivo_41 [label="Operaciones Aritmeticas 1: valor esperado:  \na)62   \nb)0   \nc)-19   \nd)256   \nresultados:\n"]
+	operacionesBasicas_39 -> declaracion_42
+	declaracion_42 [label="Declaracion 
  ="]
-	declaracion_65 -> respuesta_66
-	respuesta_66 [label=respuesta]
-	declaracion_65 -> scanf_67
-	scanf_67 [label=Scanf]
-	main_1 -> sent_if_68
-	sent_if_68 [label="Sentencia If"]
-	sent_if_68 -> if_69
-	if_69 [label=If]
-	if_69 -> OR_70
-	OR_70 [label="||"]
-	OR_70 -> igualigual_71
-	igualigual_71 [label="=="]
-	igualigual_71 -> respuesta_72
-	respuesta_72 [label=respuesta]
-	igualigual_71 -> primitivo_73
-	primitivo_73 [label=Y]
-	OR_70 -> igualigual_74
-	igualigual_74 [label="=="]
-	igualigual_74 -> respuesta_75
-	respuesta_75 [label=respuesta]
-	igualigual_74 -> primitivo_76
-	primitivo_76 [label=y]
-	if_69 -> print_77
-	print_77 [label=Printf]
-	print_77 -> primitivo_78
-	primitivo_78 [label="\n"]
-	if_69 -> etiqueta_79
-	etiqueta_79 [label="Etiqueta
-inicio"]
-	sent_if_68 -> else_80
-	else_80 [label=Else]
-	else_80 -> print_81
-	print_81 [label=Printf]
-	print_81 -> primitivo_82
-	primitivo_82 [label="Adios\n"]
+	declaracion_42 -> a_43
+	a_43 [label=a]
+	declaracion_42 -> suma_44
+	suma_44 [label="+"]
+	suma_44 -> resta_45
+	resta_45 [label="-"]
+	resta_45 -> resta_46
+	resta_46 [label="-"]
+	resta_46 -> suma_47
+	suma_47 [label="+"]
+	suma_47 -> suma_48
+	suma_48 [label="+"]
+	suma_48 -> resta_49
+	resta_49 [label="-"]
+	resta_49 -> primitivo_50
+	primitivo_50 [label=20]
+	resta_49 -> primitivo_51
+	primitivo_51 [label=10]
+	suma_48 -> por_52
+	por_52 [label="*"]
+	por_52 -> divi_53
+	divi_53 [label="/"]
+	divi_53 -> primitivo_54
+	primitivo_54 [label=8]
+	divi_53 -> primitivo_55
+	primitivo_55 [label=2]
+	por_52 -> primitivo_56
+	primitivo_56 [label=3]
+	suma_47 -> primitivo_57
+	primitivo_57 [label=10]
+	resta_46 -> primitivo_58
+	primitivo_58 [label=10]
+	resta_45 -> primitivo_59
+	primitivo_59 [label=10]
+	suma_44 -> primitivo_60
+	primitivo_60 [label=50]
+	operacionesBasicas_39 -> declaracion_61
+	declaracion_61 [label="Declaracion 
+ ="]
+	declaracion_61 -> a2_62
+	a2_62 [label=a2]
+	declaracion_61 -> a_63
+	a_63 [label=a]
+	operacionesBasicas_39 -> declaracion_64
+	declaracion_64 [label="Declaracion 
+ ="]
+	declaracion_64 -> b_65
+	b_65 [label=b]
+	declaracion_64 -> resta_66
+	resta_66 [label="-"]
+	resta_66 -> suma_67
+	suma_67 [label="+"]
+	suma_67 -> resta_68
+	resta_68 [label="-"]
+	resta_68 -> suma_69
+	suma_69 [label="+"]
+	suma_69 -> por_70
+	por_70 [label="*"]
+	por_70 -> divi_71
+	divi_71 [label="/"]
+	divi_71 -> primitivo_72
+	primitivo_72 [label=50]
+	divi_71 -> primitivo_73
+	primitivo_73 [label=50]
+	por_70 -> primitivo_74
+	primitivo_74 [label=50]
+	suma_69 -> primitivo_75
+	primitivo_75 [label=50]
+	resta_68 -> primitivo_76
+	primitivo_76 [label=100]
+	suma_67 -> primitivo_77
+	primitivo_77 [label=100]
+	resta_66 -> primitivo_78
+	primitivo_78 [label=100]
+	operacionesBasicas_39 -> declaracion_79
+	declaracion_79 [label="Declaracion 
+ ="]
+	declaracion_79 -> b2_80
+	b2_80 [label=b2]
+	declaracion_79 -> b_81
+	b_81 [label=b]
+	operacionesBasicas_39 -> declaracion_82
+	declaracion_82 [label="Declaracion 
+ ="]
+	declaracion_82 -> c_83
+	c_83 [label=c]
+	declaracion_82 -> suma_84
+	suma_84 [label="+"]
+	suma_84 -> resta_85
+	resta_85 [label="-"]
+	resta_85 -> suma_86
+	suma_86 [label="+"]
+	suma_86 -> resta_87
+	resta_87 [label="-"]
+	resta_87 -> suma_88
+	suma_88 [label="+"]
+	suma_88 -> resta_89
+	resta_89 [label="-"]
+	resta_89 -> por_90
+	por_90 [label="*"]
+	por_90 -> divi_91
+	divi_91 [label="/"]
+	divi_91 -> primitivo_92
+	primitivo_92 [label=100]
+	divi_91 -> primitivo_93
+	primitivo_93 [label=20]
+	por_90 -> primitivo_94
+	primitivo_94 [label=9]
+	resta_89 -> primitivo_95
+	primitivo_95 [label=78]
+	suma_88 -> primitivo_96
+	primitivo_96 [label=6]
+	resta_87 -> primitivo_97
+	primitivo_97 [label=7]
+	suma_86 -> primitivo_98
+	primitivo_98 [label=8]
+	resta_85 -> primitivo_99
+	primitivo_99 [label=7]
+	suma_84 -> divi_100
+	divi_100 [label="/"]
+	divi_100 -> por_101
+	por_101 [label="*"]
+	por_101 -> por_102
+	por_102 [label="*"]
+	por_102 -> por_103
+	por_103 [label="*"]
+	por_103 -> primitivo_104
+	primitivo_104 [label=7]
+	por_103 -> primitivo_105
+	primitivo_105 [label=1]
+	por_102 -> primitivo_106
+	primitivo_106 [label=2]
+	por_101 -> primitivo_107
+	primitivo_107 [label=3]
+	divi_100 -> primitivo_108
+	primitivo_108 [label=3]
+	operacionesBasicas_39 -> declaracion_109
+	declaracion_109 [label="Declaracion 
+ ="]
+	declaracion_109 -> c2_110
+	c2_110 [label=c2]
+	declaracion_109 -> c_111
+	c_111 [label=c]
+	operacionesBasicas_39 -> print_112
+	print_112 [label=Printf]
+	print_112 -> primitivo_113
+	primitivo_113 [label="a) %d\n"]
+	print_112 -> a2_114
+	a2_114 [label=a2]
+	operacionesBasicas_39 -> print_115
+	print_115 [label=Printf]
+	print_115 -> primitivo_116
+	primitivo_116 [label="b) %d\n"]
+	print_115 -> b2_117
+	b2_117 [label=b2]
+	operacionesBasicas_39 -> print_118
+	print_118 [label=Printf]
+	print_118 -> primitivo_119
+	primitivo_119 [label="c) %d\n"]
+	print_118 -> c2_120
+	c2_120 [label=c2]
+	operacionesBasicas_39 -> sent_if_121
+	sent_if_121 [label="Sentencia If"]
+	sent_if_121 -> if_122
+	if_122 [label=If]
+	if_122 -> AND_123
+	AND_123 [label="&&"]
+	AND_123 -> AND_124
+	AND_124 [label="&&"]
+	AND_124 -> igualigual_125
+	igualigual_125 [label="=="]
+	igualigual_125 -> a2_126
+	a2_126 [label=a2]
+	igualigual_125 -> primitivo_127
+	primitivo_127 [label=62]
+	AND_124 -> igualigual_128
+	igualigual_128 [label="=="]
+	igualigual_128 -> b2_129
+	b2_129 [label=b2]
+	igualigual_128 -> primitivo_130
+	primitivo_130 [label=0]
+	AND_123 -> igualigual_131
+	igualigual_131 [label="=="]
+	igualigual_131 -> c2_132
+	c2_132 [label=c2]
+	igualigual_131 -> Umenos_133
+	Umenos_133 [label="-"]
+	Umenos_133 -> primitivo_134
+	primitivo_134 [label=19]
+	if_122 -> print_135
+	print_135 [label=Printf]
+	print_135 -> primitivo_136
+	primitivo_136 [label="Operaciones aritmeticas 1 bien :D\n"]
+	if_122 -> asignacion_137
+	asignacion_137 [label="Asignacion 
+ ="]
+	asignacion_137 -> punteo_138
+	punteo_138 [label=punteo]
+	asignacion_137 -> suma_139
+	suma_139 [label="+"]
+	suma_139 -> punteo_140
+	punteo_140 [label=punteo]
+	suma_139 -> primitivo_141
+	primitivo_141 [label=5]
+	sent_if_121 -> else_142
+	else_142 [label=Else]
+	else_142 -> print_143
+	print_143 [label=Printf]
+	print_143 -> primitivo_144
+	primitivo_144 [label="Error en las operaciones basicas :(\n"]
+	0 -> operacionesAvanzadas_145
+	operacionesAvanzadas_145 [label=operacionesAvanzadas]
+	operacionesAvanzadas_145 -> declaracion_146
+	declaracion_146 [label="Declaracion 
+ ="]
+	declaracion_146 -> aritmetica1_147
+	aritmetica1_147 [label=aritmetica1]
+	declaracion_146 -> primitivo_148
+	primitivo_148 [label=2]
+	operacionesAvanzadas_145 -> declaracion_149
+	declaracion_149 [label="Declaracion 
+ ="]
+	declaracion_149 -> aritmetica2_150
+	aritmetica2_150 [label=aritmetica2]
+	declaracion_149 -> Umenos_151
+	Umenos_151 [label="-"]
+	Umenos_151 -> primitivo_152
+	primitivo_152 [label=10]
+	operacionesAvanzadas_145 -> print_153
+	print_153 [label=Printf]
+	print_153 -> primitivo_154
+	primitivo_154 [label="Operaciones Aritmeticas 2:\n valor esperado:\n -20  2.0\n resultado:\n"]
+	operacionesAvanzadas_145 -> declaracion_155
+	declaracion_155 [label="Declaracion 
+ ="]
+	declaracion_155 -> aritmetica3_156
+	aritmetica3_156 [label=aritmetica3]
+	declaracion_155 -> por_157
+	por_157 [label="*"]
+	por_157 -> aritmetica2_158
+	aritmetica2_158 [label=aritmetica2]
+	por_157 -> aritmetica1_159
+	aritmetica1_159 [label=aritmetica1]
+	operacionesAvanzadas_145 -> print_160
+	print_160 [label=Printf]
+	print_160 -> primitivo_161
+	primitivo_161 [label="%d  "]
+	print_160 -> aritmetica3_162
+	aritmetica3_162 [label=aritmetica3]
+	operacionesAvanzadas_145 -> declaracion_163
+	declaracion_163 [label="Declaracion 
+ ="]
+	declaracion_163 -> aritmetica4_164
+	aritmetica4_164 [label=aritmetica4]
+	declaracion_163 -> resta_165
+	resta_165 [label="-"]
+	resta_165 -> suma_166
+	suma_166 [label="+"]
+	suma_166 -> resta_167
+	resta_167 [label="-"]
+	resta_167 -> suma_168
+	suma_168 [label="+"]
+	suma_168 -> suma_169
+	suma_169 [label="+"]
+	suma_169 -> divi_170
+	divi_170 [label="/"]
+	divi_170 -> aritmetica3_171
+	aritmetica3_171 [label=aritmetica3]
+	divi_170 -> aritmetica1_172
+	aritmetica1_172 [label=aritmetica1]
+	suma_169 -> divi_173
+	divi_173 [label="/"]
+	divi_173 -> primitivo_174
+	primitivo_174 [label=50]
+	divi_173 -> primitivo_175
+	primitivo_175 [label=50]
+	suma_168 -> por_176
+	por_176 [label="*"]
+	por_176 -> primitivo_177
+	primitivo_177 [label=50]
+	por_176 -> primitivo_178
+	primitivo_178 [label=2]
+	resta_167 -> primitivo_179
+	primitivo_179 [label=100]
+	suma_166 -> divi_180
+	divi_180 [label="/"]
+	divi_180 -> primitivo_181
+	primitivo_181 [label=100]
+	divi_180 -> primitivo_182
+	primitivo_182 [label=100]
+	resta_165 -> primitivo_183
+	primitivo_183 [label=0]
+	operacionesAvanzadas_145 -> print_184
+	print_184 [label=Printf]
+	print_184 -> primitivo_185
+	primitivo_185 [label="%f\n"]
+	print_184 -> aritmetica4_186
+	aritmetica4_186 [label=aritmetica4]
+	operacionesAvanzadas_145 -> sent_if_187
+	sent_if_187 [label="Sentencia If"]
+	sent_if_187 -> if_188
+	if_188 [label=If]
+	if_188 -> AND_189
+	AND_189 [label="&&"]
+	AND_189 -> igualigual_190
+	igualigual_190 [label="=="]
+	igualigual_190 -> aritmetica3_191
+	aritmetica3_191 [label=aritmetica3]
+	igualigual_190 -> Umenos_192
+	Umenos_192 [label="-"]
+	Umenos_192 -> primitivo_193
+	primitivo_193 [label=20]
+	AND_189 -> igualigual_194
+	igualigual_194 [label="=="]
+	igualigual_194 -> aritmetica4_195
+	aritmetica4_195 [label=aritmetica4]
+	igualigual_194 -> Umenos_196
+	Umenos_196 [label="-"]
+	Umenos_196 -> primitivo_197
+	primitivo_197 [label=8.0]
+	if_188 -> print_198
+	print_198 [label=Printf]
+	print_198 -> primitivo_199
+	primitivo_199 [label="Operaciones aritmeticas 2 bien :D\n"]
+	if_188 -> asignacion_200
+	asignacion_200 [label="Asignacion 
+ ="]
+	asignacion_200 -> punteo_201
+	punteo_201 [label=punteo]
+	asignacion_200 -> suma_202
+	suma_202 [label="+"]
+	suma_202 -> punteo_203
+	punteo_203 [label=punteo]
+	suma_202 -> primitivo_204
+	primitivo_204 [label=5]
+	sent_if_187 -> else_205
+	else_205 [label=Else]
+	else_205 -> print_206
+	print_206 [label=Printf]
+	print_206 -> primitivo_207
+	primitivo_207 [label="Error Operaciones Aritmeticas :c\n"]
+	0 -> Aritmeticas_208
+	Aritmeticas_208 [label=Aritmeticas]
+	Aritmeticas_208 -> print_209
+	print_209 [label=Printf]
+	print_209 -> primitivo_210
+	primitivo_210 [label="==============Aritmeticas=============\n"]
+	Aritmeticas_208 -> declaracion_211
+	declaracion_211 [label="Declaracion 
+ ="]
+	declaracion_211 -> n1_212
+	n1_212 [label=n1]
+	declaracion_211 -> suma_213
+	suma_213 [label="+"]
+	suma_213 -> suma_214
+	suma_214 [label="+"]
+	suma_214 -> suma_215
+	suma_215 [label="+"]
+	suma_215 -> suma_216
+	suma_216 [label="+"]
+	suma_216 -> suma_217
+	suma_217 [label="+"]
+	suma_217 -> primitivo_218
+	primitivo_218 [label=0.0]
+	suma_217 -> primitivo_219
+	primitivo_219 [label=1]
+	suma_216 -> primitivo_220
+	primitivo_220 [label=1]
+	suma_215 -> primitivo_221
+	primitivo_221 [label=1]
+	suma_214 -> primitivo_222
+	primitivo_222 [label=0.1]
+	suma_213 -> primitivo_223
+	primitivo_223 [label=49]
+	Aritmeticas_208 -> print_224
+	print_224 [label=Printf]
+	print_224 -> primitivo_225
+	primitivo_225 [label="El valor de  n1 = %f\n"]
+	print_224 -> n1_226
+	n1_226 [label=n1]
+	Aritmeticas_208 -> sent_if_227
+	sent_if_227 [label="Sentencia If"]
+	sent_if_227 -> if_228
+	if_228 [label=If]
+	if_228 -> igualigual_229
+	igualigual_229 [label="=="]
+	igualigual_229 -> n1_230
+	n1_230 [label=n1]
+	igualigual_229 -> primitivo_231
+	primitivo_231 [label=52.1]
+	if_228 -> asignacion_232
+	asignacion_232 [label="Asignacion 
+ ="]
+	asignacion_232 -> punteo_233
+	punteo_233 [label=punteo]
+	asignacion_232 -> suma_234
+	suma_234 [label="+"]
+	suma_234 -> punteo_235
+	punteo_235 [label=punteo]
+	suma_234 -> primitivo_236
+	primitivo_236 [label=5]
+	sent_if_227 -> else_237
+	else_237 [label=Else]
+	else_237 -> print_238
+	print_238 [label=Printf]
+	print_238 -> primitivo_239
+	primitivo_239 [label="Perdiste 5 puntos en suma de enteros y decimales :c\n"]
+	Aritmeticas_208 -> declaracion_240
+	declaracion_240 [label="Declaracion 
+ ="]
+	declaracion_240 -> n4_241
+	n4_241 [label=n4]
+	declaracion_240 -> suma_242
+	suma_242 [label="+"]
+	suma_242 -> resta_243
+	resta_243 [label="-"]
+	resta_243 -> por_244
+	por_244 [label="*"]
+	por_244 -> primitivo_245
+	primitivo_245 [label=5750]
+	por_244 -> primitivo_246
+	primitivo_246 [label=2]
+	resta_243 -> primitivo_247
+	primitivo_247 [label=11800]
+	suma_242 -> primitivo_248
+	primitivo_248 [label=1.0]
+	Aritmeticas_208 -> declaracion_249
+	declaracion_249 [label="Declaracion 
+ ="]
+	declaracion_249 -> n3_250
+	n3_250 [label=n3]
+	declaracion_249 -> suma_251
+	suma_251 [label="+"]
+	suma_251 -> resta_252
+	resta_252 [label="-"]
+	resta_252 -> resta_253
+	resta_253 [label="-"]
+	resta_253 -> suma_254
+	suma_254 [label="+"]
+	suma_254 -> suma_255
+	suma_255 [label="+"]
+	suma_255 -> resta_256
+	resta_256 [label="-"]
+	resta_256 -> suma_257
+	suma_257 [label="+"]
+	suma_257 -> por_258
+	por_258 [label="*"]
+	por_258 -> primitivo_259
+	primitivo_259 [label=3]
+	por_258 -> primitivo_260
+	primitivo_260 [label=3]
+	suma_257 -> primitivo_261
+	primitivo_261 [label=4]
+	resta_256 -> primitivo_262
+	primitivo_262 [label=80]
+	suma_255 -> por_263
+	por_263 [label="*"]
+	por_263 -> primitivo_264
+	primitivo_264 [label=40.0]
+	por_263 -> primitivo_265
+	primitivo_265 [label=2]
+	suma_254 -> primitivo_266
+	primitivo_266 [label=358.5]
+	resta_253 -> divi_267
+	divi_267 [label="/"]
+	divi_267 -> primitivo_268
+	primitivo_268 [label=29]
+	divi_267 -> primitivo_269
+	primitivo_269 [label=14.5]
+	resta_252 -> primitivo_270
+	primitivo_270 [label=0.5]
+	suma_251 -> n4_271
+	n4_271 [label=n4]
+	Aritmeticas_208 -> print_272
+	print_272 [label=Printf]
+	print_272 -> primitivo_273
+	primitivo_273 [label="El valor de n3 = %f\n"]
+	print_272 -> n3_274
+	n3_274 [label=n3]
+	Aritmeticas_208 -> sent_if_275
+	sent_if_275 [label="Sentencia If"]
+	sent_if_275 -> if_276
+	if_276 [label=If]
+	if_276 -> igualigual_277
+	igualigual_277 [label="=="]
+	igualigual_277 -> n3_278
+	n3_278 [label=n3]
+	igualigual_277 -> primitivo_279
+	primitivo_279 [label=70]
+	if_276 -> asignacion_280
+	asignacion_280 [label="Asignacion 
+ ="]
+	asignacion_280 -> punteo_281
+	punteo_281 [label=punteo]
+	asignacion_280 -> suma_282
+	suma_282 [label="+"]
+	suma_282 -> punteo_283
+	punteo_283 [label=punteo]
+	suma_282 -> primitivo_284
+	primitivo_284 [label=3]
+	sent_if_275 -> else_285
+	else_285 [label=Else]
+	else_285 -> print_286
+	print_286 [label=Printf]
+	print_286 -> primitivo_287
+	primitivo_287 [label="Perdiste 3 puntos :c\n"]
+	Aritmeticas_208 -> llamada_operacionesBasicas_288
+	llamada_operacionesBasicas_288 [label=operacionesBasicas]
+	Aritmeticas_208 -> llamada_operacionesAvanzadas_289
+	llamada_operacionesAvanzadas_289 [label=operacionesAvanzadas]
+	Aritmeticas_208 -> print_290
+	print_290 [label=Printf]
+	print_290 -> primitivo_291
+	primitivo_291 [label="======================================\n"]
+	0 -> Logicas2_292
+	Logicas2_292 [label=Logicas2]
+	Logicas2_292 -> declaracion_293
+	declaracion_293 [label="Declaracion 
+ ="]
+	declaracion_293 -> n0_294
+	n0_294 [label=n0]
+	declaracion_293 -> primitivo_295
+	primitivo_295 [label=16]
+	Logicas2_292 -> print_296
+	print_296 [label=Printf]
+	print_296 -> primitivo_297
+	primitivo_297 [label="==============Logicas2=============\n"]
+	Logicas2_292 -> sent_if_298
+	sent_if_298 [label="Sentencia If"]
+	sent_if_298 -> if_299
+	if_299 [label=If]
+	if_299 -> Uexclama_300
+	Uexclama_300 [label="!"]
+	Uexclama_300 -> AND_301
+	AND_301 [label="&&"]
+	AND_301 -> Uexclama_302
+	Uexclama_302 [label="!"]
+	Uexclama_302 -> AND_303
+	AND_303 [label="&&"]
+	AND_303 -> igualigual_304
+	igualigual_304 [label="=="]
+	igualigual_304 -> n0_305
+	n0_305 [label=n0]
+	igualigual_304 -> primitivo_306
+	primitivo_306 [label=16]
+	AND_303 -> igualigual_307
+	igualigual_307 [label="=="]
+	igualigual_307 -> primitivo_308
+	primitivo_308 [label=0]
+	igualigual_307 -> primitivo_309
+	primitivo_309 [label=1]
+	AND_301 -> Uexclama_310
+	Uexclama_310 [label="!"]
+	Uexclama_310 -> primitivo_311
+	primitivo_311 [label=1]
+	if_299 -> print_312
+	print_312 [label=Printf]
+	print_312 -> primitivo_313
+	primitivo_313 [label="Not y Ands Correctos\n"]
+	if_299 -> asignacion_314
+	asignacion_314 [label="Asignacion 
+ ="]
+	asignacion_314 -> punteo_315
+	punteo_315 [label=punteo]
+	asignacion_314 -> suma_316
+	suma_316 [label="+"]
+	suma_316 -> punteo_317
+	punteo_317 [label=punteo]
+	suma_316 -> primitivo_318
+	primitivo_318 [label=3]
+	sent_if_298 -> else_319
+	else_319 [label=Else]
+	else_319 -> print_320
+	print_320 [label=Printf]
+	print_320 -> primitivo_321
+	primitivo_321 [label="No funcionan nots y ands :(\n"]
+	Logicas2_292 -> declaracion_322
+	declaracion_322 [label="Declaracion 
+ ="]
+	declaracion_322 -> n1_323
+	n1_323 [label=n1]
+	declaracion_322 -> divi_324
+	divi_324 [label="/"]
+	divi_324 -> n0_325
+	n0_325 [label=n0]
+	divi_324 -> primitivo_326
+	primitivo_326 [label=16]
+	Logicas2_292 -> asignacion_327
+	asignacion_327 [label="Asignacion 
+ ="]
+	asignacion_327 -> n1_328
+	n1_328 [label=n1]
+	asignacion_327 -> suma_329
+	suma_329 [label="+"]
+	suma_329 -> n1_330
+	n1_330 [label=n1]
+	suma_329 -> primitivo_331
+	primitivo_331 [label=1]
+	Logicas2_292 -> declaracion_332
+	declaracion_332 [label="Declaracion 
+ ="]
+	declaracion_332 -> condicion1_333
+	condicion1_333 [label=condicion1]
+	declaracion_332 -> diferente_334
+	diferente_334 [label="!="]
+	diferente_334 -> n1_335
+	n1_335 [label=n1]
+	diferente_334 -> primitivo_336
+	primitivo_336 [label=2]
+	Logicas2_292 -> declaracion_337
+	declaracion_337 [label="Declaracion 
+ ="]
+	declaracion_337 -> aritmetica1_338
+	aritmetica1_338 [label=aritmetica1]
+	declaracion_337 -> suma_339
+	suma_339 [label="+"]
+	suma_339 -> divi_340
+	divi_340 [label="/"]
+	divi_340 -> n0_341
+	n0_341 [label=n0]
+	divi_340 -> primitivo_342
+	primitivo_342 [label=16]
+	suma_339 -> primitivo_343
+	primitivo_343 [label=0]
+	Logicas2_292 -> declaracion_344
+	declaracion_344 [label="Declaracion 
+ ="]
+	declaracion_344 -> condicion2_345
+	condicion2_345 [label=condicion2]
+	declaracion_344 -> igualigual_346
+	igualigual_346 [label="=="]
+	igualigual_346 -> aritmetica1_347
+	aritmetica1_347 [label=aritmetica1]
+	igualigual_346 -> n1_348
+	n1_348 [label=n1]
+	Logicas2_292 -> declaracion_349
+	declaracion_349 [label="Declaracion 
+ ="]
+	declaracion_349 -> condicion3_350
+	condicion3_350 [label=condicion3]
+	declaracion_349 -> Uexclama_351
+	Uexclama_351 [label="!"]
+	Uexclama_351 -> primitivo_352
+	primitivo_352 [label=1]
+	Logicas2_292 -> sent_if_353
+	sent_if_353 [label="Sentencia If"]
+	sent_if_353 -> if_354
+	if_354 [label=If]
+	if_354 -> Uexclama_355
+	Uexclama_355 [label="!"]
+	Uexclama_355 -> Uexclama_356
+	Uexclama_356 [label="!"]
+	Uexclama_356 -> OR_357
+	OR_357 [label="||"]
+	OR_357 -> Uexclama_358
+	Uexclama_358 [label="!"]
+	Uexclama_358 -> OR_359
+	OR_359 [label="||"]
+	OR_359 -> condicion1_360
+	condicion1_360 [label=condicion1]
+	OR_359 -> condicion2_361
+	condicion2_361 [label=condicion2]
+	OR_357 -> condicion3_362
+	condicion3_362 [label=condicion3]
+	if_354 -> print_363
+	print_363 [label=Printf]
+	print_363 -> primitivo_364
+	primitivo_364 [label="Nots y Ors correctos\n"]
+	if_354 -> asignacion_365
+	asignacion_365 [label="Asignacion 
+ ="]
+	asignacion_365 -> punteo_366
+	punteo_366 [label=punteo]
+	asignacion_365 -> suma_367
+	suma_367 [label="+"]
+	suma_367 -> punteo_368
+	punteo_368 [label=punteo]
+	suma_367 -> primitivo_369
+	primitivo_369 [label=3]
+	sent_if_353 -> else_370
+	else_370 [label=Else]
+	else_370 -> print_371
+	print_371 [label=Printf]
+	print_371 -> primitivo_372
+	primitivo_372 [label="No Funciona nots y ands :(\n"]
+	Logicas2_292 -> print_373
+	print_373 [label=Printf]
+	print_373 -> primitivo_374
+	primitivo_374 [label="======================================\n"]
+	0 -> BitABit_375
+	BitABit_375 [label=BitABit]
+	BitABit_375 -> declaracion_376
+	declaracion_376 [label="Declaracion 
+ ="]
+	declaracion_376 -> n0_377
+	n0_377 [label=n0]
+	declaracion_376 -> primitivo_378
+	primitivo_378 [label=16]
+	BitABit_375 -> print_379
+	print_379 [label=Printf]
+	print_379 -> primitivo_380
+	primitivo_380 [label="==============Bit a Bit=============\n"]
+	BitABit_375 -> declaracion_381
+	declaracion_381 [label="Declaracion 
+ ="]
+	declaracion_381 -> n1_382
+	n1_382 [label=n1]
+	declaracion_381 -> bAnd_383
+	bAnd_383 [label="&"]
+	bAnd_383 -> n0_384
+	n0_384 [label=n0]
+	bAnd_383 -> n0_385
+	n0_385 [label=n0]
+	BitABit_375 -> sent_if_386
+	sent_if_386 [label="Sentencia If"]
+	sent_if_386 -> if_387
+	if_387 [label=If]
+	if_387 -> igualigual_388
+	igualigual_388 [label="=="]
+	igualigual_388 -> n1_389
+	n1_389 [label=n1]
+	igualigual_388 -> primitivo_390
+	primitivo_390 [label=16]
+	if_387 -> print_391
+	print_391 [label=Printf]
+	print_391 -> primitivo_392
+	primitivo_392 [label="AND Bit a Bit bien\n"]
+	if_387 -> asignacion_393
+	asignacion_393 [label="Asignacion 
+ ="]
+	asignacion_393 -> punteo_394
+	punteo_394 [label=punteo]
+	asignacion_393 -> suma_395
+	suma_395 [label="+"]
+	suma_395 -> punteo_396
+	punteo_396 [label=punteo]
+	suma_395 -> primitivo_397
+	primitivo_397 [label=1]
+	sent_if_386 -> else_398
+	else_398 [label=Else]
+	else_398 -> print_399
+	print_399 [label=Printf]
+	print_399 -> primitivo_400
+	primitivo_400 [label="AND Bit a Bit mal\n"]
+	BitABit_375 -> asignacion_401
+	asignacion_401 [label="Asignacion 
+ ="]
+	asignacion_401 -> n1_402
+	n1_402 [label=n1]
+	asignacion_401 -> bOr_403
+	bOr_403 [label="|"]
+	bOr_403 -> primitivo_404
+	primitivo_404 [label=51]
+	bOr_403 -> Unot_405
+	Unot_405 [label="~"]
+	Unot_405 -> primitivo_406
+	primitivo_406 [label=30]
+	BitABit_375 -> declaracion_407
+	declaracion_407 [label="Declaracion 
+ ="]
+	declaracion_407 -> n2_408
+	n2_408 [label=n2]
+	declaracion_407 -> bXor_409
+	bXor_409 [label="^"]
+	bXor_409 -> bXor_410
+	bXor_410 [label="^"]
+	bXor_410 -> bXor_411
+	bXor_411 [label="^"]
+	bXor_411 -> n1_412
+	n1_412 [label=n1]
+	bXor_411 -> primitivo_413
+	primitivo_413 [label=60]
+	bXor_410 -> primitivo_414
+	primitivo_414 [label=70]
+	bXor_409 -> primitivo_415
+	primitivo_415 [label=32]
+	BitABit_375 -> sent_if_416
+	sent_if_416 [label="Sentencia If"]
+	sent_if_416 -> if_417
+	if_417 [label=If]
+	if_417 -> igualigual_418
+	igualigual_418 [label="=="]
+	igualigual_418 -> n2_419
+	n2_419 [label=n2]
+	igualigual_418 -> Umenos_420
+	Umenos_420 [label="-"]
+	Umenos_420 -> primitivo_421
+	primitivo_421 [label=87]
+	if_417 -> print_422
+	print_422 [label=Printf]
+	print_422 -> primitivo_423
+	primitivo_423 [label="OR, NOT, XOR Bit a Bit bien\n"]
+	if_417 -> asignacion_424
+	asignacion_424 [label="Asignacion 
+ ="]
+	asignacion_424 -> punteo_425
+	punteo_425 [label=punteo]
+	asignacion_424 -> suma_426
+	suma_426 [label="+"]
+	suma_426 -> punteo_427
+	punteo_427 [label=punteo]
+	suma_426 -> primitivo_428
+	primitivo_428 [label=3]
+	sent_if_416 -> else_429
+	else_429 [label=Else]
+	else_429 -> print_430
+	print_430 [label=Printf]
+	print_430 -> primitivo_431
+	primitivo_431 [label="OR, NOT, XOR Bit a Bit mal\n"]
+	BitABit_375 -> print_432
+	print_432 [label=Printf]
+	print_432 -> primitivo_433
+	primitivo_433 [label="======================================\n"]
+	0 -> Logicas_434
+	Logicas_434 [label=Logicas]
+	Logicas_434 -> print_435
+	print_435 [label=Printf]
+	print_435 -> primitivo_436
+	primitivo_436 [label="==============Logicas1=============\n"]
+	Logicas_434 -> sent_if_437
+	sent_if_437 [label="Sentencia If"]
+	sent_if_437 -> if_438
+	if_438 [label=If]
+	if_438 -> Uexclama_439
+	Uexclama_439 [label="!"]
+	Uexclama_439 -> Uexclama_440
+	Uexclama_440 [label="!"]
+	Uexclama_440 -> Uexclama_441
+	Uexclama_441 [label="!"]
+	Uexclama_441 -> Uexclama_442
+	Uexclama_442 [label="!"]
+	Uexclama_442 -> Uexclama_443
+	Uexclama_443 [label="!"]
+	Uexclama_443 -> Uexclama_444
+	Uexclama_444 [label="!"]
+	Uexclama_444 -> Uexclama_445
+	Uexclama_445 [label="!"]
+	Uexclama_445 -> Uexclama_446
+	Uexclama_446 [label="!"]
+	Uexclama_446 -> Uexclama_447
+	Uexclama_447 [label="!"]
+	Uexclama_447 -> Uexclama_448
+	Uexclama_448 [label="!"]
+	Uexclama_448 -> Uexclama_449
+	Uexclama_449 [label="!"]
+	Uexclama_449 -> Uexclama_450
+	Uexclama_450 [label="!"]
+	Uexclama_450 -> Uexclama_451
+	Uexclama_451 [label="!"]
+	Uexclama_451 -> Uexclama_452
+	Uexclama_452 [label="!"]
+	Uexclama_452 -> Uexclama_453
+	Uexclama_453 [label="!"]
+	Uexclama_453 -> Uexclama_454
+	Uexclama_454 [label="!"]
+	Uexclama_454 -> Uexclama_455
+	Uexclama_455 [label="!"]
+	Uexclama_455 -> Uexclama_456
+	Uexclama_456 [label="!"]
+	Uexclama_456 -> Uexclama_457
+	Uexclama_457 [label="!"]
+	Uexclama_457 -> Uexclama_458
+	Uexclama_458 [label="!"]
+	Uexclama_458 -> Uexclama_459
+	Uexclama_459 [label="!"]
+	Uexclama_459 -> Uexclama_460
+	Uexclama_460 [label="!"]
+	Uexclama_460 -> primitivo_461
+	primitivo_461 [label=1]
+	if_438 -> asignacion_462
+	asignacion_462 [label="Asignacion 
+ ="]
+	asignacion_462 -> punteo_463
+	punteo_463 [label=punteo]
+	asignacion_462 -> suma_464
+	suma_464 [label="+"]
+	suma_464 -> punteo_465
+	punteo_465 [label=punteo]
+	suma_464 -> primitivo_466
+	primitivo_466 [label=1]
+	if_438 -> print_467
+	print_467 [label=Printf]
+	print_467 -> primitivo_468
+	primitivo_468 [label="Bien primera condicion :)\n"]
+	sent_if_437 -> else_469
+	else_469 [label=Else]
+	else_469 -> print_470
+	print_470 [label=Printf]
+	print_470 -> primitivo_471
+	primitivo_471 [label="Perdiste 1 punto :c\n"]
+	Logicas_434 -> sent_if_472
+	sent_if_472 [label="Sentencia If"]
+	sent_if_472 -> if_473
+	if_473 [label=If]
+	if_473 -> OR_474
+	OR_474 [label="||"]
+	OR_474 -> OR_475
+	OR_475 [label="||"]
+	OR_475 -> AND_476
+	AND_476 [label="&&"]
+	AND_476 -> primitivo_477
+	primitivo_477 [label=1]
+	AND_476 -> primitivo_478
+	primitivo_478 [label=1]
+	OR_475 -> AND_479
+	AND_479 [label="&&"]
+	AND_479 -> AND_480
+	AND_480 [label="&&"]
+	AND_480 -> primitivo_481
+	primitivo_481 [label=0]
+	AND_480 -> primitivo_482
+	primitivo_482 [label=0]
+	AND_479 -> primitivo_483
+	primitivo_483 [label=0]
+	OR_474 -> Uexclama_484
+	Uexclama_484 [label="!"]
+	Uexclama_484 -> primitivo_485
+	primitivo_485 [label=1]
+	if_473 -> asignacion_486
+	asignacion_486 [label="Asignacion 
+ ="]
+	asignacion_486 -> punteo_487
+	punteo_487 [label=punteo]
+	asignacion_486 -> suma_488
+	suma_488 [label="+"]
+	suma_488 -> punteo_489
+	punteo_489 [label=punteo]
+	suma_488 -> primitivo_490
+	primitivo_490 [label=1]
+	if_473 -> print_491
+	print_491 [label=Printf]
+	print_491 -> primitivo_492
+	primitivo_492 [label="Bien segunda condicion :)\n"]
+	sent_if_472 -> else_493
+	else_493 [label=Else]
+	else_493 -> print_494
+	print_494 [label=Printf]
+	print_494 -> primitivo_495
+	primitivo_495 [label="Mal segunda condicion :c\n"]
+	Logicas_434 -> print_496
+	print_496 [label=Printf]
+	print_496 -> primitivo_497
+	primitivo_497 [label="======================================\n"]
+	Logicas_434 -> llamada_Logicas2_498
+	llamada_Logicas2_498 [label=Logicas2]
+	Logicas_434 -> llamada_BitABit_499
+	llamada_BitABit_499 [label=BitABit]
+	0 -> relaciones1_500
+	relaciones1_500 [label=relaciones1]
+	relaciones1_500 -> parametros_501
+	parametros_501 [label=Parametros]
+	parametros_501 -> param_502
+	param_502 [label=salida]
+	relaciones1_500 -> print_503
+	print_503 [label=Printf]
+	print_503 -> primitivo_504
+	primitivo_504 [label="==============relacionales1=============\n"]
+	relaciones1_500 -> declaracion_505
+	declaracion_505 [label="Declaracion 
+ ="]
+	declaracion_505 -> n0_506
+	n0_506 [label=n0]
+	declaracion_505 -> suma_507
+	suma_507 [label="+"]
+	suma_507 -> salida_508
+	salida_508 [label=salida]
+	suma_507 -> primitivo_509
+	primitivo_509 [label=0.0]
+	relaciones1_500 -> sent_if_510
+	sent_if_510 [label="Sentencia If"]
+	sent_if_510 -> if_511
+	if_511 [label=If]
+	if_511 -> menor_512
+	menor_512 [label="<"]
+	menor_512 -> n0_513
+	n0_513 [label=n0]
+	menor_512 -> primitivo_514
+	primitivo_514 [label=34.44]
+	if_511 -> asignacion_515
+	asignacion_515 [label="Asignacion 
+ ="]
+	asignacion_515 -> salida_516
+	salida_516 [label=salida]
+	asignacion_515 -> suma_517
+	suma_517 [label="+"]
+	suma_517 -> salida_518
+	salida_518 [label=salida]
+	suma_517 -> primitivo_519
+	primitivo_519 [label=15]
+	if_511 -> sent_if_520
+	sent_if_520 [label="Sentencia If"]
+	sent_if_520 -> if_521
+	if_521 [label=If]
+	if_521 -> mayor_522
+	mayor_522 [label=">"]
+	mayor_522 -> salida_523
+	salida_523 [label=salida]
+	mayor_522 -> primitivo_524
+	primitivo_524 [label=44]
+	if_521 -> asignacion_525
+	asignacion_525 [label="Asignacion 
+ ="]
+	asignacion_525 -> salida_526
+	salida_526 [label=salida]
+	asignacion_525 -> suma_527
+	suma_527 [label="+"]
+	suma_527 -> salida_528
+	salida_528 [label=salida]
+	suma_527 -> primitivo_529
+	primitivo_529 [label=1]
+	sent_if_510 -> else_530
+	else_530 [label=Else]
+	else_530 -> asignacion_531
+	asignacion_531 [label="Asignacion 
+ ="]
+	asignacion_531 -> salida_532
+	salida_532 [label=salida]
+	asignacion_531 -> primitivo_533
+	primitivo_533 [label=1]
+	relaciones1_500 -> sent_if_534
+	sent_if_534 [label="Sentencia If"]
+	sent_if_534 -> if_535
+	if_535 [label=If]
+	if_535 -> diferente_536
+	diferente_536 [label="!="]
+	diferente_536 -> salida_537
+	salida_537 [label=salida]
+	diferente_536 -> primitivo_538
+	primitivo_538 [label=1]
+	if_535 -> sent_if_539
+	sent_if_539 [label="Sentencia If"]
+	sent_if_539 -> if_540
+	if_540 [label=If]
+	if_540 -> igualigual_541
+	igualigual_541 [label="=="]
+	igualigual_541 -> salida_542
+	salida_542 [label=salida]
+	igualigual_541 -> primitivo_543
+	primitivo_543 [label=50]
+	if_540 -> print_544
+	print_544 [label=Printf]
+	print_544 -> primitivo_545
+	primitivo_545 [label="salida Correcta Relacionales 1!\n"]
+	if_540 -> asignacion_546
+	asignacion_546 [label="Asignacion 
+ ="]
+	asignacion_546 -> punteo_547
+	punteo_547 [label=punteo]
+	asignacion_546 -> suma_548
+	suma_548 [label="+"]
+	suma_548 -> punteo_549
+	punteo_549 [label=punteo]
+	suma_548 -> primitivo_550
+	primitivo_550 [label=5]
+	sent_if_539 -> else_551
+	else_551 [label=Else]
+	else_551 -> print_552
+	print_552 [label=Printf]
+	print_552 -> primitivo_553
+	primitivo_553 [label="salida incorrecta!!\n"]
+	sent_if_534 -> else_554
+	else_554 [label=Else]
+	else_554 -> print_555
+	print_555 [label=Printf]
+	print_555 -> primitivo_556
+	primitivo_556 [label="salida incorrecta!!\n"]
+	relaciones1_500 -> print_557
+	print_557 [label=Printf]
+	print_557 -> primitivo_558
+	primitivo_558 [label="======================================\n"]
+	0 -> relaciones2_559
+	relaciones2_559 [label=relaciones2]
+	relaciones2_559 -> parametros_560
+	parametros_560 [label=Parametros]
+	parametros_560 -> param_561
+	param_561 [label=n0]
+	relaciones2_559 -> print_562
+	print_562 [label=Printf]
+	print_562 -> primitivo_563
+	primitivo_563 [label="============Relacionales2=============\n"]
+	relaciones2_559 -> sent_if_564
+	sent_if_564 [label="Sentencia If"]
+	sent_if_564 -> if_565
+	if_565 [label=If]
+	if_565 -> AND_566
+	AND_566 [label="&&"]
+	AND_566 -> mayorigual_567
+	mayorigual_567 [label=">="]
+	mayorigual_567 -> resta_568
+	resta_568 [label="-"]
+	resta_568 -> primitivo_569
+	primitivo_569 [label=10]
+	resta_568 -> primitivo_570
+	primitivo_570 [label=15]
+	mayorigual_567 -> primitivo_571
+	primitivo_571 [label=0]
+	AND_566 -> igualigual_572
+	igualigual_572 [label="=="]
+	igualigual_572 -> primitivo_573
+	primitivo_573 [label=44.44]
+	igualigual_572 -> primitivo_574
+	primitivo_574 [label=44.44]
+	if_565 -> print_575
+	print_575 [label=Printf]
+	print_575 -> primitivo_576
+	primitivo_576 [label="salida incorrecta primer if relacionales2!!\n"]
+	sent_if_564 -> else_577
+	else_577 [label=Else]
+	else_577 -> sent_if_578
+	sent_if_578 [label="Sentencia If"]
+	sent_if_578 -> if_579
+	if_579 [label=If]
+	if_579 -> AND_580
+	AND_580 [label="&&"]
+	AND_580 -> igualigual_581
+	igualigual_581 [label="=="]
+	igualigual_581 -> suma_582
+	suma_582 [label="+"]
+	suma_582 -> primitivo_583
+	primitivo_583 [label=15]
+	suma_582 -> primitivo_584
+	primitivo_584 [label=8]
+	igualigual_581 -> resta_585
+	resta_585 [label="-"]
+	resta_585 -> suma_586
+	suma_586 [label="+"]
+	suma_586 -> resta_587
+	resta_587 [label="-"]
+	resta_587 -> primitivo_588
+	primitivo_588 [label=22]
+	resta_587 -> primitivo_589
+	primitivo_589 [label=10]
+	suma_586 -> por_590
+	por_590 [label="*"]
+	por_590 -> primitivo_591
+	primitivo_591 [label=5]
+	por_590 -> primitivo_592
+	primitivo_592 [label=3]
+	resta_585 -> primitivo_593
+	primitivo_593 [label=4]
+	AND_580 -> mayor_594
+	mayor_594 [label=">"]
+	mayor_594 -> por_595
+	por_595 [label="*"]
+	por_595 -> primitivo_596
+	primitivo_596 [label=13]
+	por_595 -> primitivo_597
+	primitivo_597 [label=0]
+	mayor_594 -> Umenos_598
+	Umenos_598 [label="-"]
+	Umenos_598 -> primitivo_599
+	primitivo_599 [label=1]
+	if_579 -> sent_if_600
+	sent_if_600 [label="Sentencia If"]
+	sent_if_600 -> if_601
+	if_601 [label=If]
+	if_601 -> diferente_602
+	diferente_602 [label="!="]
+	diferente_602 -> primitivo_603
+	primitivo_603 [label=10.0]
+	diferente_602 -> resta_604
+	resta_604 [label="-"]
+	resta_604 -> primitivo_605
+	primitivo_605 [label=11.0]
+	resta_604 -> primitivo_606
+	primitivo_606 [label=1.01]
+	if_601 -> print_607
+	print_607 [label=Printf]
+	print_607 -> primitivo_608
+	primitivo_608 [label="salida CORRECTA en relacionales2!!\n"]
+	if_601 -> asignacion_609
+	asignacion_609 [label="Asignacion 
+ ="]
+	asignacion_609 -> punteo_610
+	punteo_610 [label=punteo]
+	asignacion_609 -> suma_611
+	suma_611 [label="+"]
+	suma_611 -> punteo_612
+	punteo_612 [label=punteo]
+	suma_611 -> primitivo_613
+	primitivo_613 [label=5]
+	sent_if_600 -> else_614
+	else_614 [label=Else]
+	else_614 -> print_615
+	print_615 [label=Printf]
+	print_615 -> primitivo_616
+	primitivo_616 [label="salida incorrecta segundo if relacionales 2!!\n"]
+	sent_if_578 -> else_617
+	else_617 [label=Else]
+	else_617 -> sent_if_618
+	sent_if_618 [label="Sentencia If"]
+	sent_if_618 -> if_619
+	if_619 [label=If]
+	if_619 -> igualigual_620
+	igualigual_620 [label="=="]
+	igualigual_620 -> primitivo_621
+	primitivo_621 [label=1]
+	igualigual_620 -> primitivo_622
+	primitivo_622 [label=1]
+	if_619 -> print_623
+	print_623 [label=Printf]
+	print_623 -> primitivo_624
+	primitivo_624 [label="salida incorrecta relacionales 2 3er if !!\n"]
+	sent_if_618 -> else_625
+	else_625 [label=Else]
+	else_625 -> print_626
+	print_626 [label=Printf]
+	print_626 -> primitivo_627
+	primitivo_627 [label="salida incorrecta relacionales 2 Sino3er if !!\n"]
+	relaciones2_559 -> print_628
+	print_628 [label=Printf]
+	print_628 -> primitivo_629
+	primitivo_629 [label="======================================\n"]
+	0 -> Relacionales_630
+	Relacionales_630 [label=Relacionales]
+	Relacionales_630 -> declaracion_631
+	declaracion_631 [label="Declaracion 
+ ="]
+	declaracion_631 -> n0_632
+	n0_632 [label=n0]
+	declaracion_631 -> primitivo_633
+	primitivo_633 [label=34]
+	Relacionales_630 -> declaracion_634
+	declaracion_634 [label="Declaracion 
+ ="]
+	declaracion_634 -> n1_635
+	n1_635 [label=n1]
+	declaracion_634 -> primitivo_636
+	primitivo_636 [label=16]
+	Relacionales_630 -> llamada_relaciones1_637
+	llamada_relaciones1_637 [label=relaciones1]
+	llamada_relaciones1_637 -> parametros_638
+	parametros_638 [label=Parametros]
+	parametros_638 -> n0_639
+	n0_639 [label=n0]
+	Relacionales_630 -> llamada_relaciones2_640
+	llamada_relaciones2_640 [label=relaciones2]
+	llamada_relaciones2_640 -> parametros_641
+	parametros_641 [label=Parametros]
+	parametros_641 -> n1_642
+	n1_642 [label=n1]
+	0 -> main_643
+	main_643 [label=Main]
+	main_643 -> declaracion_644
+	declaracion_644 [label="Declaracion 
+ ="]
+	declaracion_644 -> var1_645
+	var1_645 [label=var1]
+	declaracion_644 -> primitivo_646
+	primitivo_646 [label=0]
+	main_643 -> print_647
+	print_647 [label=Printf]
+	print_647 -> primitivo_648
+	primitivo_648 [label="-----------------CALIFICACION-----------------\n"]
+	main_643 -> sent_if_649
+	sent_if_649 [label="Sentencia If"]
+	sent_if_649 -> if_650
+	if_650 [label=If]
+	if_650 -> diferente_651
+	diferente_651 [label="!="]
+	diferente_651 -> var1_652
+	var1_652 [label=var1]
+	diferente_651 -> primitivo_653
+	primitivo_653 [label=0]
+	if_650 -> print_654
+	print_654 [label=Printf]
+	print_654 -> primitivo_655
+	primitivo_655 [label="No se toma con prioridad la variable local ante la global\n"]
+	if_650 -> print_656
+	print_656 [label=Printf]
+	print_656 -> primitivo_657
+	primitivo_657 [label="Perdiste 5 puntos :c\n"]
+	sent_if_649 -> else_658
+	else_658 [label=Else]
+	else_658 -> asignacion_659
+	asignacion_659 [label="Asignacion 
+ ="]
+	asignacion_659 -> punteo_660
+	punteo_660 [label=punteo]
+	asignacion_659 -> suma_661
+	suma_661 [label="+"]
+	suma_661 -> punteo_662
+	punteo_662 [label=punteo]
+	suma_661 -> primitivo_663
+	primitivo_663 [label=5]
+	main_643 -> llamada_Declaracion_664
+	llamada_Declaracion_664 [label=Declaracion]
+	main_643 -> llamada_Aritmeticas_665
+	llamada_Aritmeticas_665 [label=Aritmeticas]
+	main_643 -> llamada_Logicas_666
+	llamada_Logicas_666 [label=Logicas]
+	main_643 -> llamada_Relacionales_667
+	llamada_Relacionales_667 [label=Relacionales]
+	main_643 -> print_668
+	print_668 [label=Printf]
+	print_668 -> primitivo_669
+	primitivo_669 [label="punteo Final: %d\n"]
+	print_668 -> punteo_670
+	punteo_670 [label=punteo]
+	main_643 -> print_671
+	print_671 [label=Printf]
+	print_671 -> primitivo_672
+	primitivo_672 [label="FINNNNNNNN\n"]
 }
