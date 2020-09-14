@@ -4,6 +4,7 @@ digraph {
 	node [shape=plaintext]
 	A [label=<<table border = '1'>
 <tr><td>Token</td><td>Tipo</td><td>Descripcion</td><td>Fila</td><td>Columna</td></tr>
+<tr><td>Main</td><td>Semantico</td><td>Algo ha ocurrido en el main</td><td>94</td><td>1</td></tr>
 </table>>]
 	T [label="Reporte de Errores"]
 }

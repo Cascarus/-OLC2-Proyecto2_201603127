@@ -12,6 +12,8 @@ entorno = None
 salida = None
 lista_retorno = {}
 conta_ambito = 0
+etiqueta_break = []
+etiqueta_continue = []
 
 
 def new_temp():
@@ -94,6 +96,26 @@ def get_etiquetal():
     global lista_retorno
     return lista_retorno;
 
+def get_etiqueta_continue():
+    global etiqueta_continue
+    temp = etiqueta_continue.pop()
+    etiqueta_continue.append(temp)
+    return temp
+
+def set_etiqueta_continue(id):
+    global etiqueta_continue
+    etiqueta_continue.append(id)
+
+def get_etiqueta_break():
+    global etiqueta_break
+    temp = etiqueta_break.pop()
+    etiqueta_break.append(temp)
+    return temp
+
+def set_etiqueta_break(id):
+    global etiqueta_break
+    etiqueta_break.append(id)
+
 def limpiar():
     global temporales
     global parametros
@@ -108,6 +130,8 @@ def limpiar():
     global salida
     global lista_retorno
     global conta_ambito
+    global etiqueta_break
+    global etiqueta_continue
 
     temporales = 0
     parametros = 0
@@ -121,6 +145,8 @@ def limpiar():
     salida = None
     lista_retorno = {}
     conta_ambito = 0
+    etiqueta_break = []
+    etiqueta_continue = []
     sim_report.clear()
 
 

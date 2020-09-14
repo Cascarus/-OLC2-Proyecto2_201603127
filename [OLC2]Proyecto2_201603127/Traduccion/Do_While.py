@@ -70,6 +70,9 @@ class Do_While(abst):
         label2 = new_etiqueta() #condicion
         label3 = new_etiqueta() #etiqueta salida
 
+        set_etiqueta_break(label3)
+        set_etiqueta_continue(label2)
+
         augus += "\n" + str(label1) + ":\n"
 
         if self.contenido != None:
@@ -92,6 +95,9 @@ class Do_While(abst):
         augus += "goto " + str(label1) + ";\n\n"
 
         augus += str(label3) + ":\n"
+
+        get_etiqueta_break()
+        get_etiqueta_continue()
 
         return [augus, ""]
 

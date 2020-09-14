@@ -442,7 +442,7 @@ def p_bloque_asignacion_1(t):
 
 def p_bloque_asignacion_2(t):
     '''bloque_asignacion : tipo_ID IGUAL SCANF PARENTA PARENTC'''
-    t[0] = [t[1], Scanf(t.slice[2].lineno,get_Column(t.slice[2])), t[2]]
+    t[0] = [t[1], Scanf(t.slice[2].lineno,get_Column(t.slice[2])), tipo_asign.IGUAL]
 
 def p_bloque_asignacion_3(t):
     '''bloque_asignacion : tipo_ID tipo_asignacion LLAVEA lista_filas LLAVEC'''

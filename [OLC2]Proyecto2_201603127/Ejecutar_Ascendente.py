@@ -287,7 +287,7 @@ def resolver_operaciones(Val_variable, tabla):
                 return float(exp1) != float(exp2)
             elif tipo1 == Tipo_Dato.DECIMAL and tipo2 == Tipo_Dato.DECIMAL:
                 return float(exp1) != float(exp2)
-            elif tipo1 == Tipo_Dato.CADENA and tipo2 == Tipo_Dato.CADENA:
+            elif tipo1 == Tipo_Dato.CADENA or tipo2 == Tipo_Dato.CADENA:
                 return str(exp1) != str(exp2)
             else:
                 Err = Error(Val_variable.val1.id, "SEMANTICO", "NO SE PUEDE HACER UNA OPERACION LOGICA ENTRE VALORES DE TIPO " + tipo1 + " CON VALORES DE TIPO " + tipo2, Val_variable.fila, Val_variable.columna)

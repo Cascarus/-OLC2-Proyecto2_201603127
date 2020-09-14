@@ -69,6 +69,9 @@ class While(abst):
         label1 = new_etiqueta()
         label2 = new_etiqueta()
 
+        set_etiqueta_break(label2)
+        set_etiqueta_continue(label1)
+
         augus += "\n" + str(label1) + ":\n"
 
         condicion = self.condicion.generar_C3D()
@@ -88,6 +91,9 @@ class While(abst):
 
         augus += "goto " + str(label1) + ";\n\n"
         augus += str(label2) + ":\n"
+
+        get_etiqueta_break()
+        get_etiqueta_continue()
 
         return [augus, ""]
 

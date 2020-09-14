@@ -3,6 +3,8 @@ from Traduccion.Ambito import ambito
 from Traduccion.Tipos import Tipo_dato
 from Traduccion.Valores import *
 from Errores import *
+from Traduccion.Break import Break
+from Traduccion.Continue import Continue
 
 
 class If(abst):
@@ -100,8 +102,13 @@ class If(abst):
             augus += "if(!" + str(resultado[1]) + ") goto " + str(label2) + ";\n"
 
             for inst in self.contenido[conta]:
-                resultado = inst.generar_C3D()
-                augus += resultado[0]
+                if isinstance(inst, Break):
+                    augus += "goto " + str(get_etiqueta_break()) + "; #Break\n"
+                elif isinstance(inst, Continue):
+                    augus += "goto " + str(get_etiqueta_continue()) + "; #Continue\n"
+                else:
+                    resultado = inst.generar_C3D()
+                    augus += resultado[0]
 
             augus += "goto " + str(label) + ";\n\n"
             augus += str(label2) + ":\n"

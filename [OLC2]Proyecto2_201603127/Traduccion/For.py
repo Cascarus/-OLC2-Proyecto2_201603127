@@ -149,6 +149,9 @@ class For(abst):
             label1 = new_etiqueta()  # etiqueta for
             label2 = new_etiqueta()  # etiqueta de salida
             label3 = new_etiqueta()  # etiqueta de aumento
+
+            set_etiqueta_continue(label3)
+            set_etiqueta_break(label2)
             augus += "\n" + str(label1) + ": #etiqueta for\n"
 
             condicion = self.condicion.generar_C3D()
@@ -172,6 +175,9 @@ class For(abst):
             augus += incre_decre[0]
             augus += "goto " + str(label1) + ";\n\n"
             augus += str(label2) + ": #etiqueta salida for\n"
+
+            get_etiqueta_break()
+            get_etiqueta_continue()
 
             return [augus, ""]
 

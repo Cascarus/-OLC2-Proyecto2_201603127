@@ -56,8 +56,13 @@ class Print(abst):
                                     augus += resultado[0]
                                     augus += "print(" + str(resultado[1]) + ");\n"
                                 else:
-                                    print("ERROR: Se esperaba un dato de tipo enterio en el print")
-                                    break
+                                    if tipo != Tipo_dato.CADENA:
+                                        resultado = self.contenido.pop(0).generar_C3D(Tipo_dato.ENTERO)
+                                        augus += resultado[0]
+                                        augus += "print(" + str(resultado[1]) + ");\n"
+                                    else:
+                                        print("ERROR: Se esperaba un dato de tipo Decimal en el print")
+                                        break
 
                             elif temp[conta+1] == "f":
                                 tipo = self.tipo.pop(0)
@@ -66,8 +71,14 @@ class Print(abst):
                                     augus += resultado[0]
                                     augus += "print(" + str(resultado[1]) + ");\n"
                                 else:
-                                    print("ERROR: Se esperaba un dato de tipo Decimal en el print")
-                                    break
+                                    if tipo != Tipo_dato.CADENA:
+                                        resultado = self.contenido.pop(0).generar_C3D(Tipo_dato.DECIMAL)
+                                        augus += resultado[0]
+                                        augus += "print(" + str(resultado[1]) + ");\n"
+                                    else:
+                                        print("ERROR: Se esperaba un dato de tipo Decimal en el print")
+                                        break
+
 
                             elif temp[conta+1] == "s":
                                 tipo = self.tipo.pop(0)
@@ -82,12 +93,17 @@ class Print(abst):
                             elif temp[conta+1] == "c":
                                 tipo = self.tipo.pop(0)
                                 if tipo == Tipo_dato.CARACTER:
-                                    resultado = self.contenido.pop(0).generar_C3D("print")
+                                    resultado = self.contenido.pop(0).generar_C3D(Tipo_dato.CARACTER)
                                     augus += resultado[0]
                                     augus += "print(" + str(resultado[1]) + ");\n"
                                 else:
-                                    print("ERROR: Se esperaba un dato de tipo Decimal en el print")
-                                    break
+                                    if tipo != Tipo_dato.CADENA:
+                                        resultado = self.contenido.pop(0).generar_C3D(Tipo_dato.CARACTER)
+                                        augus += resultado[0]
+                                        augus += "print(" + str(resultado[1]) + ");\n"
+                                    else:
+                                        print("ERROR: Se esperaba un dato de tipo Decimal en el print")
+                                        break
                             else:
                                 print("ERROR: Esto no deberia ocurrir")
                         else:
